@@ -29,7 +29,9 @@
 
     <link rel="stylesheet" href="<?= base_url('assets/css/styles.min.css'); ?>" />
     <link rel="stylesheet" href="<?= base_url('assets/css/icons/tabler-icons/tabler-icons.css'); ?>" />
+
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <script src="https://kit.fontawesome.com/c0e27fec68.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -116,30 +118,61 @@
                     <div class="container-fluid">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title">Selamat Datang, Rio</h5>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header">
-                                History
-                            </div>
-                            <div class="card-body">
-                                <div class="mb-3">
-                                    <h6 class="form-label">Nomor Laporan</h6>
+                                <div class="d-flex justify-content-between align-items-center mb-4">
+                                    <h5 class="modal-title">Data Akun</h5>
                                 </div>
-                                <div class="mb-3">
-                                    <h6 class="form-label">Waktu Melapor</h6>
-                                </div>
-                                <div class="mb-3">
-                                    <h6 class="form-label">Tempat Kejadian Perkara</h6>
-                                </div>
-                                <a href="#" class="btn btn-primary">Lihat Detail</a>
+                                <form method="post" action="<?= base_url('UbahAkun/process_update') ?>">
+                                    <?php if (session()->has('message')): ?>
+                                        <div class="alert alert-danger" role="alert">
+                                            <?= session('message') ?>
+                                        </div>
+                                    <?php endif; ?>
+                                    <input type="hidden" name="no_laporan" value="">
+                                    <div class="mb-3">
+                                        <h6 class="form-label">Email</h6>
+                                        <input type="email" name="email" class="form-control" value="<?= $email ?>"
+                                            required>
+                                        <div class="form-text">Masukkan e-mail baru jika ingin mengubah e-mail anda
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <h6 class="form-label">Password</h6>
+                                        <div class="password-container">
+                                            <input type="password" name="password" id="password" class="form-control"
+                                                minlength="8" required />
+                                            <i class="fas fa-eye-slash toggle-password"
+                                                onclick="togglePassword('password')"></i>
+                                        </div>
+                                        <div class="form-text">Masukkan password untuk konfirmasi perubahan email</div>
+                                    </div>
+                                    <div class="d-flex gap-2">
+                                        <button type="submit" class="btn btn-warning">Save</button>
+                                        <a href="<?php echo site_url('UbahAkun/update_password'); ?>"
+                                            class="btn btn-danger list-inline-item">Ubah Password</a>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <script>
+            function togglePassword(inputId) {
+                var passwordInput = document.getElementById(inputId);
+                var icon = document.querySelector('.toggle-password');
+
+                if (passwordInput.type === 'password') {
+                    passwordInput.type = 'text';
+                    icon.classList.remove('fa-eye-slash');
+                    icon.classList.add('fa-eye', 'show-password');
+                } else {
+                    passwordInput.type = 'password';
+                    icon.classList.remove('fa-eye', 'show-password');
+                    icon.classList.add('fa-eye-slash');
+                }
+            }
+        </script>
         <script src="<?= base_url('assets/libs/jquery/dist/jquery.min.js'); ?>"></script>
         <script src="<?= base_url('assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js'); ?>"></script>
         <script src="<?= base_url('assets/js/sidebarmenu.js'); ?>"></script>

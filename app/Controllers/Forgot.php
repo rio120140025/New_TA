@@ -16,7 +16,7 @@ class Forgot extends Controller
 
     public function index()
     {
-        return view('User/v_Forgot');
+        return view('User/v_Lupa_Password');
     }
 
     public function process_reset()
@@ -48,7 +48,7 @@ class Forgot extends Controller
 
     public function verification()
     {
-        return view('User/v_Forgot_Verification');
+        return view('User/v_Verification');
     }
 
     public function verify_otp()
@@ -62,7 +62,7 @@ class Forgot extends Controller
         } else {
             $message = "Kode OTP tidak valid!";
             $data['message'] = $message;
-            return view('User/v_Forgot_Verification', $data);
+            return view('User/v_Verification', $data);
         }
     }
 
@@ -75,6 +75,10 @@ class Forgot extends Controller
         $forgotModel->updatePassword($email, $password);
 
         $this->session->remove(['otp', 'email']);
+
+        if ($this->session->get('logged_in')) {
+            $this->session->remove(['logged_in']);
+        }
 
         $message = "Password berhasil diubah.";
         $data['message'] = $message;

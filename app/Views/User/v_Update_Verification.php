@@ -48,7 +48,7 @@
                                         <?= $message ?>
                                     </div>
                                 <?php endif; ?>
-                                <form method="post" action="<?= site_url('Register/verify_otp'); ?>">
+                                <form method="post" action="<?= site_url('UbahAkun/verify_otp'); ?>">
                                     <div class="alert alert-danger" role="alert" id="error-message"
                                         style="display: none;"></div>
                                     <div class="mb-3">

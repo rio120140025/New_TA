@@ -33,8 +33,6 @@ class Dashboard extends Controller
                 return view('User/v_Dashboard');
             }
         }
-
-        return view('Error/v_Error');
     }
 }
 

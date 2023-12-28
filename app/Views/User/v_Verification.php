@@ -42,7 +42,7 @@
                     <div class="col-md-8 col-lg-6 col-xxl-3">
                         <div class="card mb-0">
                             <div class="card-body">
-                                <h3 class="text-heading">Lupa Password Verification</h3>
+                                <h3 class="text-heading">OTP Verification</h3>
                                 <?php if (isset($message)): ?>
                                     <div class="alert alert-danger" role="alert">
                                         <?= $message ?>
