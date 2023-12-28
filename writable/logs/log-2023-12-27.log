@@ -1,0 +1,94 @@
+CRITICAL - 2023-12-27 11:35:43 --> Invalid file: "v_Register_Verification.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(216): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('v_Register_Verification.php')
+ 2 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('v_Register_Verification', [], true)
+ 3 APPPATH\Controllers\Register.php(39): view('v_Register_Verification')
+ 4 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Register->register_verification()
+ 5 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Register))
+ 6 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-12-27 12:50:05 --> Undefined property: App\Controllers\Register::$session
+in APPPATH\Controllers\Register.php on line 29.
+ 1 APPPATH\Controllers\Register.php(29): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: App\\Controllers\\Register::$session', 'C:\\xampp\\htdocs\\curanmorpolreslampungutara\\app\\Controllers\\Register.php', 29)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Register->process_register()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Register))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-12-27 13:04:08 --> Email: Unable to send email using SMTP. Your server might not be configured to send mail using this method.
+ERROR - 2023-12-27 13:04:08 --> 220 smtp.googlemail.com ESMTP n13-20020a17090a394d00b0028adcc0f2c4sm13779377pjf.18 - gsmtp
+
+hello: 250-smtp.googlemail.com at your service, [182.1.237.179]
+250-SIZE 35882577
+250-8BITMIME
+250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+
+Failed to authenticate password. Error: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials n13-20020a17090a394d00b0028adcc0f2c4sm13779377pjf.18 - gsmtp
+
+ERROR - 2023-12-27 13:04:10 --> Email: Unable to send email using SMTP. Your server might not be configured to send mail using this method.
+ERROR - 2023-12-27 13:04:10 --> 220 smtp.googlemail.com ESMTP d14-20020a170902aa8e00b001bf52834696sm11831496plr.207 - gsmtp
+
+hello: 250-smtp.googlemail.com at your service, [182.1.237.179]
+250-SIZE 35882577
+250-8BITMIME
+250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-CHUNKING
+250 SMTPUTF8
+
+Failed to authenticate password. Error: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials d14-20020a170902aa8e00b001bf52834696sm11831496plr.207 - gsmtp
+
+ERROR - 2023-12-27 13:30:31 --> mysqli_sql_exception: Column 'email' cannot be null in C:\xampp\htdocs\curanmorpolreslampungutara\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\curanmorpolreslampungutara\system\Database\MySQLi\Connection.php(306): mysqli->query('INSERT INTO `ak...', 0)
+#1 C:\xampp\htdocs\curanmorpolreslampungutara\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `ak...')
+#2 C:\xampp\htdocs\curanmorpolreslampungutara\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `ak...')
+#3 C:\xampp\htdocs\curanmorpolreslampungutara\system\Database\BaseBuilder.php(2308): CodeIgniter\Database\BaseConnection->query('INSERT INTO `ak...', Array, false)
+#4 C:\xampp\htdocs\curanmorpolreslampungutara\system\Model.php(319): CodeIgniter\Database\BaseBuilder->insert()
+#5 C:\xampp\htdocs\curanmorpolreslampungutara\system\BaseModel.php(788): CodeIgniter\Model->doInsert(Array)
+#6 C:\xampp\htdocs\curanmorpolreslampungutara\system\Model.php(715): CodeIgniter\BaseModel->insert(Array, true)
+#7 C:\xampp\htdocs\curanmorpolreslampungutara\app\Controllers\Register.php(62): CodeIgniter\Model->insert(Array)
+#8 C:\xampp\htdocs\curanmorpolreslampungutara\system\CodeIgniter.php(942): App\Controllers\Register->verify_otp()
+#9 C:\xampp\htdocs\curanmorpolreslampungutara\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Register))
+#10 C:\xampp\htdocs\curanmorpolreslampungutara\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\curanmorpolreslampungutara\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#12 {main}
+CRITICAL - 2023-12-27 13:30:31 --> Column 'email' cannot be null
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(2308): CodeIgniter\Database\BaseConnection->query('INSERT INTO `akun` (`email`, `password`, `id_role`) VALUES (:email:, :password:, :id_role:)', [...], false)
+ 2 SYSTEMPATH\Model.php(319): CodeIgniter\Database\BaseBuilder->insert()
+ 3 SYSTEMPATH\BaseModel.php(788): CodeIgniter\Model->doInsert([...])
+ 4 SYSTEMPATH\Model.php(715): CodeIgniter\BaseModel->insert([...], true)
+ 5 APPPATH\Controllers\Register.php(62): CodeIgniter\Model->insert([...])
+ 6 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Register->verify_otp()
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Register))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-12-27 15:18:52 --> Allowed fields must be specified for model: "App\Models\ForgotModel"
+in SYSTEMPATH\BaseModel.php on line 1257.
+ 1 SYSTEMPATH\BaseModel.php(1257): CodeIgniter\Database\Exceptions\DataException::forInvalidAllowedFields('App\\Models\\ForgotModel')
+ 2 SYSTEMPATH\BaseModel.php(925): CodeIgniter\BaseModel->doProtectFields([...])
+ 3 SYSTEMPATH\Model.php(776): CodeIgniter\BaseModel->update(null, [...])
+ 4 APPPATH\Models\ForgotModel.php(15): CodeIgniter\Model->update()
+ 5 APPPATH\Controllers\Forgot.php(75): App\Models\ForgotModel->updatePassword('vyr60412@zslsz.com', null)
+ 6 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Forgot->reset_password()
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Forgot))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-12-27 15:21:26 --> Allowed fields must be specified for model: "App\Models\ForgotModel"
+in SYSTEMPATH\BaseModel.php on line 1257.
+ 1 SYSTEMPATH\BaseModel.php(1257): CodeIgniter\Database\Exceptions\DataException::forInvalidAllowedFields('App\\Models\\ForgotModel')
+ 2 SYSTEMPATH\BaseModel.php(925): CodeIgniter\BaseModel->doProtectFields([...])
+ 3 SYSTEMPATH\Model.php(776): CodeIgniter\BaseModel->update(null, [...])
+ 4 APPPATH\Models\ForgotModel.php(15): CodeIgniter\Model->update()
+ 5 APPPATH\Controllers\Forgot.php(75): App\Models\ForgotModel->updatePassword('vyr60412@zslsz.com', null)
+ 6 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Forgot->reset_password()
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Forgot))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
