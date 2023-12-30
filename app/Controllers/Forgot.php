@@ -48,7 +48,7 @@ class Forgot extends Controller
 
     public function verification()
     {
-        return view('User/v_Verification');
+        return view('User/v_Lupa_Password_Verification');
     }
 
     public function verify_otp()
@@ -62,7 +62,7 @@ class Forgot extends Controller
         } else {
             $message = "Kode OTP tidak valid!";
             $data['message'] = $message;
-            return view('User/v_Verification', $data);
+            return view('User/v_Lupa_Password_Verification', $data);
         }
     }
 

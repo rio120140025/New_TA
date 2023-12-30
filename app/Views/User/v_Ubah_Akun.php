@@ -108,6 +108,7 @@
                             <a href="<?= base_url(); ?>" class="btn btn-dark list-inline-item">Back To Home</a>
                             <a href="<?php echo site_url('Login/logout'); ?>" class="btn btn-light list-inline-item">Log
                                 Out</a>
+                        </ul>
                     </div>
                 </nav>
             </header>
@@ -119,7 +120,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="d-flex justify-content-between align-items-center mb-4">
-                                    <h5 class="modal-title">Data Akun</h5>
+                                    <h5 class="modal-title">Kelola Akun</h5>
                                 </div>
                                 <form method="post" action="<?= base_url('UbahAkun/process_update') ?>">
                                     <?php if (session()->has('message')): ?>
@@ -127,7 +128,6 @@
                                             <?= session('message') ?>
                                         </div>
                                     <?php endif; ?>
-                                    <input type="hidden" name="no_laporan" value="">
                                     <div class="mb-3">
                                         <h6 class="form-label">Email</h6>
                                         <input type="email" name="email" class="form-control" value="<?= $email ?>"
@@ -146,7 +146,7 @@
                                         <div class="form-text">Masukkan password untuk konfirmasi perubahan email</div>
                                     </div>
                                     <div class="d-flex gap-2">
-                                        <button type="submit" class="btn btn-warning">Save</button>
+                                        <button type="submit" class="btn btn-warning">Simpan</button>
                                         <a href="<?php echo site_url('UbahAkun/update_password'); ?>"
                                             class="btn btn-danger list-inline-item">Ubah Password</a>
                                     </div>

@@ -10,7 +10,7 @@ class LoginModel extends Model
     protected $primaryKey = 'id_akun';
     protected $allowedFields = ['email', 'password', 'id_role'];
 
-    public function get_user($email)
+    public function getUser($email)
     {
         return $this->asObject()->where('email', $email)->first();
     }

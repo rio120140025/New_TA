@@ -59,16 +59,18 @@
                                         style="display: none;"></div>
                                     <div class="mb-3">
                                         <label class="form-label">Email</label>
-                                        <input type="text" name="email" class="form-control" required>
+                                        <input type="email" name="email" class="form-control" required>
+                                        <div class="form-text">Masukkan e-mail anda</div>
                                     </div>
                                     <div class="mb-4">
                                         <label class="form-label">Password</label>
                                         <div class="password-container">
                                             <input type="password" name="password" id="password" class="form-control"
-                                                required />
+                                                minlength="8" required />
                                             <i class="fas fa-eye-slash toggle-password"
                                                 onclick="togglePassword('password')"></i>
                                         </div>
+                                        <div class="form-text">Password minimal 8 karakter</div>
                                     </div>
                                     <button type="submit" class="btn btn-warning w-100 py-2 fs-4 mb-2 rounded-2"
                                         onclick="submitForm();">Sign

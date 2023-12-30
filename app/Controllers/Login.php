@@ -11,8 +11,8 @@ class Login extends Controller
     public function __construct()
     {
         helper(['form', 'url']);
-        $this->loginModel = new LoginModel();
         $this->session = \Config\Services::session();
+        $this->loginModel = new LoginModel();
     }
 
     public function index()
@@ -29,7 +29,7 @@ class Login extends Controller
         $email = $this->request->getPost('email');
         $password = $this->request->getPost('password');
 
-        $user = $this->loginModel->get_user($email);
+        $user = $this->loginModel->getUser($email);
 
         if ($user && property_exists($user, 'password') && password_verify($password, $user->password)) {
             $session_data = [

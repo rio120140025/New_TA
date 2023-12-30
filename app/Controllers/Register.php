@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\RegisterModel;
+use App\Models\DataDiriModel;
 use CodeIgniter\Controller;
 
 class Register extends Controller
@@ -20,6 +21,7 @@ class Register extends Controller
 
     public function process_register()
     {
+        $nama = $this->request->getPost('nama');
         $email = $this->request->getPost('email');
         $password = $this->request->getPost('password');
 
@@ -34,6 +36,7 @@ class Register extends Controller
 
         $otp = rand(100000, 999999);
         $this->session->set('otp', $otp);
+        $this->session->set('nama', $nama);
         $this->session->set('email', $email);
         $this->session->set('password', $password);
 
@@ -56,16 +59,23 @@ class Register extends Controller
     {
         $user_otp = $this->request->getPost('otp');
         $stored_otp = $this->session->get('otp');
+        $nama = $this->session->get('nama');
         $email = $this->session->get('email');
         $password = $this->session->get('password');
 
         $registerModel = new RegisterModel();
 
         if ($user_otp == $stored_otp) {
-            $registerModel->insert([
+            $akunId = $registerModel->insert([
                 'email' => $email,
                 'password' => password_hash($password, PASSWORD_DEFAULT),
                 'id_role' => 2
+            ]);
+
+            $dataDiriModel = new DataDiriModel();
+            $dataDiriModel->insert([
+                'nama' => $nama,
+                'id_akun' => $akunId
             ]);
 
             $this->session->remove(['otp', 'email', 'password']);

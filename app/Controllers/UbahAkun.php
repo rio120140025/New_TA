@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\AkunModel;
+use App\Models\LoginModel;
 use App\Models\RegisterModel;
 use CodeIgniter\Controller;
 
@@ -13,6 +14,7 @@ class UbahAkun extends Controller
     public function __construct()
     {
         $this->session = \Config\Services::session();
+        $this->loginModel = new LoginModel();
     }
 
     public function index()
@@ -22,9 +24,17 @@ class UbahAkun extends Controller
         }
 
         $data['email'] = $this->session->get('email');
-        return view('User/v_Ubah_Akun', $data);
-    }
+        $user = $this->loginModel->getUser($data['email']);
 
+        if ($user) {
+            $id_role = $user->id_role;
+            if ($id_role == 1) {
+                return view('Admin/v_Ubah_Akun', $data);
+            } elseif ($id_role == 2) {
+                return view('User/v_Ubah_Akun', $data);
+            }
+        }
+    }
 
     public function process_update()
     {

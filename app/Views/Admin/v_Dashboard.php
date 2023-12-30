@@ -10,7 +10,7 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <link
-        href="assets\img\png-transparent-bandar-lampung-maluku-kepolisian-daerah-lampung-indonesian-national-police-others-logo-indonesia-area-removebg-preview.png"
+        href="..\assets\img\png-transparent-bandar-lampung-maluku-kepolisian-daerah-lampung-indonesian-national-police-others-logo-indonesia-area-removebg-preview.png"
         rel="icon" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -33,7 +33,7 @@
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
         $(document).ready(function () {
@@ -79,8 +79,7 @@
 
             checkNewReports();
         });
-    </script>
-
+    </script> -->
 </head>
 
 <body>
@@ -89,6 +88,10 @@
         <aside class="left-sidebar">
             <div>
                 <div class="brand-logo d-flex align-items-center justify-content-between">
+                    <div style="padding: 25px 30%;">
+                        <img src="assets/img/png-transparent-bandar-lampung-maluku-kepolisian-daerah-lampung-indonesian-national-police-others-logo-indonesia-area-removebg-preview.png"
+                            alt="Logo" width="80">
+                    </div>
                     <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
                         <span>
                             <i class="ti ti-x fs-8"></i>
@@ -102,8 +105,8 @@
                             <span class="hide-menu">Home</span>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="<?= site_url('AdminController/index/' . $current_page); ?>">
-                                <iconify-icon icon="ic:round-dashboard" style="color: white;"></iconify-icon>
+                            <a class="sidebar-link" href="<?= site_url('Dashboard/' . $current_page); ?>">
+                                <iconify-icon icon="ic:round-dashboard"></iconify-icon>
                                 <span class="hide-menu">Dashboard</span>
                             </a>
                         </li>
@@ -112,8 +115,7 @@
                             <span class="hide-menu">Kelola Data Motor</span>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link"
-                                href="<?= site_url('DataMotorController/index/' . $current_page); ?>">
+                            <a class="sidebar-link" href="<?= site_url('datatipemotor/1'); ?>">
                                 <iconify-icon icon="material-symbols:motorcycle"></iconify-icon>
                                 <span class="hide-menu">Data Tipe Motor</span>
                             </a>
@@ -123,29 +125,25 @@
                             <span class="hide-menu">Kelola Data Lokasi</span>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link"
-                                href="<?= site_url('DataProvinsiController/index/' . $current_page); ?>">
+                            <a class="sidebar-link" href="<?= site_url('dataprovinsi/1'); ?>">
                                 <iconify-icon icon="tabler:location-filled"></iconify-icon>
                                 <span class="hide-menu">Data Provinsi</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link"
-                                href="<?= site_url('DataKabupatenKotaController/index/' . $current_page); ?>">
+                            <a class="sidebar-link" href="<?= site_url('datakabupatenkota/1'); ?>">
                                 <iconify-icon icon="tabler:location-filled"></iconify-icon>
                                 <span class="hide-menu">Data Kabupaten/Kota</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link"
-                                href="<?= site_url('DataKecamatanController/index/' . $current_page); ?>">
+                            <a class="sidebar-link" href="<?= site_url('datakecamatan/1'); ?>">
                                 <iconify-icon icon="tabler:location-filled"></iconify-icon>
                                 <span class="hide-menu">Data Kecamatan</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link"
-                                href="<?= site_url('DataKelurahanDesaController/index/' . $current_page); ?>">
+                            <a class="sidebar-link" href="<?= site_url('datakelurahandesa/1'); ?>">
                                 <iconify-icon icon="tabler:location-filled"></iconify-icon>
                                 <span class="hide-menu">Data Kelurahan/Desa</span>
                             </a>
@@ -155,7 +153,7 @@
                             <span class="hide-menu">Akun</span>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="<?= site_url('AkunController'); ?>">
+                            <a class="sidebar-link" href="<?php echo site_url('UbahAkun'); ?>">
                                 <iconify-icon icon="mdi:account-cog" width="24" height="24"></iconify-icon>
                                 <span class="hide-menu">Kelola Akun</span>
                             </a>
@@ -175,7 +173,7 @@
                             </a>
                         </li>
                     </ul>
-                    <div>
+                    <!-- <div>
                         <div class="row">
                             <div class="col-md-6">
                                 <button class="btn" id="notificationButton" data-toggle="dropdown" aria-haspopup="true"
@@ -192,12 +190,13 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
                         <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
-                            <a href="<?= base_url(); ?>" class="btn btn-secondary list-inline-item">Back To Home</a>
-                            <a href="<?php echo site_url('LoginController/logout'); ?>"
-                                class="btn btn-danger list-inline-item">Log Out</a>
+                            <a href="<?= base_url(); ?>" class="btn btn-dark list-inline-item">Back To Home</a>
+                            <a href="<?php echo site_url('Login/logout'); ?>" class="btn btn-light list-inline-item">Log
+                                Out</a>
+                        </ul>
                     </div>
                 </nav>
             </header>
@@ -282,240 +281,229 @@
                                 </div>
                             </form>
                         </div>
-                        <?php if (isset($success_message)): ?>
-                            <div class="alert alert-success" role="alert">
-                                <?= $success_message ?>
-                            </div>
-                        <?php endif; ?>
                         <div class="card">
                             <div class="card-body">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <form method="post">
-                                            <div class="mb-3">
-                                                <label for="search" class="form-label">Pencarian</label>
-                                                <input type="text" class="form-control" name="search" id="search"
-                                                    aria-describedby="searchHelp">
-                                            </div>
-                                            <button type="submit" class="btn btn-primary">Cari</button>
-                                        </form>
+                                <form method="post">
+                                    <div class="mb-3">
+                                        <label for="search" class="form-label">Pencarian</label>
+                                        <input type="text" class="form-control" name="search" id="search"
+                                            aria-describedby="searchHelp">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Cari</button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body" id="tabelmotor">
+                                <div class="d-flex justify-content-between align-items-center mb-4">
+                                    <h5 class="modal-title">Daftar Laporan</h5>
+                                    <div class="d-flex gap-2">
+                                        <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                            class="btn btn-danger">Filter Lokasi</a>
+                                        <a href="<?php echo site_url('TambahLaporanController'); ?>"
+                                            class="btn btn-warning">Tambah Laporan</a>
                                     </div>
                                 </div>
-                                <div class="card">
-                                    <div class="card-body" id="tabelmotor">
-                                        <div class="d-flex justify-content-between align-items-center mb-4">
-                                            <h5 class="modal-title">Daftar Laporan</h5>
-                                            <div class="d-flex gap-2">
-                                                <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                                                    class="btn btn-danger">Filter Lokasi</a>
-                                                <a href="<?php echo site_url('TambahLaporanController'); ?>"
-                                                    class="btn btn-warning">Tambah Laporan</a>
+                                <div class="modal fade" id="exampleModal" tabindex="-1"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Filter Lokasi</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
                                             </div>
-                                        </div>
-                                        <div class="modal fade" id="exampleModal" tabindex="-1"
-                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title">Filter Lokasi</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
+                                            <div class="modal-body">
+                                                <form method="post">
+                                                    <div class="mb-3">
+                                                        <h6 for="dis_name_kejadian" class="form-label">Kecamatan
+                                                        </h6>
+                                                        <select class="form-select" id="dis_id_kejadian"
+                                                            name="id_districts_kejadian">
+                                                            <option value="">Semua Kecamatan</option>
+                                                        </select>
                                                     </div>
-                                                    <div class="modal-body">
-                                                        <form method="post">
-                                                            <div class="mb-3">
-                                                                <h6 for="dis_name_kejadian" class="form-label">Kecamatan
-                                                                </h6>
-                                                                <select class="form-select" id="dis_id_kejadian"
-                                                                    name="id_districts_kejadian">
-                                                                    <option value="">Semua Kecamatan</option>
-                                                                </select>
-                                                            </div>
-                                                            <script>
-                                                                $(document).ready(function () {
+                                                    <script>
+                                                        $(document).ready(function () {
+                                                            $.ajax({
+                                                                url: "<?= site_url('LaporController/get_kecamatan_by_123'); ?>",
+                                                                method: "POST",
+                                                                dataType: "json",
+                                                                success: function (data) {
+                                                                    var options = '<option value="">Semua Kecamatan</option>';
+                                                                    data.forEach(function (item) {
+                                                                        options += '<option value="' + item.dis_id + '">' + item.dis_name + '</option>';
+                                                                    });
+                                                                    $('#dis_id_kejadian').html(options);
+                                                                }
+                                                            });
+                                                        });
+                                                    </script>
+                                                    <div class="mb-3">
+                                                        <h6 for="subdis_name" class="form-label">Kelurahan/Desa
+                                                        </h6>
+                                                        <select class="form-select" id="subdis_id_kejadian"
+                                                            name="id_subdistricts_kejadian">
+                                                            <option value="">Semua Kelurahan/Desa</option>
+                                                        </select>
+                                                    </div>
+                                                    <script>
+                                                        $(document).ready(function () {
+                                                            $('select[name="id_districts_kejadian"]').change(function () {
+                                                                var dis_id = $(this).val();
+
+                                                                if (dis_id != '') {
                                                                     $.ajax({
-                                                                        url: "<?= site_url('LaporController/get_kecamatan_by_123'); ?>",
+                                                                        url: "<?= site_url('LaporController/get_kelurahandesa_by_kecamatan'); ?>",
                                                                         method: "POST",
+                                                                        data: {
+                                                                            dis_id: dis_id
+                                                                        },
                                                                         dataType: "json",
                                                                         success: function (data) {
-                                                                            var options = '<option value="">Semua Kecamatan</option>';
+                                                                            var options = '<option value="">Semua Kelurahan/Desa</option>';
                                                                             data.forEach(function (item) {
-                                                                                options += '<option value="' + item.dis_id + '">' + item.dis_name + '</option>';
+                                                                                options += '<option value="' + item.subdis_id + '">' + item.subdis_name + '</option>';
                                                                             });
-                                                                            $('#dis_id_kejadian').html(options);
+                                                                            $('#subdis_id_kejadian').html(options);
                                                                         }
                                                                     });
-                                                                });
-                                                            </script>
-                                                            <div class="mb-3">
-                                                                <h6 for="subdis_name" class="form-label">Kelurahan/Desa
-                                                                </h6>
-                                                                <select class="form-select" id="subdis_id_kejadian"
-                                                                    name="id_subdistricts_kejadian">
-                                                                    <option value="">Semua Kelurahan/Desa</option>
-                                                                </select>
-                                                            </div>
-                                                            <script>
-                                                                $(document).ready(function () {
-                                                                    $('select[name="id_districts_kejadian"]').change(function () {
-                                                                        var dis_id = $(this).val();
-
-                                                                        if (dis_id != '') {
-                                                                            $.ajax({
-                                                                                url: "<?= site_url('LaporController/get_kelurahandesa_by_kecamatan'); ?>",
-                                                                                method: "POST",
-                                                                                data: {
-                                                                                    dis_id: dis_id
-                                                                                },
-                                                                                dataType: "json",
-                                                                                success: function (data) {
-                                                                                    var options = '<option value="">Semua Kelurahan/Desa</option>';
-                                                                                    data.forEach(function (item) {
-                                                                                        options += '<option value="' + item.subdis_id + '">' + item.subdis_name + '</option>';
-                                                                                    });
-                                                                                    $('#subdis_id_kejadian').html(options);
-                                                                                }
-                                                                            });
-                                                                        } else {
-                                                                            $('#subdis_id_kejadian').html('<option value="">Semua Kelurahan/Desa</option>');
-                                                                        }
-                                                                    });
-                                                                });
-                                                            </script>
-                                                            <button type="submit"
-                                                                class="btn btn-primary">Simpan</button>
-                                                        </form>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                    </div>
-                                                </div>
+                                                                } else {
+                                                                    $('#subdis_id_kejadian').html('<option value="">Semua Kelurahan/Desa</option>');
+                                                                }
+                                                            });
+                                                        });
+                                                    </script>
+                                                    <button type="submit" class="btn btn-primary">Simpan</button>
+                                                </form>
+                                            </div>
+                                            <div class="modal-footer">
                                             </div>
                                         </div>
-                                        <div class="table-responsive">
-                                            <table class="table text-nowrap mb-0 align-middle">
-                                                <thead class="text-dark fs-4">
-                                                    <tr>
-                                                        <th class="border-bottom-0">
-                                                            <h6 class="fw-semibold mb-0">Nomor Laporan
-                                                                <iconify-icon icon="vaadin:sort"
-                                                                    onclick="sortTable(0)"></iconify-icon>
-                                                            </h6>
-                                                        </th>
-                                                        <th class="border-bottom-0">
-                                                            <h6 class="fw-semibold mb-0">Nama Pelapor<iconify-icon
-                                                                    icon="vaadin:sort"
-                                                                    onclick="sortTable(1)"></iconify-icon> </h6>
-                                                        </th>
-                                                        <th class="border-bottom-0">
-                                                            <h6 class="fw-semibold mb-0">Tipe Motor<iconify-icon
-                                                                    icon="vaadin:sort"
-                                                                    onclick="sortTable(2)"></iconify-icon> </h6>
-                                                        </th>
-                                                        <th class="border-bottom-0">
-                                                            <h6 class="fw-semibold mb-0">Tempat Kejadian Perkara</h6>
-                                                        </th>
-                                                        <th class="border-bottom-0">
-                                                            <h6 class="fw-semibold mb-0">Waktu Kejadian<iconify-icon
-                                                                    icon="vaadin:sort"
-                                                                    onclick="sortTable(4)"></iconify-icon> </h6>
-                                                        </th>
-                                                        <th class="border-bottom-0">
-                                                            <h6 class="fw-semibold mb-0">Status<iconify-icon
-                                                                    icon="vaadin:sort"
-                                                                    onclick="sortTable(5)"></iconify-icon> </h6>
-                                                        </th>
-                                                        <th class="border-bottom-0">
-                                                            <h6 class="fw-semibold mb-0">Detail</h6>
-                                                        </th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <?php foreach ($laporan as $row): ?>
-                                                        <tr>
-                                                            <td>
-                                                                <h6 class="fw-normal">
-                                                                    <?= $row->no_laporan; ?>
-                                                                </h6>
-                                                            </td>
-                                                            <td>
-                                                                <h6 class="fw-normal">
-                                                                    <?= $row->nama; ?>
-                                                                </h6>
-                                                            </td>
-                                                            <td>
-                                                                <h6 class="fw-normal">
-                                                                    <?= $row->tipe_motor; ?>
-                                                                </h6>
-                                                            </td>
-                                                            <td>
-                                                                <h6 class="fw-normal">
-                                                                    <?= $row->alamat_kejadian; ?>, Kelurahan/Desa
-                                                                    <?= $row->subdis_name; ?>, Kecamatan
-                                                                    <?= $row->dis_name; ?>
-                                                                </h6>
-                                                            </td>
-                                                            <td>
-                                                                <h6 class="fw-normal">
-                                                                    <?= $row->waktu_kejadian; ?>
-                                                                </h6>
-                                                            </td>
-                                                            <td>
-                                                                <?php if ($row->status == 0): ?>
-                                                                    <div class="text-warning">
-                                                                        <h6 class="fw-normal">Pending</h6>
-                                                                    </div>
-                                                                <?php elseif ($row->status == 1): ?>
-                                                                    <div class="text-danger">
-                                                                        <h6 class="fw-normal">Dalam Lidik</h6>
-                                                                    </div>
-                                                                <?php elseif ($row->status == 2): ?>
-                                                                    <div class="text-success">
-                                                                        <h6 class="fw-normal">Kasus Selesai</h6>
-                                                                    </div>
-                                                                <?php endif; ?>
-                                                            </td>
-                                                            <td>
-                                                                <?php
-                                                                $no_laporan = str_replace('/', '-', $row->no_laporan);
-                                                                $detail_url = site_url('DetailController/index/' . $no_laporan);
-                                                                ?>
-                                                                <a href="<?= $detail_url; ?>" class="text-secondary">
-                                                                    <h6 class="fw-normal">Detail</h6>
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                    <?php endforeach; ?>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                    <div class="pagination justify-content-center">
-                                        <?php if ($total_data > 50): ?>
-                                            <?php
-                                            $max_pages = min($current_page + 4, $total_pages);
-                                            $start_page = max($max_pages - 4, 1);
-
-                                            if ($current_page > 1) {
-                                                echo '<a href="' . site_url("DataMotorController/index/" . ($current_page - 1)) . '" class="btn btn-primary">Sebelumnya</a>';
-                                            }
-
-                                            for ($i = $start_page; $i <= $max_pages; $i++) {
-                                                echo '<a href="' . site_url("DataMotorController/index/" . $i) . '"';
-                                                if ($i == $current_page) {
-                                                    echo ' class="btn btn-primary active"';
-                                                } else {
-                                                    echo ' class="btn btn-primary"';
-                                                }
-                                                echo '>' . $i . '</a>';
-                                            }
-
-                                            if ($current_page < $total_pages) {
-                                                echo '<a href="' . site_url("DataMotorController/index/" . ($current_page + 1)) . '" class="btn btn-primary">Selanjutnya</a>';
-                                            }
-                                            ?>
-                                        <?php endif; ?>
                                     </div>
                                 </div>
+                                <div class="table-responsive">
+                                    <table class="table text-nowrap mb-0 align-middle">
+                                        <thead class="text-dark fs-4">
+                                            <tr>
+                                                <th class="border-bottom-0">
+                                                    <h6 class="fw-semibold mb-0">Nomor Laporan
+                                                        <iconify-icon icon="vaadin:sort"
+                                                            onclick="sortTable(0)"></iconify-icon>
+                                                    </h6>
+                                                </th>
+                                                <th class="border-bottom-0">
+                                                    <h6 class="fw-semibold mb-0">Nama Pelapor<iconify-icon
+                                                            icon="vaadin:sort" onclick="sortTable(1)"></iconify-icon>
+                                                    </h6>
+                                                </th>
+                                                <th class="border-bottom-0">
+                                                    <h6 class="fw-semibold mb-0">Tipe Motor<iconify-icon
+                                                            icon="vaadin:sort" onclick="sortTable(2)"></iconify-icon>
+                                                    </h6>
+                                                </th>
+                                                <th class="border-bottom-0">
+                                                    <h6 class="fw-semibold mb-0">Tempat Kejadian Perkara</h6>
+                                                </th>
+                                                <th class="border-bottom-0">
+                                                    <h6 class="fw-semibold mb-0">Waktu Kejadian<iconify-icon
+                                                            icon="vaadin:sort" onclick="sortTable(4)"></iconify-icon>
+                                                    </h6>
+                                                </th>
+                                                <th class="border-bottom-0">
+                                                    <h6 class="fw-semibold mb-0">Status<iconify-icon icon="vaadin:sort"
+                                                            onclick="sortTable(5)"></iconify-icon> </h6>
+                                                </th>
+                                                <th class="border-bottom-0">
+                                                    <h6 class="fw-semibold mb-0">Detail</h6>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php foreach ($laporan as $row): ?>
+                                                <tr>
+                                                    <td>
+                                                        <h6 class="fw-normal">
+                                                            <?= $row->no_laporan; ?>
+                                                        </h6>
+                                                    </td>
+                                                    <td>
+                                                        <h6 class="fw-normal">
+                                                            <?= $row->nama; ?>
+                                                        </h6>
+                                                    </td>
+                                                    <td>
+                                                        <h6 class="fw-normal">
+                                                            <?= $row->tipe_motor; ?>
+                                                        </h6>
+                                                    </td>
+                                                    <td>
+                                                        <h6 class="fw-normal">
+                                                            <?= $row->alamat_kejadian; ?>, Kelurahan/Desa
+                                                            <?= $row->subdis_name; ?>, Kecamatan
+                                                            <?= $row->dis_name; ?>
+                                                        </h6>
+                                                    </td>
+                                                    <td>
+                                                        <h6 class="fw-normal">
+                                                            <?= $row->waktu_kejadian; ?>
+                                                        </h6>
+                                                    </td>
+                                                    <td>
+                                                        <?php if ($row->status == 0): ?>
+                                                            <div class="text-warning">
+                                                                <h6 class="fw-normal">Pending</h6>
+                                                            </div>
+                                                        <?php elseif ($row->status == 1): ?>
+                                                            <div class="text-danger">
+                                                                <h6 class="fw-normal">Dalam Lidik</h6>
+                                                            </div>
+                                                        <?php elseif ($row->status == 2): ?>
+                                                            <div class="text-success">
+                                                                <h6 class="fw-normal">Kasus Selesai</h6>
+                                                            </div>
+                                                        <?php endif; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php
+                                                        $no_laporan = str_replace('/', '-', $row->no_laporan);
+                                                        $detail_url = site_url('DetailController/index/' . $no_laporan);
+                                                        ?>
+                                                        <a href="<?= $detail_url; ?>" class="text-secondary">
+                                                            <h6 class="fw-normal">Detail</h6>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            <?php endforeach; ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="pagination justify-content-center">
+                                <?php if ($total_data > 50): ?>
+                                    <?php
+                                    $max_pages = min($current_page + 4, $total_pages);
+                                    $start_page = max($max_pages - 4, 1);
+
+                                    if ($current_page > 1) {
+                                        echo '<a href="' . site_url("DataMotorController/index/" . ($current_page - 1)) . '" class="btn btn-primary">Sebelumnya</a>';
+                                    }
+
+                                    for ($i = $start_page; $i <= $max_pages; $i++) {
+                                        echo '<a href="' . site_url("DataMotorController/index/" . $i) . '"';
+                                        if ($i == $current_page) {
+                                            echo ' class="btn btn-primary active"';
+                                        } else {
+                                            echo ' class="btn btn-primary"';
+                                        }
+                                        echo '>' . $i . '</a>';
+                                    }
+
+                                    if ($current_page < $total_pages) {
+                                        echo '<a href="' . site_url("DataMotorController/index/" . ($current_page + 1)) . '" class="btn btn-primary">Selanjutnya</a>';
+                                    }
+                                    ?>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>

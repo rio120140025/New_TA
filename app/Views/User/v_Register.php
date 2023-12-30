@@ -52,6 +52,11 @@
                                     <div class="alert alert-danger" role="alert" id="error-message"
                                         style="display: none;"></div>
                                     <div class="mb-3">
+                                        <label class="form-label">Nama</label>
+                                        <input type="text" name="nama" class="form-control" required>
+                                        <div class="form-text">Masukkan nama lengkap anda</div>
+                                    </div>
+                                    <div class="mb-3">
                                         <label class="form-label">Email</label>
                                         <input type="email" name="email" class="form-control" required>
                                         <div class="form-text">Masukkan e-mail aktif anda</div>

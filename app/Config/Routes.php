@@ -17,6 +17,12 @@ $routes->setTranslateURIDashes(false);
 $routes->set404Override();
 $routes->setAutoRoute(true);
 
+$routes->add('datatipemotor/(:num)', 'DataTipeMotor::index/$1');
+$routes->add('dataprovinsi/(:num)', 'DataProvinsi::index/$1');
+$routes->add('datakabupatenkota/(:num)', 'DataKabupatenKota::index/$1');
+$routes->add('datakecamatan/(:num)', 'DataKecamatan::index/$1');
+$routes->add('datakelurahandesa/(:num)', 'DataKelurahanDesa::index/$1');
+
 /**
  * @var RouteCollection $routes
  */
