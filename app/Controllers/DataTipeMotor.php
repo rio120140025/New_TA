@@ -7,8 +7,8 @@ use CodeIgniter\Controller;
 
 class DataTipeMotor extends Controller
 {
-    protected $datatipemotorModel;
     protected $session;
+    protected $datatipemotorModel;
 
     public function __construct()
     {

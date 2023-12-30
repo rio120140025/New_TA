@@ -128,18 +128,32 @@
                                 History
                             </div>
                             <div class="card-body">
-                                <div class="mb-3">
-                                    <h6 class="form-label">Nomor Laporan</h6>
-                                </div>
-                                <div class="mb-3">
-                                    <h6 class="form-label">Waktu Melapor</h6>
-                                </div>
-                                <div class="mb-3">
-                                    <h6 class="form-label">Tempat Kejadian Perkara</h6>
-                                </div>
-                                <a href="#" class="btn btn-primary">Lihat Detail</a>
+                                <?php if (!empty($laporan)): ?>
+                                    <?php foreach ($laporan as $row): ?>
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="mb-3">
+                                                    <h6 class="form-label">Nomor Laporan</h6>
+                                                    <?= $row['no_laporan']; ?>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <h6 class="form-label">Waktu Melapor</h6>
+                                                    <?= $row['waktu_melapor']; ?>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <h6 class="form-label">Tempat Kejadian Perkara</h6>
+                                                    <?= $row['alamat_kejadian']; ?>
+                                                </div>
+                                                <a href="#" class="btn btn-primary">Lihat Detail</a>
+                                            </div>
+                                        </div>
+                                    <?php endforeach; ?>
+                                <?php else: ?>
+                                    <p>Tidak ada history laporan.</p>
+                                <?php endif; ?>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>

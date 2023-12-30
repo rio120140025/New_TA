@@ -50,7 +50,7 @@ class DataDiri extends Controller
 
         $location = $this->datadiriModel->getUserLocationBySubdisId($dataDiri['subdis_id']);
 
-        return view('User/v_Data_diri', $data + ['location' => $location]);
+        return view('User/v_DataDiri', $data + ['location' => $location]);
     }
 
     public function update_data_diri()
