@@ -77,7 +77,7 @@ class UbahAkun extends Controller
 
     public function update_verification()
     {
-        return view('User/v_Update_Verification');
+        return view('v_Update_Verification');
     }
 
     public function verify_otp()
@@ -101,12 +101,12 @@ class UbahAkun extends Controller
         } else {
             $message = "Kode OTP tidak valid!";
             $data['message'] = $message;
-            return view('User/v_Update_Verification', $data);
+            return view('v_Update_Verification', $data);
         }
     }
 
     public function update_password()
     {
-        return view('User/v_Reset_Password');
+        return view('v_Reset_Password');
     }
 }

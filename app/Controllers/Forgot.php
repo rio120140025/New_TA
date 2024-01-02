@@ -16,7 +16,7 @@ class Forgot extends Controller
 
     public function index()
     {
-        return view('User/v_Lupa_Password');
+        return view('v_Lupa_Password');
     }
 
     public function process_reset()
@@ -48,7 +48,7 @@ class Forgot extends Controller
 
     public function verification()
     {
-        return view('User/v_Lupa_Password_Verification');
+        return view('v_Lupa_Password_Verification');
     }
 
     public function verify_otp()
@@ -58,11 +58,11 @@ class Forgot extends Controller
         $email = $this->session->get('email');
 
         if ($user_otp == $stored_otp) {
-            return view('User/v_Reset_Password');
+            return view('v_Reset_Password');
         } else {
             $message = "Kode OTP tidak valid!";
             $data['message'] = $message;
-            return view('User/v_Lupa_Password_Verification', $data);
+            return view('v_Lupa_Password_Verification', $data);
         }
     }
 
