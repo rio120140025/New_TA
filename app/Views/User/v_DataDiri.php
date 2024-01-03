@@ -62,14 +62,10 @@
                                 <span class="hide-menu">Dashboard</span>
                             </a>
                         </li>
-                        <li class="nav-small-cap">
-                            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                            <span class="hide-menu">Akun</span>
-                        </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="<?php echo site_url('UbahAkun'); ?>">
-                                <iconify-icon icon="mdi:account-cog"></iconify-icon>
-                                <span class="hide-menu">Kelola Akun</span>
+                            <a class="sidebar-link" href="<?= site_url('panicbutton'); ?>">
+                                <iconify-icon icon="tabler:urgent"></iconify-icon>
+                                <span class="hide-menu">Panic Button</span>
                             </a>
                         </li>
                         <li class="nav-small-cap">
@@ -86,6 +82,16 @@
                             <a class="sidebar-link" href="<?php echo site_url('DataMotor'); ?>">
                                 <iconify-icon icon="material-symbols:motorcycle"></iconify-icon>
                                 <span class="hide-menu">Data Motor</span>
+                            </a>
+                        </li>
+                        <li class="nav-small-cap">
+                            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                            <span class="hide-menu">Akun</span>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="<?php echo site_url('UbahAkun'); ?>">
+                                <iconify-icon icon="mdi:account-cog"></iconify-icon>
+                                <span class="hide-menu">Kelola Akun</span>
                             </a>
                         </li>
                     </ul>
@@ -193,8 +199,9 @@
                                     <div class="mb-3">
                                         <h6 for="prov_id" class="form-label">Provinsi</h6>
                                         <select class="form-select" id="prov_id" required>
+                                            <option value="">Pilih Provinsi</option>
                                             <?php foreach ($provinsi as $p): ?>
-                                                <option value="<?= $p->prov_id; ?>" <?= ($p->prov_id == $location['prov_id']) ? 'selected' : ''; ?>>
+                                                <option value="<?= $p->prov_id; ?>" <?= (isset($location['prov_id']) && $p->prov_id == $location['prov_id']) ? 'selected' : ''; ?>>
                                                     <?= $p->prov_name; ?>
                                                 </option>
                                             <?php endforeach; ?>
@@ -207,8 +214,8 @@
                                     </div>
                                     <script>
                                         $(document).ready(function () {
-                                            var prov_id = <?= json_encode($location['prov_id']); ?>;
-                                            var city_id = <?= json_encode($location['city_id']); ?>;
+                                            var prov_id = <?= json_encode($location['prov_id'] ?? null); ?>;
+                                            var city_id = <?= json_encode($location['city_id'] ?? null); ?>;
 
                                             showCities(prov_id, city_id);
 
@@ -244,9 +251,9 @@
                                     </div>
                                     <script>
                                         $(document).ready(function () {
-                                            var prov_id = <?= json_encode($location['prov_id']); ?>;
-                                            var city_id = <?= json_encode($location['city_id']); ?>;
-                                            var dis_id = <?= json_encode($location['dis_id']); ?>;
+                                            var prov_id = <?= json_encode($location['prov_id'] ?? null); ?>;
+                                            var city_id = <?= json_encode($location['city_id'] ?? null); ?>;
+                                            var dis_id = <?= json_encode($location['dis_id'] ?? null); ?>;
 
                                             showCities(city_id, dis_id);
 
@@ -287,10 +294,10 @@
                                     </div>
                                     <script>
                                         $(document).ready(function () {
-                                            var prov_id = <?= json_encode($location['prov_id']); ?>;
-                                            var city_id = <?= json_encode($location['city_id']); ?>;
-                                            var dis_id = <?= json_encode($location['dis_id']); ?>;
-                                            var subdis_id = <?= json_encode($location['subdis_id']); ?>;
+                                            var prov_id = <?= json_encode($location['prov_id'] ?? null); ?>;
+                                            var city_id = <?= json_encode($location['city_id'] ?? null); ?>;
+                                            var dis_id = <?= json_encode($location['dis_id'] ?? null); ?>;
+                                            var subdis_id = <?= json_encode($location['subdis_id'] ?? null); ?>;
 
                                             showCities(dis_id, subdis_id);
 

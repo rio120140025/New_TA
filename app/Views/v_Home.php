@@ -34,6 +34,7 @@
             width: 100%;
             height: 67vh;
             border-radius: 10px;
+            z-index: 1;
         }
     </style>
 
@@ -59,7 +60,7 @@
                     <li><a class="nav-link scrollto" href="#skills">Evaluasi</a></li>
                     <li><a class="nav-link" href="history">History</a></li>
                     <li>
-                        <a class="getstarted" href="lapor">Panic Button</a>
+                        <a class="getstarted" href="<?php echo site_url('panicbutton'); ?>">Panic Button</a>
                     </li>
                     <li><a class="login" href="<?php echo site_url('login'); ?>">Log In</a></li>
                 </ul>
@@ -75,7 +76,7 @@
                     <h2>Sistem Informasi Geografis</h2>
                     <h1>Lokasi Pencurian <br> Sepeda Motor</h1>
                     <div class="d-flex justify-content-center justify-content-lg-start">
-                        <a href="lapor" class="btn-get-started">Panic Button</a>
+                        <a href="<?php echo site_url('panicbutton'); ?>" class="btn-get-started">Panic Button</a>
                         <a href="#about" class="btn-watch-video scrollto">Maps</a>
                     </div>
                 </div>

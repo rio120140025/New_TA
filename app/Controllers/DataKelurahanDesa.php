@@ -10,6 +10,7 @@ use App\Models\DataKelurahanDesaModel;
 
 class DataKelurahanDesa extends Controller
 {
+    protected $session;
     public function __construct()
     {
         $this->session = \Config\Services::session();

@@ -8,6 +8,7 @@ use App\Models\DataKabupatenKotaModel;
 
 class DataKabupatenKota extends Controller
 {
+    protected $session;
     public function __construct()
     {
         $this->session = \Config\Services::session();

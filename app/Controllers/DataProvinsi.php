@@ -7,8 +7,8 @@ use App\Models\DataProvinsiModel;
 
 class DataProvinsi extends Controller
 {
-    protected $dataprovinsiModel;
     protected $session;
+    protected $dataprovinsiModel;
     public function __construct()
     {
         $this->session = \Config\Services::session();

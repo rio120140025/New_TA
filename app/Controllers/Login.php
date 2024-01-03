@@ -7,6 +7,7 @@ use App\Models\LoginModel;
 
 class Login extends Controller
 {
+    protected $session;
     protected $loginModel;
     public function __construct()
     {

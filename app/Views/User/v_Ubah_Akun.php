@@ -62,14 +62,10 @@
                                 <span class="hide-menu">Dashboard</span>
                             </a>
                         </li>
-                        <li class="nav-small-cap">
-                            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                            <span class="hide-menu">Akun</span>
-                        </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="<?php echo site_url('UbahAkun'); ?>">
-                                <iconify-icon icon="mdi:account-cog"></iconify-icon>
-                                <span class="hide-menu">Kelola Akun</span>
+                            <a class="sidebar-link" href="<?= site_url('panicbutton'); ?>">
+                                <iconify-icon icon="tabler:urgent"></iconify-icon>
+                                <span class="hide-menu">Panic Button</span>
                             </a>
                         </li>
                         <li class="nav-small-cap">
@@ -86,6 +82,16 @@
                             <a class="sidebar-link" href="<?php echo site_url('DataMotor'); ?>">
                                 <iconify-icon icon="material-symbols:motorcycle"></iconify-icon>
                                 <span class="hide-menu">Data Motor</span>
+                            </a>
+                        </li>
+                        <li class="nav-small-cap">
+                            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                            <span class="hide-menu">Akun</span>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="<?php echo site_url('UbahAkun'); ?>">
+                                <iconify-icon icon="mdi:account-cog"></iconify-icon>
+                                <span class="hide-menu">Kelola Akun</span>
                             </a>
                         </li>
                     </ul>

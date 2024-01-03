@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Data Akun</title>
+    <title>Panic Button</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -29,7 +29,27 @@
 
     <link rel="stylesheet" href="<?= base_url('assets/css/styles.min.css'); ?>" />
     <link rel="stylesheet" href="<?= base_url('assets/css/icons/tabler-icons/tabler-icons.css'); ?>" />
+
+    <style>
+        #map {
+            width: 100%;
+            height: 35vh;
+            border-radius: 10px;
+            z-index: 1;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+
 </head>
 
 <body>
@@ -118,52 +138,89 @@
             </header>
         </div>
         <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6">
-            <div class="body-wrapper radial-gradient min-vh-100">
+            <div class="body-wrapper radial-gradient">
                 <div class="container-fluid">
                     <div class="container-fluid">
                         <div class="card">
                             <div class="card-body">
-                                <h6 class="form-label">Selamat datang,</h6>
-                                <h4>
-                                    <?= $nama ?>
-                                </h4>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header">
-                                History
-                            </div>
-                            <div class="card-body">
-                                <?php if (!empty($laporan)): ?>
-                                    <?php foreach ($laporan as $row): ?>
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <div class="mb-3">
-                                                    <h6 class="form-label">Nomor Laporan</h6>
-                                                    <?= $row['no_laporan']; ?>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <h6 class="form-label">Waktu Melapor</h6>
-                                                    <?= $row['waktu_melapor']; ?>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <h6 class="form-label">Tempat Kejadian Perkara</h6>
-                                                    <?php if (!empty($row['alamat_kejadian'])): ?>
-                                                        <?= $row['alamat_kejadian']; ?>
-                                                    <?php else: ?>
-                                                        <p>Data tidak ditemukan, silahkan melengkapi data!</p>
-                                                    <?php endif; ?>
-                                                </div>
-                                                <a href="#" class="btn btn-primary">Lihat Detail</a>
-                                            </div>
-                                        </div>
-                                    <?php endforeach; ?>
-                                <?php else: ?>
-                                    <p>Tidak ada history laporan.</p>
-                                <?php endif; ?>
-                            </div>
-                        </div>
+                                <p class="text-center">Pengaduan Kasus Pencurian Sepeda Motor di Polres Lampung
+                                    Utara
+                                </p>
+                                <form method="post" action="<?= base_url('PanicButton/insert_data') ?>">
+                                    <div class="mb-3">
+                                        <h6 for="id_kendaraan" class="form-label">Informasi Sepeda Motor</h6>
+                                    </div>
+                                    <select class="form-select mb-3" id="id_kendaraan" name="id_kendaraan" required>
+                                        <option value="">Pilih Motor</option>
+                                        <?php foreach ($kendaraan as $row): ?>
+                                            <option value="<?= $row['id_kendaraan']; ?>">
+                                                <?= $row['tipe_motor']; ?>
+                                                <p>||</p>
+                                                <?= $row['no_plat']; ?>
+                                            </option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                    <div class="mb-3">
+                                        <h6 for="waktu_kejadian" class="form-label">Waktu Kejadian</h6>
+                                        <input type="datetime-local" class="form-control" id="waktu_kejadian"
+                                            name="waktu_kejadian" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <h6 class="form-label">Titik Lokasi Tempat Kejadian Perkara</h6>
+                                        <div id="map"></div>
+                                    </div>
+                                    <button type="submit" class="btn btn-warning">Submit</button>
+                                    <input type="hidden" id="latitude" name="latitude">
+                                    <input type="hidden" id="longitude" name="longitude">
+                                    <script>
+                                        var map = L.map('map').setView([0, 0], 15);
+                                        var marker;
 
+                                        L.tileLayer('http://{s}.google.com/vt?lyrs=m&x={x}&y={y}&z={z}', {
+                                            maxZoom: 17,
+                                            subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
+                                            attribution: '&copy; <a>POLRES Lampung Utara</a>'
+                                        }).addTo(map);
+
+                                        function showLocation(lat, lng) {
+                                            if (marker) {
+                                                map.removeLayer(marker);
+                                            }
+                                            marker = L.marker([lat, lng]).addTo(map);
+                                            marker.bindPopup("Tempat Kejadian Perkara").openPopup();
+                                            map.setView([lat, lng], 15);
+                                        }
+
+                                        function getLocation() {
+                                            if ("geolocation" in navigator) {
+                                                navigator.geolocation.watchPosition(function (position) {
+                                                    var lat = position.coords.latitude;
+                                                    var lng = position.coords.longitude;
+                                                    showLocation(lat, lng);
+
+                                                    document.getElementById('latitude').value = lat;
+                                                    document.getElementById('longitude').value = lng;
+
+                                                    var currentTime = new Date();
+                                                    var day = String(currentTime.getDate()).padStart(2, '0');
+                                                    var month = String(currentTime.getMonth() + 1).padStart(2, '0');
+                                                    var year = String(currentTime.getFullYear()).slice(-2);
+                                                    var hours = String(currentTime.getHours()).padStart(2, '0');
+                                                    var minutes = String(currentTime.getMinutes()).padStart(2, '0');
+                                                    var seconds = String(currentTime.getSeconds()).padStart(2, '0');
+                                                    var dateStr = day + month + year;
+                                                    var timeStr = hours + minutes + seconds;
+                                                    document.getElementById('waktu_melapor').value = dateStr + timeStr;
+                                                });
+                                            } else {
+                                                alert("Geolocation tidak didukung oleh browser Anda.");
+                                            }
+                                        }
+                                        getLocation();
+                                    </script>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -66,7 +66,7 @@ class Register extends Controller
         $registerModel = new RegisterModel();
 
         if ($user_otp == $stored_otp) {
-            $akunId = $registerModel->insert([
+            $akun_id = $registerModel->insert([
                 'email' => $email,
                 'password' => password_hash($password, PASSWORD_DEFAULT),
                 'id_role' => 2
@@ -75,7 +75,7 @@ class Register extends Controller
             $dataDiriModel = new DataDiriModel();
             $dataDiriModel->insert([
                 'nama' => $nama,
-                'id_akun' => $akunId
+                'id_akun' => $akun_id
             ]);
 
             $this->session->remove(['otp', 'email', 'password']);

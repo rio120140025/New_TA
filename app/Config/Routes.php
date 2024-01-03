@@ -22,6 +22,7 @@ $routes->add('dataprovinsi/(:num)', 'DataProvinsi::index/$1');
 $routes->add('datakabupatenkota/(:num)', 'DataKabupatenKota::index/$1');
 $routes->add('datakecamatan/(:num)', 'DataKecamatan::index/$1');
 $routes->add('datakelurahandesa/(:num)', 'DataKelurahanDesa::index/$1');
+$routes->get('sukses/(:any)', 'Sukses::index/$1');
 
 /**
  * @var RouteCollection $routes

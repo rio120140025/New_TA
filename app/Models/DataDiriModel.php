@@ -8,7 +8,7 @@ class DataDiriModel extends Model
 {
     protected $table = 'data_diri';
     protected $primaryKey = 'id_data_diri';
-    protected $allowedFields = ['nik', 'nama', 'agama', 'jenis_kelamin', 'alamat', 'tempat_lahir', 'tanggal_lahir', 'no_hp', 'pekerjaan', 'subdis_id'];
+    protected $allowedFields = ['nik', 'nama', 'agama', 'jenis_kelamin', 'alamat', 'tempat_lahir', 'tanggal_lahir', 'no_hp', 'pekerjaan', 'subdis_id','id_akun'];
 
     public function getDataByAkunId($id_akun)
     {
