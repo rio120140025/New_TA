@@ -52,17 +52,17 @@
                                     <div class="alert alert-danger" role="alert" id="error-message"
                                         style="display: none;"></div>
                                     <div class="mb-3">
-                                        <label class="form-label">Nama</label>
+                                        <h6 class="form-label">Nama</h6>
                                         <input type="text" name="nama" class="form-control" required>
                                         <div class="form-text">Masukkan nama lengkap anda</div>
                                     </div>
                                     <div class="mb-3">
-                                        <label class="form-label">Email</label>
+                                        <h6 class="form-label">Email</h6>
                                         <input type="email" name="email" class="form-control" required>
                                         <div class="form-text">Masukkan e-mail aktif anda</div>
                                     </div>
                                     <div class="mb-4">
-                                        <label class="form-label">Password</label>
+                                        <h6 class="form-label">Password</h6>
                                         <div class="password-container">
                                             <input type="password" name="password" id="password" class="form-control"
                                                 minlength="8" required />

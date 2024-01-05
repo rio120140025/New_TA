@@ -58,12 +58,12 @@
                                     <div class="alert alert-danger" role="alert" id="error-message"
                                         style="display: none;"></div>
                                     <div class="mb-3">
-                                        <label class="form-label">Email</label>
+                                        <h6 class="form-label">Email</h6>
                                         <input type="email" name="email" class="form-control" required>
                                         <div class="form-text">Masukkan e-mail anda</div>
                                     </div>
                                     <div class="mb-4">
-                                        <label class="form-label">Password</label>
+                                        <h6 class="form-label">Password</h6>
                                         <div class="password-container">
                                             <input type="password" name="password" id="password" class="form-control"
                                                 minlength="8" required />
@@ -75,7 +75,7 @@
                                     <button type="submit" class="btn btn-warning w-100 py-2 fs-4 mb-2 rounded-2"
                                         onclick="submitForm();">Sign
                                         In</button>
-                                    <p><a href="<?php echo site_url('forgot'); ?>" class="w-100 py-8 mb-8 rounded-2"
+                                    <p><a href="<?php echo site_url('forgot'); ?>" class="w-100 rounded-2"
                                             style="font-size: 14px; color: #6c757d;">Lupa Password</a></p>
                                     <div>
                                         <div class="divider-p">

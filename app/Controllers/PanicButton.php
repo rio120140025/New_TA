@@ -53,7 +53,7 @@ class PanicButton extends Controller
         $nomor_laporan = $this->generate_nomor_laporan();
         $waktu_lapor = date('Y-m-d H:i:s');
 
-        $this->laporanModel->insertLaporan ([
+        $this->laporanModel->insertLaporan([
             'no_laporan' => $nomor_laporan,
             'id_akun' => $id_akun,
             'id_data_diri' => $data_diri['id_data_diri'],
@@ -62,8 +62,7 @@ class PanicButton extends Controller
             // 'subdis_id' => $this->request->getPost('subdis_id'),
             'longitude' => $this->request->getPost('longitude'),
             'latitude' => $this->request->getPost('latitude'),
-            'waktu_melapor' => $waktu_lapor,
-            'status' => 0
+            'waktu_melapor' => $waktu_lapor
         ]);
 
         $no_laporan = str_replace('/', '-', $nomor_laporan);
@@ -78,51 +77,34 @@ class PanicButton extends Controller
         return redirect()->to('sukses/' . $no_laporan);
     }
 
-    // public function update()
-    // {
-    //     $no_laporan = $this->request->getPost('no_laporan');
+    public function insert_data_not_login()
+    {
+        $nomor_laporan = $this->generate_nomor_laporan();
+        $waktu_lapor = date('Y-m-d H:i:s');
 
-    //     $data = [
-    //         'tempat_lahir' => $this->request->getPost('tempat_lahir'),
-    //         'tanggal_lahir' => $this->request->getPost('tanggal_lahir'),
-    //         'jenis_kelamin' => $this->request->getPost('jenis_kelamin'),
-    //         'id_provinces_pelapor' => $this->request->getPost('id_provinces_pelapor'),
-    //         'id_cities_pelapor' => $this->request->getPost('id_cities_pelapor'),
-    //         'id_districts_pelapor' => $this->request->getPost('id_districts_pelapor'),
-    //         'id_subdistricts_pelapor' => $this->request->getPost('id_subdistricts_pelapor'),
-    //         'alamat_pelapor' => $this->request->getPost('alamat_pelapor'),
-    //         'agama' => $this->request->getPost('agama'),
-    //         'pekerjaan' => $this->request->getPost('pekerjaan'),
-    //         'no_rangka' => $this->request->getPost('no_rangka'),
-    //         'no_mesin' => $this->request->getPost('no_mesin'),
-    //         'kronologi' => $this->request->getPost('kronologi'),
-    //         'kerugian' => $this->request->getPost('kerugian'),
-    //     ];
+        $id_data_diri = $this->datadiriModel->insert([
+            'nama' => $this->request->getPost('nama'),
+            'no_hp' => $this->request->getPost('no_hp'),
+        ]);
 
-    //     $this->laporanModel->update_laporan($no_laporan, $data);
+        $id_kendaraan = $this->datamotorModel->insert([
+            'no_plat' => $this->request->getPost('no_plat'),
+        ]);
 
-    //     $data['messageUpdate'] = 'Laporan berhasil dilengkapi';
-    //     $data['no_laporan'] = $no_laporan;
+        $this->laporanModel->insertLaporan([
+            'no_laporan' => $nomor_laporan,
+            'id_data_diri' => $id_data_diri,
+            'id_kendaraan' => $id_kendaraan,
+            'waktu_kejadian' => $this->request->getPost('waktu_kejadian'),
+            // 'subdis_id' => $this->request->getPost('subdis_id'),
+            'longitude' => $this->request->getPost('longitude'),
+            'latitude' => $this->request->getPost('latitude'),
+            'waktu_melapor' => $waktu_lapor
+        ]);
 
-    //     return redirect()->to('history')->with($data);
-    // }
-
-    // public function updatetkp()
-    // {
-    //     $no_laporan = $this->request->getPost('no_laporan');
-
-    //     $data = [
-    //         'longitude' => $this->request->getPost('longitude'),
-    //         'latitude' => $this->request->getPost('latitude'),
-    //     ];
-
-    //     $this->laporanModel->update_laporan($no_laporan, $data);
-
-    //     $data['messageUpdate'] = 'Laporan berhasil dilengkapi';
-    //     $data['no_laporan'] = $no_laporan;
-
-    //     return redirect()->to('history')->with($data);
-    // }
+        $no_laporan = str_replace('/', '-', $nomor_laporan);
+        return redirect()->to('sukses/' . $no_laporan);
+    }
 
     private function generate_nomor_laporan()
     {
@@ -143,14 +125,6 @@ class PanicButton extends Controller
     {
         $hasil = '';
         $angkaRomawi = [
-            'M' => 1000,
-            'CM' => 900,
-            'D' => 500,
-            'CD' => 400,
-            'C' => 100,
-            'XC' => 90,
-            'L' => 50,
-            'XL' => 40,
             'X' => 10,
             'IX' => 9,
             'V' => 5,

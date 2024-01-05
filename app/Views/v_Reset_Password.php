@@ -54,7 +54,7 @@
                                     <div class="alert alert-danger" role="alert" id="error-message"
                                         style="display: none;"></div>
                                     <div class="mb-4">
-                                        <label class="form-label">Password</label>
+                                        <h6 class="form-label">Password</h6>
                                         <div class="password-container">
                                             <input type="password" name="password" id="password" class="form-control"
                                                 minlength="8" required />

@@ -52,7 +52,7 @@
                                     <div class="alert alert-danger" role="alert" id="error-message"
                                         style="display: none;"></div>
                                     <div class="mb-3">
-                                        <label class="form-label">Kode OTP</label>
+                                        <h6 class="form-label">Kode OTP</h6>
                                         <input type="text" name="otp" class="form-control" minlength="6" required>
                                         <div class="form-text">Periksa kode OTP yang telah dikirimkan ke e-mail anda
                                         </div>

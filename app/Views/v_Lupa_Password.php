@@ -52,7 +52,7 @@
                                     <div class="alert alert-danger" role="alert" id="error-message"
                                         style="display: none;"></div>
                                     <div class="mb-3">
-                                        <label class="form-label">Email</label>
+                                        <h6 class="form-label">Email</h6>
                                         <input type="email" name="email" class="form-control" required>
                                         <div class="form-text">Masukkan e-mail akun anda
                                         </div>

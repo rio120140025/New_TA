@@ -4,13 +4,13 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Data Akun</title>
+    <title>Update Laporan</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <link
-        href="assets\img\png-transparent-bandar-lampung-maluku-kepolisian-daerah-lampung-indonesian-national-police-others-logo-indonesia-area-removebg-preview.png"
+        href="..\assets\img\png-transparent-bandar-lampung-maluku-kepolisian-daerah-lampung-indonesian-national-police-others-logo-indonesia-area-removebg-preview.png"
         rel="icon" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -29,7 +29,9 @@
 
     <link rel="stylesheet" href="<?= base_url('assets/css/styles.min.css'); ?>" />
     <link rel="stylesheet" href="<?= base_url('assets/css/icons/tabler-icons/tabler-icons.css'); ?>" />
+
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+
 </head>
 
 <body>
@@ -39,7 +41,7 @@
             <div>
                 <div class="brand-logo d-flex align-items-center justify-content-between">
                     <div style="padding: 25px 30%;">
-                        <img src="assets/img/png-transparent-bandar-lampung-maluku-kepolisian-daerah-lampung-indonesian-national-police-others-logo-indonesia-area-removebg-preview.png"
+                        <img src="../assets/img/png-transparent-bandar-lampung-maluku-kepolisian-daerah-lampung-indonesian-national-police-others-logo-indonesia-area-removebg-preview.png"
                             alt="Logo" width="80">
                     </div>
                     <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
@@ -118,67 +120,35 @@
             </header>
         </div>
         <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6">
-            <div class="body-wrapper radial-gradient min-vh-100">
+            <div class="body-wrapper radial-gradient">
                 <div class="container-fluid">
                     <div class="container-fluid">
                         <div class="card">
                             <div class="card-body">
-                                <h6 class="form-label">Selamat datang,</h6>
-                                <h4>
-                                    <?= $nama ?>
-                                </h4>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header">
-                                History
-                            </div>
-                            <div class="card-body">
-                                <?php if (session()->has('message')): ?>
-                                    <div class="alert alert-success" role="alert">
-                                        <?= session('message') ?>
+                                <p class="text-center">Update Laporan
+                                </p>
+                                <form method="post" action="<?= base_url('UpdateLaporan/update_laporan') ?>">
+                                    <div class="mb-3">
+                                        <h6 for="no_laporan" class="form-label">Nomor Laporan</h6>
+                                        <input type="text" class="form-control" id="no_laporan" name="no_laporan" value="<?= $no_laporan ?>"
+                                        readonly>
                                     </div>
-                                <?php endif; ?>
-                                <?php if (!empty($laporan)): ?>
-                                    <?php foreach ($laporan as $row): ?>
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <div class="mb-3">
-                                                    <h6 class="form-label">Nomor Laporan</h6>
-                                                    <?= $row['no_laporan']; ?>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <h6 class="form-label">Waktu Melapor</h6>
-                                                    <?= date('H:i:s d F Y', strtotime($row['waktu_melapor'])); ?>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <h6 class="form-label">Tempat Kejadian Perkara</h6>
-                                                    <?php if (!empty($row['alamat_kejadian'])): ?>
-                                                        <?= $row['alamat_kejadian']; ?>
-                                                    <?php else: ?>
-                                                        <p>Data tidak ditemukan, silahkan melengkapi data laporan!</p>
-                                                    <?php endif; ?>
-                                                </div>
-                                                <?php
-                                                $no_laporan = str_replace('/', '-', $row['no_laporan']);
-                                                ?>
-                                                <?php if (!empty($row['alamat_kejadian'])): ?>
-                                                    <a href="<?= site_url('detaillaporan/' . $no_laporan); ?>"
-                                                        class="btn btn-primary">Lihat Detail</a>
-                                                <?php else: ?>
-                                                    <a href="<?= site_url('updatelaporan/' . $no_laporan); ?>"
-                                                        class="btn btn-danger">Lengkapi Laporan</a>
-                                                <?php endif; ?>
-
-                                            </div>
-                                        </div>
-                                    <?php endforeach; ?>
-                                <?php else: ?>
-                                    <p>Tidak ada history laporan.</p>
-                                <?php endif; ?>
+                                    <div class="mb-3">
+                                        <h6 for="kronologi" class="form-label">Kronologi</h6>
+                                        <textarea rows="5" type="text" class="form-control" id="kronologi" name="kronologi" required></textarea>
+                                    </div>
+                                    <div class="mb-3">
+                                        <h6 for="kronologi" class="form-label">Total Kerugian</h6>
+                                        <input type="number" class="form-control" id="kerugian" name="kerugian" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <h6 for="kronologi" class="form-label">Detail Lokasi Kejadian</h6>
+                                        <input type="text" class="form-control" id="alamat_kejadian" name="alamat_kejadian" required>
+                                    </div>  
+                                    <button type="submit" class="btn btn-warning">Submit</button>
+                                </form>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
