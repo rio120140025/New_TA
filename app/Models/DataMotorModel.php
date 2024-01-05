@@ -24,6 +24,11 @@ class DataMotorModel extends Model
         return $this->insertID();
     }
 
+    public function updateData($where, $data)
+    {
+        return $this->update($where, $data);
+    }
+    
     public function deleteMotor($id)
     {
         $this->where('id_kendaraan', $id)->delete();

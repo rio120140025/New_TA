@@ -215,6 +215,10 @@
                                     <input class="form-control" value="<?= $laporan['tipe_motor']; ?>" readonly>
                                 </div>
                                 <div class="mb-3">
+                                    <h6 class="form-label">Nomor Plat</h6>
+                                    <input class="form-control" value="<?= $laporan['no_plat']; ?>" readonly>
+                                </div>
+                                <div class="mb-3">
                                     <h6 class="form-label">Nomor Rangka</h6>
                                     <input class="form-control" value="<?= $laporan['no_rangka']; ?>" readonly>
                                 </div>

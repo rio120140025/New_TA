@@ -27,7 +27,6 @@
     <link href="<?= base_url('assets/vendor/remixicon/remixicon.css'); ?>" rel="stylesheet" />
     <link href="<?= base_url('assets/vendor/swiper/swiper-bundle.min.css'); ?>" rel="stylesheet" />
 
-    <!-- Main CSS File -->
     <link rel="stylesheet" href="<?= base_url('assets/css/styles.min.css'); ?>" />
     <link rel="stylesheet" href="<?= base_url('assets/css/icons/tabler-icons/tabler-icons.css'); ?>" />
 

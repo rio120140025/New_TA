@@ -58,7 +58,7 @@
                     <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
                     <li><a class="nav-link scrollto" href="#about">Maps</a></li>
                     <li><a class="nav-link scrollto" href="#skills">Evaluasi</a></li>
-                    <li><a class="nav-link" href="history">History</a></li>
+                    <li><a class="nav-link" href="<?php echo site_url('history'); ?>">History</a></li>
                     <li>
                         <a class="getstarted" href="<?php echo site_url('panicbutton'); ?>">Panic Button</a>
                     </li>

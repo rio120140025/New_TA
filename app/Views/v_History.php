@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Register Verification</title>
+    <title>Sukses</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -32,34 +32,34 @@
 </head>
 
 <body>
-    <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
-        data-sidebar-position="fixed" data-header-position="fixed">
-        <div
-            class="position-relative overflow-hidden radial-gradient min-vh-100 d-flex align-items-center justify-content-center">
-            <div class="d-flex align-items-center justify-content-center w-100">
-                <div class="row justify-content-center w-100">
-                    <div class="col-md-8 col-lg-6 col-xxl-3">
-                        <div class="card mb-0">
-                            <div class="card-body">
-                                <h3 class="text-heading">OTP Verification</h3>
-                                <?php if (isset($message)): ?>
-                                    <div class="alert alert-danger" role="alert">
-                                        <?= $message ?>
-                                    </div>
-                                <?php endif; ?>
-                                <form method="post" action="<?= site_url('UbahAkun/verify_otp'); ?>">
-                                    <div class="alert alert-danger" role="alert" id="error-message"
-                                        style="display: none;"></div>
-                                    <div class="mb-3">
-                                        <h6 class="form-label">Kode OTP</h6>
-                                        <input type="text" name="otp" class="form-control" minlength="6" required>
-                                        <div class="form-text">Periksa kode OTP yang telah dikirimkan ke e-mail anda
-                                        </div>
-                                    </div>
-                                    <button type="submit" class="btn btn-warning w-100 py-2 fs-4 mb-4 rounded-2"
-                                        onclick="submitForm();">Submit</button>
-                                </form>
-                            </div>
+    <div class="page-wrapper" id="main-wrapper">
+        <div class="body-wrapper radial-gradient min-vh-100">
+            <div class="container-fluid">
+                <div class="container-fluid">
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="text-center">History</p>
+                            <?php if (session()->has('message')): ?>
+                                <div class="alert alert-danger" role="alert">
+                                    <?= session('message') ?>
+                                </div>
+                            <?php endif; ?>
+                            <form method="post" action="<?= base_url('History/search_history') ?>">
+                                <div class="mb-3">
+                                    <h6 for="searchNoLaporan" class="form-label">Nomor Laporan</h6>
+                                    <input type="text" class="form-control" id="searchNoLaporan" name="searchNoLaporan"
+                                        required>
+                                    <div class="form-text">Masukkan nomor laporan yang didapatkan pada saat
+                                        melapor</div>
+                                </div>
+                                <div class="mb-3">
+                                    <h6 for="searchNoHP" class="form-label">Nomor HP Pelapor</h6>
+                                    <input type="text" class="form-control" id="searchNoHP" name="searchNoHP" required>
+                                    <div class="form-text">Masukkan nomor hp yang digunakan pada saat
+                                        melapor</div>
+                                </div>
+                                <button type="submit" class="btn btn-warning">Submit</button>
+                            </form>
                         </div>
                     </div>
                 </div>
