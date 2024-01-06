@@ -84,11 +84,13 @@ class History extends Controller
 
         $data = [
             'nik' => $nik,
+            'nama' => $nama,
             'agama' => $agama,
             'jenis_kelamin' => $jenis_kelamin,
             'alamat' => $alamat,
             'tempat_lahir' => $tempat_lahir,
             'tanggal_lahir' => $tanggal_lahir,
+            'no_hp' => $no_hp,
             'pekerjaan' => $pekerjaan,
             'subdis_id' => $subdis_id,
         ];
@@ -104,6 +106,7 @@ class History extends Controller
         $id_motor = $this->request->getPost('id_motor');
 
         $data = [
+            'no_plat' => $no_plat,
             'no_rangka' => $no_rangka,
             'no_mesin' => $no_mesin,
             'warna' => $warna,

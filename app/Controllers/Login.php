@@ -19,7 +19,14 @@ class Login extends Controller
     public function index()
     {
         if ($this->session->get('logged_in')) {
-            return redirect()->to(base_url('Dashboard/1'));
+            $email = $this->session->get('email');
+            $user = $this->loginModel->getUser($email);
+            $id_role = $user->id_role;
+            if ($id_role == 1) {
+                return redirect()->to(base_url('Dashboard/1'));
+            } else if ($id_role == 2) {
+                return redirect()->to(base_url('Dashboard'));
+            }
         }
 
         return view('v_Login');
@@ -40,11 +47,16 @@ class Login extends Controller
             ];
             $this->session->set($session_data);
 
-            return $this->response->setJSON(['success' => true]);
+            if ($user->id_role == 1) {
+                return $this->response->setJSON(['success' => true, 'redirect' => site_url('Dashboard/1')]);
+            } elseif ($user->id_role == 2) {
+                return $this->response->setJSON(['success' => true, 'redirect' => site_url('Dashboard')]);
+            }
         } else {
             return $this->response->setJSON(['success' => false, 'error' => 'Email atau password salah']);
         }
     }
+
 
     public function logout()
     {

@@ -45,7 +45,6 @@
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
-
 </head>
 
 <body>
@@ -140,7 +139,7 @@
                         </li>
                     </ul>
                     <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
-                        <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
+                        <ul class="navbar-nav flex-laporan ms-auto align-items-center justify-content-end">
                             <a href="<?= base_url(); ?>" class="btn btn-dark list-inline-item">Back To Home</a>
                             <a href="<?php echo site_url('Login/logout'); ?>" class="btn btn-light list-inline-item">Log
                                 Out</a>
@@ -155,6 +154,11 @@
                     <div class="container-fluid">
                         <div class="card">
                             <div class="card-body">
+                                <?php if (session()->has('message')): ?>
+                                    <div class="alert alert-success" role="alert">
+                                        <?= session('message') ?>
+                                    </div>
+                                <?php endif; ?>
                                 <p class="text-center">Detail Laporan</p>
                                 <div class="mb-3">
                                     <h6 class="form-label">Nomor Laporan</h6>
@@ -258,6 +262,20 @@
                                     <h6 class="form-label">Titik Lokasi Tempat Kejadian Perkara</h6>
                                     <div id="map"></div>
                                 </div>
+                                <div class="d-flex justify-content-between align-items-center mb-4 mt-4">
+                                    <button id="copyLinkButton" class="btn btn-dark">Salin Data & Link
+                                        Google
+                                        Maps</button>
+                                    <?php
+                                    $no_laporan = str_replace('/', '-', $laporan['no_laporan']);
+                                    ?>
+                                    <div class="d-flex gap-2">
+                                        <a href="<?= site_url('updatelaporantkp/' . $no_laporan); ?>"
+                                            class="btn btn-outline-dark">Ubah Titik Lokasi</a>
+                                        <a href="<?= site_url('updatelaporan/' . $no_laporan); ?>"
+                                            class="btn btn-outline-dark">Ubah Data Laporan</a>
+                                    </div>
+                                </div>
                                 <script>
                                     var map = L.map('map').setView([<?= $laporan['latitude']; ?>, <?= $laporan['longitude']; ?>], 17);
                                     googleStreets = L.tileLayer('http://{s}.google.com/vt?lyrs=m&x={x}&y={y}&z={z}', {
@@ -268,6 +286,34 @@
                                     L.marker([<?= $laporan['latitude']; ?>, <?= $laporan['longitude']; ?>]).addTo(map)
                                         .bindPopup('Tempat Kejadian Perkara')
                                         .openPopup();
+
+                                    function generateGoogleMapsLinkWithInfo(laporan) {
+                                        var googleMapsLink = 'Kasus Pencurian Sepeda Motor' + '\n';
+                                        googleMapsLink += 'No. Laporan: ' + laporan.no_laporan + '\n';
+                                        googleMapsLink += 'Waktu Kejadian: ' + laporan.waktu_kejadian + '\n';
+                                        googleMapsLink += 'Nama: ' + laporan.nama + '\n';
+                                        googleMapsLink += 'No. Telp: ' + laporan.no_hp + '\n';
+                                        googleMapsLink += 'No. Plat: ' + laporan.no_plat + '\n';
+                                        googleMapsLink += 'Tempat Kejadian Perkara: ' + laporan.alamat_kejadian + '\n';
+                                        googleMapsLink += 'Titik Lokasi TKP: ' + 'https://www.google.com/maps?q=' + laporan.latitude + ',' + laporan.longitude;
+                                        return googleMapsLink;
+                                    }
+
+                                    function copyToClipboard(text) {
+                                        var textarea = document.createElement('textarea');
+                                        textarea.value = text;
+                                        document.body.appendChild(textarea);
+                                        textarea.select();
+                                        document.execCommand('copy');
+                                        document.body.removeChild(textarea);
+                                    }
+
+                                    document.getElementById('copyLinkButton').addEventListener('click', function () {
+                                        var googleMapsLinkWithInfo = generateGoogleMapsLinkWithInfo(<?= json_encode($laporan); ?>);
+
+                                        copyToClipboard(googleMapsLinkWithInfo);
+                                        alert('Data dan link Google Maps berhasil disalin!');
+                                    });
                                 </script>
                             </div>
                         </div>

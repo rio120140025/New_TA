@@ -30,8 +30,25 @@
     <link rel="stylesheet" href="<?= base_url('assets/css/styles.min.css'); ?>" />
     <link rel="stylesheet" href="<?= base_url('assets/css/icons/tabler-icons/tabler-icons.css'); ?>" />
 
+    <style>
+        #map {
+            width: 100%;
+            height: 67vh;
+            border-radius: 10px;
+            z-index: 1;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
 </head>
 
 <body>
@@ -139,6 +156,29 @@
             <div class="body-wrapper radial-gradient min-vh-100">
                 <div class="container-fluid">
                     <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg-8 d-flex align-items-strech mb-3">
+                                <div id="map"></div>
+                            </div>
+                            <div class=" col-lg-4">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="member d-flex justify-content-center">
+                                            <div class="member-info">
+                                                <canvas id="doughnut" style="height: 33vh; width: 340px;"></canvas>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="member d-flex justify-content-center">
+                                            <div class="member-info">
+                                                <canvas id="line" style="height: 33vh; width: 340px;"></canvas>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="card">
                             <div class="card-body">
                                 <form method="post">
@@ -147,7 +187,7 @@
                                         <input type="text" class="form-control" name="search" id="search"
                                             aria-describedby="searchHelp">
                                     </div>
-                                    <button type="submit" class="btn btn-primary">Cari</button>
+                                    <button type="submit" class="btn btn-warning">Cari</button>
                                 </form>
                             </div>
                         </div>
@@ -375,6 +415,139 @@
             </div>
         </div>
     </div>
+    <input type="hidden" id="latitude" name="latitude">
+    <input type="hidden" id="longitude" name="longitude">
+    <script>
+        $(document).ready(function () {
+            var map;
+            var marker;
+
+            map = L.map('map').setView([0, 0], 15);
+
+            L.tileLayer('http://{s}.google.com/vt?lyrs=m&x={x}&y={y}&z={z}', {
+                maxZoom: 19,
+                subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
+                attribution: '&copy; <a>POLRES Lampung Utara</a>'
+            }).addTo(map);
+
+            function showLocation(lat, lng) {
+                if (marker) {
+                    map.removeLayer(marker);
+                }
+                marker = L.marker([lat, lng]).addTo(map);
+                marker.bindPopup("Lokasi Anda").openPopup();
+                map.setView([lat, lng], 13);
+            }
+
+            function getLocation() {
+                if ("geolocation" in navigator) {
+                    navigator.geolocation.watchPosition(function (position) {
+                        var lat = position.coords.latitude;
+                        var lng = position.coords.longitude;
+                        showLocation(lat, lng);
+
+                        document.getElementById('latitude').value = lat;
+                        document.getElementById('longitude').value = lng;
+                    });
+                } else {
+                    alert("Geolocation tidak didukung oleh browser Anda.");
+                }
+            }
+            getLocation();
+
+            $.ajax({
+                url: "<?php echo base_url('welcome/curanmor_data'); ?>",
+                dataType: 'json',
+                method: 'get',
+                success: data => {
+                    var customIcon = L.icon({
+                        iconUrl: 'assets/svg/location-warning.svg',
+                        iconSize: [46, 46],
+                        iconAnchor: [23, 46],
+                        popupAnchor: [0, -46]
+                    });
+                    data.map_data.map(data => {
+                        L.marker([data.latitude, data.longitude], { icon: customIcon })
+                            .bindPopup(`Tipe Motor: <strong>${data.tipe_motor}</strong><br>Tempat Kejadian Perkara: <strong>${data.alamat_kejadian}, Kelurahan/Desa ${data.subdis_name}, Kecamatan ${data.dis_name}</strong><br>Waktu Kejadian: <strong>${data.waktu_kejadian}</strong>`)
+                            .addTo(map);
+
+                        var circle = L.circle([data.latitude, data.longitude], {
+                            color: 'red',
+                            fillColor: '#f03',
+                            fillOpacity: 0.1,
+                            radius: 100
+                        }).addTo(map);
+                    });
+
+                    var doughnutData = {
+                        labels: data.motor_types.map(item => item.tipe_motor),
+                        datasets: [{
+                            data: data.motor_types.map(item => item.jumlah),
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.7)',
+                                'rgba(54, 162, 235, 0.7)',
+                                'rgba(255, 206, 86, 0.7)',
+                                'rgba(75, 192, 192, 0.7)',
+                                'rgba(153, 102, 255, 0.7)',
+                                'rgba(255, 159, 64, 0.7)',
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)',
+                            ],
+                            borderWidth: 1
+                        }]
+                    };
+
+                    var doughnutCtx = document.getElementById('doughnut').getContext('2d');
+                    var doughnutChart = new Chart(doughnutCtx, {
+                        type: 'doughnut',
+                        data: doughnutData
+                    });
+
+                    var lineData = {
+                        labels: [],
+                        datasets: [{
+                            label: 'Jumlah Kasus Curanmor',
+                            data: data.monthly_incidents,
+                            fill: false,
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 2
+                        }]
+                    };
+                    console.log(data.monthly_incidents)
+
+                    var lineCtx = document.getElementById('line').getContext('2d');
+                    var lineChart = new Chart(lineCtx, {
+                        type: 'line',
+                        data: lineData
+                    });
+
+                    var barData = {
+                        labels: data.subdistrict_data.map(item => item.subdis_name),
+                        datasets: [{
+                            label: 'Jumlah Kasus Curanmor',
+                            data: data.subdistrict_data.map(item => item.jumlah),
+                            backgroundColor: 'rgba(75, 192, 192, 0.7)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        }]
+                    };
+
+                    var barCtx = document.getElementById('barChart').getContext('2d');
+                    var barChart = new Chart(barCtx, {
+                        type: 'bar',
+                        data: barData
+                    });
+
+                }
+            });
+        });
+    </script>
     <script src="<?= base_url('assets/libs/jquery/dist/jquery.min.js'); ?>"></script>
     <script src="<?= base_url('assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js'); ?>"></script>
     <script src="<?= base_url('assets/js/sidebarmenu.js'); ?>"></script>

@@ -25,6 +25,7 @@ $routes->add('datakecamatan/(:num)', 'DataKecamatan::index/$1');
 $routes->add('datakelurahandesa/(:num)', 'DataKelurahanDesa::index/$1');
 $routes->get('sukses/(:any)', 'Sukses::index/$1');
 $routes->get('updatelaporan/(:any)', 'UpdateLaporan::index/$1');
+$routes->get('updatelaporantkp/(:any)', 'UpdateLaporanTKP::index/$1');
 $routes->get('detaillaporan/(:any)', 'DetailLaporan::index/$1');
 
 /**
