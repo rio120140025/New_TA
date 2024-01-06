@@ -17,6 +17,7 @@ $routes->setTranslateURIDashes(false);
 $routes->set404Override();
 $routes->setAutoRoute(true);
 
+$routes->add('Dashboard/(:num)', 'Dashboard::index/$1');
 $routes->add('datatipemotor/(:num)', 'DataTipeMotor::index/$1');
 $routes->add('dataprovinsi/(:num)', 'DataProvinsi::index/$1');
 $routes->add('datakabupatenkota/(:num)', 'DataKabupatenKota::index/$1');

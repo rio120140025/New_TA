@@ -44,6 +44,13 @@ class DataKecamatan extends Controller
         return json_encode($kecamatan);
     }
 
+    public function get_kecamatan_at_lampung()
+    {
+        $city_id = 123;
+        $kecamatan123 = $this->datakecamatanModel->getKecamatanByKabupatenKota($city_id);
+        return json_encode($kecamatan123);
+    }
+
     public function save_kecamatan($page)
     {
         $dis_name = $this->request->getPost('dis_name');

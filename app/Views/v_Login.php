@@ -100,7 +100,7 @@
                                                 if (xhr.status === 200) {
                                                     var response = JSON.parse(xhr.responseText);
                                                     if (response.success) {
-                                                        window.location.href = '<?php echo site_url('Dashboard'); ?>';
+                                                        window.location.href = '<?php echo site_url('Dashboard/1'); ?>';
                                                     } else {
                                                         document.getElementById('error-message').style.display = 'block';
                                                         document.getElementById('error-message').innerHTML = response.error;

@@ -31,7 +31,55 @@
     <link rel="stylesheet" href="<?= base_url('assets/css/icons/tabler-icons/tabler-icons.css'); ?>" />
 
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            let latestReport = [];
+            let buttonClicked = false;
+
+            function checkNewReports() {
+                $.ajax({
+                    url: '<?= base_url('admin/ajaxCheckNewReports'); ?>',
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function (response) {
+                        latestReport.push(response.latestReport.no_laporan);
+                        console.log(latestReport[0]);
+
+                        if (response.newReports) {
+                            if (!buttonClicked && (latestReport[0] !== response.latestReport.no_laporan)) {
+                                $('.dot-icon').show();
+                            } else if (!buttonClicked && (latestReport[0] == response.latestReport.no_laporan)) {
+                                $('.dot-icon').show();
+                            } else if (buttonClicked && (latestReport[0] !== response.latestReport.no_laporan)) {
+                                $('.dot-icon').show();
+                            } else {
+                                $('.dot-icon').hide();
+                            }
+                        }
+
+                        $('#notificationDropdown').html(response.notificationContent);
+                    },
+                    complete: function () {
+                        setTimeout(checkNewReports, 1000);
+                    }
+                });
+            }
+
+            $('.dot-icon').hide();
+
+            $('#notificationButton').on('click', function () {
+                $('.dot-icon').hide();
+                buttonClicked = true;
+                latestReport = [];
+            });
+
+            checkNewReports();
+        });
+    </script> -->
 </head>
 
 <body>
@@ -41,7 +89,7 @@
             <div>
                 <div class="brand-logo d-flex align-items-center justify-content-between">
                     <div style="padding: 25px 30%;">
-                        <img src="..\assets/img/png-transparent-bandar-lampung-maluku-kepolisian-daerah-lampung-indonesian-national-police-others-logo-indonesia-area-removebg-preview.png"
+                        <img src="assets/img/png-transparent-bandar-lampung-maluku-kepolisian-daerah-lampung-indonesian-national-police-others-logo-indonesia-area-removebg-preview.png"
                             alt="Logo" width="80">
                     </div>
                     <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
@@ -125,6 +173,24 @@
                             </a>
                         </li>
                     </ul>
+                    <!-- <div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <button class="btn" id="notificationButton" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                    <div class="icon-container">
+                                        <iconify-icon icon="ion:notifcations" style="color: white;" width="25"
+                                            height="25" class="notification-icon"></iconify-icon>
+                                        <iconify-icon icon="radix-icons:dot-filled" style="color: red;" width="25"
+                                            height="25" class="dot-icon"></iconify-icon>
+                                    </div>
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="notificationButton"
+                                    id="notificationDropdown">
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
                     <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
                         <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
                             <a href="<?= base_url(); ?>" class="btn btn-dark list-inline-item">Back To Home</a>
@@ -139,6 +205,82 @@
             <div class="body-wrapper radial-gradient min-vh-100">
                 <div class="container-fluid">
                     <div class="container-fluid">
+                        <div class="content-wrapper">
+                            <form method="post">
+                                <div class="row">
+                                    <div class="col-md-p mb-2 stretch-card transparent">
+                                        <div class="card card-tale">
+                                            <div class="card-body text-center">
+                                                <button type="submit" name="filter" value="today" class="btn"
+                                                    style="color: #555555; text-decoration: none;">
+                                                    <h6 class="fs-4">TOTAL LAPORAN</h6>
+                                                    <strong class="fs-8">
+                                                        <?php echo $totalToday; ?>
+                                                    </strong>
+                                                    <h6 class="fs-3">Hari ini</h6>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-p mb-2 stretch-card transparent">
+                                        <div class="card card-tale">
+                                            <div class="card-body text-center">
+                                                <button type="submit" name="filter" value="last_7_days" class="btn"
+                                                    style="color: #555555; text-decoration: none;">
+                                                    <h6 class="fs-4">TOTAL LAPORAN</h6>
+                                                    <strong class="fs-8">
+                                                        <?php echo $totalLast7Days; ?>
+                                                    </strong>
+                                                    <h6 class="fs-3">7 hari terakhir</h6>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-p mb-2 stretch-card transparent">
+                                        <div class="card card-tale">
+                                            <div class="card-body text-center">
+                                                <button type="submit" name="filter" value="last_30_days" class="btn"
+                                                    style="color: #555555; text-decoration: none;">
+                                                    <h6 class="fs-4">TOTAL LAPORAN</h6>
+                                                    <strong class="fs-8">
+                                                        <?php echo $totalLast30Days; ?>
+                                                    </strong>
+                                                    <h6 class="fs-3">30 hari terakhir</h6>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-p mb-2 stretch-card transparent">
+                                        <div class="card card-tale">
+                                            <div class="card-body text-center">
+                                                <button type="submit" name="filter" value="status_2" class="btn"
+                                                    style="color: #555555; text-decoration: none;">
+                                                    <h6 class="fs-4">TOTAL LAPORAN</h6>
+                                                    <strong class="fs-8">
+                                                        <?php echo $totalStatus2; ?>
+                                                    </strong>
+                                                    <h6 class="fs-3">Kasus selesai</h6>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-p mb-2 stretch-card transparent">
+                                        <div class="card card-tale">
+                                            <div class="card-body text-center">
+                                                <button type="submit" name="filter" value="" class="btn"
+                                                    style="color: #555555; text-decoration: none;">
+                                                    <h6 class="fs-4">TOTAL LAPORAN</h6>
+                                                    <strong class="fs-8">
+                                                        <?php echo $totalAll; ?>
+                                                    </strong>
+                                                    <h6 class="fs-3">Tercatat</h6>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                         <div class="card">
                             <div class="card-body">
                                 <form method="post">
@@ -176,14 +318,15 @@
                                                     <div class="mb-3">
                                                         <h6 for="dis_name_kejadian" class="form-label">Kecamatan
                                                         </h6>
-                                                        <select class="form-select" id="dis_id" name="dis_id">
+                                                        <select class="form-select" id="dis_id_kejadian"
+                                                            name="id_districts_kejadian">
                                                             <option value="">Semua Kecamatan</option>
                                                         </select>
                                                     </div>
                                                     <script>
                                                         $(document).ready(function () {
                                                             $.ajax({
-                                                                url: "<?= site_url('DataKecamatan/get_kecamatan_at_lampung'); ?>",
+                                                                url: "<?= site_url('LaporController/get_kecamatan_by_123'); ?>",
                                                                 method: "POST",
                                                                 dataType: "json",
                                                                 success: function (data) {
@@ -191,7 +334,7 @@
                                                                     data.forEach(function (item) {
                                                                         options += '<option value="' + item.dis_id + '">' + item.dis_name + '</option>';
                                                                     });
-                                                                    $('#dis_id').html(options);
+                                                                    $('#dis_id_kejadian').html(options);
                                                                 }
                                                             });
                                                         });
@@ -199,18 +342,19 @@
                                                     <div class="mb-3">
                                                         <h6 for="subdis_name" class="form-label">Kelurahan/Desa
                                                         </h6>
-                                                        <select class="form-select" id="subdis_id" name="subdis_id">
+                                                        <select class="form-select" id="subdis_id_kejadian"
+                                                            name="id_subdistricts_kejadian">
                                                             <option value="">Semua Kelurahan/Desa</option>
                                                         </select>
                                                     </div>
                                                     <script>
                                                         $(document).ready(function () {
-                                                            $('select[name="dis_id"]').change(function () {
+                                                            $('select[name="id_districts_kejadian"]').change(function () {
                                                                 var dis_id = $(this).val();
 
                                                                 if (dis_id != '') {
                                                                     $.ajax({
-                                                                        url: "<?= site_url('DataKelurahanDesa/get_kelurahandesa_by_kecamatan'); ?>",
+                                                                        url: "<?= site_url('LaporController/get_kelurahandesa_by_kecamatan'); ?>",
                                                                         method: "POST",
                                                                         data: {
                                                                             dis_id: dis_id
@@ -221,11 +365,11 @@
                                                                             data.forEach(function (item) {
                                                                                 options += '<option value="' + item.subdis_id + '">' + item.subdis_name + '</option>';
                                                                             });
-                                                                            $('#subdis_id').html(options);
+                                                                            $('#subdis_id_kejadian').html(options);
                                                                         }
                                                                     });
                                                                 } else {
-                                                                    $('#subdis_id').html('<option value="">Semua Kelurahan/Desa</option>');
+                                                                    $('#subdis_id_kejadian').html('<option value="">Semua Kelurahan/Desa</option>');
                                                                 }
                                                             });
                                                         });
@@ -242,9 +386,6 @@
                                     <table class="table text-nowrap mb-0 align-middle">
                                         <thead class="text-dark fs-4">
                                             <tr>
-                                                <th class="border-bottom-0">
-                                                    <h6 class="fw-semibold mb-0">No.</h6>
-                                                </th>
                                                 <th class="border-bottom-0">
                                                     <h6 class="fw-semibold mb-0">Nomor Laporan
                                                         <iconify-icon icon="vaadin:sort"
@@ -279,14 +420,8 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php $number = (50 * ($current_page - 1) + 1); ?>
                                             <?php foreach ($laporan as $row): ?>
                                                 <tr>
-                                                    <td>
-                                                        <h6 class="fw-normal">
-                                                            <?= $number; ?>
-                                                        </h6>
-                                                    </td>
                                                     <td>
                                                         <h6 class="fw-normal">
                                                             <?= $row->no_laporan; ?>
@@ -304,7 +439,9 @@
                                                     </td>
                                                     <td>
                                                         <h6 class="fw-normal">
-                                                            <?= $row->alamat_kejadian; ?>
+                                                            <?= $row->alamat_kejadian; ?>, Kelurahan/Desa
+                                                            <?= $row->subdis_name; ?>, Kecamatan
+                                                            <?= $row->dis_name; ?>
                                                         </h6>
                                                     </td>
                                                     <td>
@@ -313,15 +450,15 @@
                                                         </h6>
                                                     </td>
                                                     <td>
-                                                        <?php if ($row->id_status == 0): ?>
+                                                        <?php if ($row->status == 0): ?>
                                                             <div class="text-warning">
                                                                 <h6 class="fw-normal">Pending</h6>
                                                             </div>
-                                                        <?php elseif ($row->id_status == 1): ?>
+                                                        <?php elseif ($row->status == 1): ?>
                                                             <div class="text-danger">
                                                                 <h6 class="fw-normal">Dalam Lidik</h6>
                                                             </div>
-                                                        <?php elseif ($row->id_status == 2): ?>
+                                                        <?php elseif ($row->status == 2): ?>
                                                             <div class="text-success">
                                                                 <h6 class="fw-normal">Kasus Selesai</h6>
                                                             </div>
@@ -330,14 +467,13 @@
                                                     <td>
                                                         <?php
                                                         $no_laporan = str_replace('/', '-', $row->no_laporan);
-                                                        $detail_url = site_url('detaillaporan/' . $no_laporan);
+                                                        $detail_url = site_url('DetailController/index/' . $no_laporan);
                                                         ?>
                                                         <a href="<?= $detail_url; ?>" class="text-secondary">
                                                             <h6 class="fw-normal">Detail</h6>
                                                         </a>
                                                     </td>
                                                 </tr>
-                                                <?php $number++; ?>
                                             <?php endforeach; ?>
                                         </tbody>
                                     </table>
@@ -350,11 +486,11 @@
                                     $start_page = max($max_pages - 4, 1);
 
                                     if ($current_page > 1) {
-                                        echo '<a href="' . site_url("Dashboard/index/" . ($current_page - 1)) . '" class="btn btn-primary"><</a>';
+                                        echo '<a href="' . site_url("DataMotorController/index/" . ($current_page - 1)) . '" class="btn btn-primary">Sebelumnya</a>';
                                     }
 
                                     for ($i = $start_page; $i <= $max_pages; $i++) {
-                                        echo '<a href="' . site_url("Dashboard/index/" . $i) . '"';
+                                        echo '<a href="' . site_url("DataMotorController/index/" . $i) . '"';
                                         if ($i == $current_page) {
                                             echo ' class="btn btn-primary active"';
                                         } else {
@@ -364,7 +500,7 @@
                                     }
 
                                     if ($current_page < $total_pages) {
-                                        echo '<a href="' . site_url("Dashboard/index/" . ($current_page + 1)) . '" class="btn btn-primary">></a>';
+                                        echo '<a href="' . site_url("DataMotorController/index/" . ($current_page + 1)) . '" class="btn btn-primary">Selanjutnya</a>';
                                     }
                                     ?>
                                 <?php endif; ?>

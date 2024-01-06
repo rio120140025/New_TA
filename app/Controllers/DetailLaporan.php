@@ -32,10 +32,24 @@ class DetailLaporan extends Controller
 
         $data['laporan'] = $this->laporanModel->getLaporanDetails($no_laporan);
 
-        if ($id_akun == $data['laporan']['id_akun']) {
-            return view('User/v_Detail_Laporan', $data);
-        } else {
+        if ($data['laporan'] == null) {
             return view('errors/html/error_404');
+        }
+
+        $email = $this->session->get('email');
+        $user = $this->loginModel->getUser($email);
+
+        if ($user) {
+            $id_role = $user->id_role;
+            if ($id_role == 1) {
+                return view('Admin/v_Detail_Laporan', $data);
+            } elseif ($id_role == 2) {
+                if ($id_akun == $data['laporan']['id_akun'] && $data['laporan']['alamat_kejadian'] != null) {
+                    return view('User/v_Detail_Laporan', $data);
+                } else {
+                    return view('errors/html/error_404');
+                }
+            }
         }
     }
 }

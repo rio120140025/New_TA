@@ -6,6 +6,8 @@ use CodeIgniter\Controller;
 use App\Models\LoginModel;
 use App\Models\LaporanModel;
 use App\Models\DataDiriModel;
+use App\Models\DataKecamatanModel;
+use App\Models\DataKelurahanDesaModel;
 
 class Dashboard extends Controller
 {
@@ -21,9 +23,11 @@ class Dashboard extends Controller
         $this->loginModel = new LoginModel();
         $this->laporanModel = new LaporanModel();
         $this->datadiriModel = new DataDiriModel();
+        $this->datakecamatanModel = new DataKecamatanModel();
+        $this->datakelurahandesaModel = new DataKelurahanDesaModel();
     }
 
-    public function index()
+    public function index($page = 1)
     {
         if (!$this->session->get('logged_in')) {
             return redirect()->to(base_url('login'));
@@ -36,7 +40,18 @@ class Dashboard extends Controller
         if ($user) {
             $id_role = $user->id_role;
             if ($id_role == 1) {
-                return view('Admin/v_Dashboard');
+                $limit = 50;
+                $offset = ($page - 1) * $limit;
+                $search = $this->request->getPost('search');
+
+                $data['kecamatan'] = $this->datakecamatanModel->getKecamatanData(null, null, null);
+                $data['kelurahandesa'] = $this->datakelurahandesaModel->getKelurahanDesaData(null, null, null);
+                $data['laporan'] = $this->laporanModel->getAllLaporanDetails($limit, $offset, $search);
+                $data['total_data'] = $this->laporanModel->getTotalSearchedLaporan($search);
+                $data['total_pages'] = ceil($data['total_data'] / $limit);
+                $data['current_page'] = $page;
+
+                return view('Admin/v_Dashboard', $data);
             } elseif ($id_role == 2) {
                 $dataDiri = $this->datadiriModel->getDataByAkunId($id_akun);
 

@@ -56,7 +56,7 @@
 							<span class="hide-menu">Home</span>
 						</li>
 						<li class="sidebar-item">
-							<a class="sidebar-link" href="<?= site_url('AdminController/' . $current_page); ?>">
+							<a class="sidebar-link" href="<?= site_url('Dashboard/1'); ?>">
 								<iconify-icon icon="ic:round-dashboard"></iconify-icon>
 								<span class="hide-menu">Dashboard</span>
 							</a>

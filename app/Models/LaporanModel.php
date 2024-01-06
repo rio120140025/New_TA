@@ -25,6 +25,39 @@ class LaporanModel extends Model
         return $this->where('no_laporan', $no_laporan)->first();
     }
 
+    public function getAllLaporanDetails($limit, $offset, $search = null)
+    {
+        $query = $this->select('*')
+            ->join('data_diri', 'laporan.id_data_diri = data_diri.id_data_diri', 'left')
+            ->join('subdistricts', 'data_diri.subdis_id = subdistricts.subdis_id', 'left')
+            ->join('districts', 'subdistricts.dis_id = districts.dis_id', 'left')
+            ->join('cities', 'districts.city_id = cities.city_id', 'left')
+            ->join('provinces', 'cities.prov_id = provinces.prov_id', 'left')
+            ->join('kendaraan', 'laporan.id_kendaraan = kendaraan.id_kendaraan', 'left')
+            ->join('motor', 'kendaraan.id_motor = motor.id_motor', 'left');
+
+        $query->limit($limit, $offset);
+
+        if (!empty($search)) {
+            $query->like('no_laporan', $search);
+        }
+
+        return $query->get()->getResult();
+    }
+
+    public function getTotalLaporan()
+    {
+        return $this->countAll();
+    }
+
+    public function getTotalSearchedLaporan($search = null)
+    {
+        if (!empty($search)) {
+            $this->like('no_laporan', $search);
+        }
+        return $this->countAllResults();
+    }
+
     public function getLaporanDetails($no_laporan)
     {
         return $this->select('*')

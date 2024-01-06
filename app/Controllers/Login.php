@@ -19,7 +19,7 @@ class Login extends Controller
     public function index()
     {
         if ($this->session->get('logged_in')) {
-            return redirect()->to(base_url('Dashboard'));
+            return redirect()->to(base_url('Dashboard/1'));
         }
 
         return view('v_Login');
