@@ -197,9 +197,13 @@
                                 </div>
                                 <div class="mb-3">
                                     <h6 class="form-label">Tempat, Tanggal Lahir</h6>
-                                    <input class="form-control"
-                                        value="<?= $laporan['tempat_lahir']; ?> , <?= date('d F Y', strtotime($laporan['tanggal_lahir'])); ?>"
-                                        readonly>
+                                    <?php if ($laporan['tempat_lahir'] != null && $laporan['tanggal_lahir'] != null): ?>
+                                        <input class="form-control"
+                                            value="<?= $laporan['tempat_lahir']; ?> , <?= date('d F Y', strtotime($laporan['tanggal_lahir'])); ?>"
+                                            readonly>
+                                    <?php else: ?>
+                                        <input class="form-control" readonly>
+                                    <?php endif; ?>
                                 </div>
                                 <div class="mb-3">
                                     <h6 class="form-label">Jenis Kelamin</h6>
@@ -219,9 +223,13 @@
                                 </div>
                                 <div class="mb-4">
                                     <h6 class="form-label">Alamat</h6>
-                                    <input class="form-control"
-                                        value="<?= $laporan['alamat']; ?>, Kelurahan/Desa <?= $laporan['subdis_name']; ?>, Kecamatan <?= $laporan['dis_name']; ?>, Kabupaten/Kota <?= $laporan['city_name']; ?>, Provinsi <?= $laporan['prov_name']; ?>"
-                                        readonly>
+                                    <?php if ($laporan['alamat'] != null): ?>
+                                        <input class="form-control"
+                                            value="<?= $laporan['alamat']; ?>, Kelurahan/Desa <?= $laporan['subdis_name']; ?>, Kecamatan <?= $laporan['dis_name']; ?>, Kabupaten/Kota <?= $laporan['city_name']; ?>, Provinsi <?= $laporan['prov_name']; ?>"
+                                            readonly>
+                                    <?php else: ?>
+                                        <input class="form-control" readonly>
+                                    <?php endif; ?>
                                 </div>
                                 <h5 class="card-title fw-semibold mb-2">Uraian Kejadian</h5>
                                 <div class="mb-3">
@@ -248,7 +256,11 @@
                                 </div>
                                 <div class="mb-3">
                                     <h6 class="form-label">Total Kerugian</h6>
-                                    <input class="form-control" value="Rp. <?= $laporan['kerugian']; ?>" readonly>
+                                    <?php if ($laporan['kerugian'] != 0): ?>
+                                        <input class="form-control" value="Rp. <?= $laporan['kerugian']; ?>" readonly>
+                                    <?php else: ?>
+                                        <input class="form-control" readonly>
+                                    <?php endif; ?>
                                 </div>
                                 <div class="mb-3">
                                     <h6 class="form-label">Kronologi</h6>

@@ -134,12 +134,16 @@ class UpdateLaporan extends Controller
                 $no_laporan = $this->request->getPost('no_laporan');
                 $kronologi = $this->request->getPost('kronologi');
                 $kerugian = $this->request->getPost('kerugian');
+                $waktu_kejadian = $this->request->getPost('waktu_kejadian');
                 $alamat_kejadian = $this->request->getPost('alamat_kejadian');
+                $id_status = $this->request->getPost('id_status');
 
                 $data = [
                     'kronologi' => $kronologi,
                     'kerugian' => $kerugian,
+                    'waktu_kejadian' => $waktu_kejadian,
                     'alamat_kejadian' => $alamat_kejadian,
+                    'id_status' => $id_status,
                 ];
 
                 $where3 = ['no_laporan' => $no_laporan];

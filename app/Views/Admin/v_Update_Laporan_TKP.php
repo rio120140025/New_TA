@@ -210,15 +210,9 @@
 
                                                 latitudeInput.value = lat;
                                                 longitudeInput.value = lng;
-
-                                                latitudeInput.removeAttribute('disabled');
-                                                longitudeInput.removeAttribute('disabled');
                                             });
                                         } else {
                                             alert("Geolocation dimatikan.");
-
-                                            latitudeInput.setAttribute('disabled', 'disabled');
-                                            longitudeInput.setAttribute('disabled', 'disabled');
                                         }
                                     }
 

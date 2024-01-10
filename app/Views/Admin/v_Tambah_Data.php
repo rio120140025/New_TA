@@ -4,13 +4,13 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Update Laporan</title>
+    <title>Tambah Data</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <link
-        href="..\assets\img\png-transparent-bandar-lampung-maluku-kepolisian-daerah-lampung-indonesian-national-police-others-logo-indonesia-area-removebg-preview.png"
+        href="assets\img\png-transparent-bandar-lampung-maluku-kepolisian-daerah-lampung-indonesian-national-police-others-logo-indonesia-area-removebg-preview.png"
         rel="icon" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -41,7 +41,7 @@
             <div>
                 <div class="brand-logo d-flex align-items-center justify-content-between">
                     <div style="padding: 25px 30%;">
-                        <img src="..\assets/img/png-transparent-bandar-lampung-maluku-kepolisian-daerah-lampung-indonesian-national-police-others-logo-indonesia-area-removebg-preview.png"
+                        <img src="assets/img/png-transparent-bandar-lampung-maluku-kepolisian-daerah-lampung-indonesian-national-police-others-logo-indonesia-area-removebg-preview.png"
                             alt="Logo" width="80">
                     </div>
                     <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
@@ -140,98 +140,55 @@
                 <div class="container-fluid">
                     <div class="card">
                         <div class="card-body">
-                            <p class="text-center">Update Laporan
-                            </p>
-                            <form method="post" action="<?= base_url('UpdateLaporan/update_laporan') ?>">
-                                <div class="mb-3">
-                                    <h6 for="no_laporan" class="form-label">Nomor Laporan</h6>
-                                    <input type="text" class="form-control" id="no_laporan" name="no_laporan"
-                                        value="<?= $laporan['no_laporan'] ?>" readonly>
-                                </div>
-                                <div class="mb-3">
-                                    <h6 class="form-label">Waktu Melapor</h6>
-                                    <input class="form-control"
-                                        value="<?= date('H:i:s d F Y', strtotime($laporan['waktu_melapor'])); ?>"
-                                        readonly>
-                                </div>
-                                <div class="mb-3">
-                                    <h6 for="id_status" class="form-label">Status</h6>
-                                    <select class="form-select" id="id_status" name="id_status" required>
-                                        <option value=0 <?= ($laporan['id_status'] == 0) ? 'selected' : '' ?>>Pending
-                                        </option>
-                                        <option value=1 <?= ($laporan['id_status'] == 1) ? 'selected' : '' ?>>Dalam Lidik
-                                        </option>
-                                        <option value=2 <?= ($laporan['id_status'] == 2) ? 'selected' : '' ?>>Kasus Selesai
-                                        </option>
-                                    </select>
-                                </div>
+                            <p class="text-center">Tambah Data </p>
+                            <form method="post" action="<?= base_url('PanicButton/tambah_data') ?>">
                                 <h5 class="card-title fw-semibold mb-2">Identitas Pelapor</h5>
-                                <input type="hidden" name="id_data_diri" value="<?= $laporan['id_data_diri'] ?>">
                                 <div class="mb-3">
                                     <h6 for="nik" class="form-label">Nomor Induk Kependudukan
                                         (NIK)</h6>
-                                    <input type="text" class="form-control" id="nik" name="nik"
-                                        value="<?= $laporan['nik'] ?>" minlength="16" required>
+                                    <input type="text" class="form-control" id="nik" name="nik" minlength="16">
                                 </div>
                                 <div class="mb-3">
                                     <h6 class="form-label">Nama Lengkap</h6>
-                                    <input type="text" class="form-control" id="nama" name="nama"
-                                        value="<?= $laporan['nama'] ?>" required>
+                                    <input type="text" name="nama" class="form-control" required>
                                 </div>
                                 <div class="mb-3">
                                     <h6 class="form-label">Nomor HP</h6>
-                                    <input type="text" class="form-control" id="no_hp" name="no_hp"
-                                        value="<?= $laporan['no_hp'] ?>" required>
+                                    <input type="text" name="no_hp" class="form-control">
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
                                         <h6 for="tempat_lahir" class="form-label">Tempat Lahir</h6>
-                                        <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir"
-                                            value="<?= $laporan['tempat_lahir'] ?>" required>
+                                        <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir">
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <h6 for="tanggal_lahir" class="form-label">Tanggal Lahir</h6>
-                                        <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir"
-                                            value="<?= $laporan['tanggal_lahir'] ?>" required>
+                                        <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir">
                                     </div>
                                 </div>
                                 <div class="mb-3">
                                     <h6 for="jenis_kelamin" class="form-label">Jenis Kelamin</h6>
                                     <select class="form-select" id="jenis_kelamin" name="jenis_kelamin" required>
-                                        <option value="" <?= ($laporan['jenis_kelamin'] == '') ? 'selected' : '' ?>>Pilih
-                                            Jenis
-                                            Kelamin</option>
-                                        <option value="Laki-laki" <?= ($laporan['jenis_kelamin'] == 'Laki-laki') ? 'selected' : '' ?>>
-                                            Laki-laki</option>
-                                        <option value="Perempuan" <?= ($laporan['jenis_kelamin'] == 'Perempuan') ? 'selected' : '' ?>>
-                                            Perempuan</option>
+                                        <option value="" selected>Pilih Jenis Kelamin</option>
+                                        <option value="Laki-laki">Laki-laki</option>
+                                        <option value="Perempuan">Perempuan</option>
                                     </select>
                                 </div>
                                 <div class="mb-3">
                                     <h6 for="agama" class="form-label">Agama</h6>
                                     <select class="form-select" id="agama" name="agama" required>
-                                        <option value="" <?= ($laporan['agama'] == '') ? 'selected' : '' ?>>Pilih Agama
-                                        </option>
-                                        <option value="Islam" <?= ($laporan['agama'] == 'Islam') ? 'selected' : '' ?>>
-                                            Islam</option>
-                                        <option value="Kristen" <?= ($laporan['agama'] == 'Kristen') ? 'selected' : '' ?>>
-                                            Kristen
-                                        </option>
-                                        <option value="Katolik" <?= ($laporan['agama'] == 'Katolik') ? 'selected' : '' ?>>
-                                            Katolik
-                                        </option>
-                                        <option value="Hindu" <?= ($laporan['agama'] == 'Hindu') ? 'selected' : '' ?>>
-                                            Hindu</option>
-                                        <option value="Budha" <?= ($laporan['agama'] == 'Budha') ? 'selected' : '' ?>>
-                                            Budha</option>
-                                        <option value="Kong Hu Cu" <?= ($laporan['agama'] == 'Kong Hu Cu') ? 'selected' : '' ?>>
-                                            Kong Hu Cu</option>
+                                        <option value="" selected>Pilih Agama</option>
+                                        <option value="Islam">Islam</option>
+                                        <option value="Kristen">Kristen</option>
+                                        <option value="Katolik">Katolik</option>
+                                        <option value="Hindu">Hindu</option>
+                                        <option value="Budha">Budha</option>
+                                        <option value="Kong Hu Cu">Kong Hu Cu</option>
                                     </select>
                                 </div>
                                 <div class="mb-3">
                                     <h6 for="pekerjaan" class="form-label">Pekerjaan</h6>
-                                    <input type="text" class="form-control" id="pekerjaan" name="pekerjaan"
-                                        value="<?= $laporan['pekerjaan'] ?>" required>
+                                    <input type="text" class="form-control" id="pekerjaan" name="pekerjaan" required>
                                 </div>
                                 <u class='fw-normal mb-1'>Alamat</u>
                                 <div class="mb-3">
@@ -239,7 +196,7 @@
                                     <select class="form-select" id="prov_id" required>
                                         <option value="">Pilih Provinsi</option>
                                         <?php foreach ($provinsi as $p): ?>
-                                            <option value="<?= $p->prov_id; ?>" <?= (isset($location['prov_id']) && $p->prov_id == $location['prov_id']) ? 'selected' : ''; ?>>
+                                            <option value="<?= $p->prov_id; ?>">
                                                 <?= $p->prov_name; ?>
                                             </option>
                                         <?php endforeach; ?>
@@ -252,34 +209,29 @@
                                 </div>
                                 <script>
                                     $(document).ready(function () {
-                                        var prov_id = <?= json_encode($location['prov_id'] ?? null); ?>;
-                                        var city_id = <?= json_encode($location['city_id'] ?? null); ?>;
-
-                                        showCities(prov_id, city_id);
-
                                         $('#prov_id').change(function () {
-                                            var selectedProvId = $(this).val();
-                                            showCities(selectedProvId, null);
+                                            var prov_id = $(this).val();
+                                            console.log('Selected Province ID:', prov_id);
+                                            if (prov_id != '') {
+                                                $.ajax({
+                                                    url: "<?= site_url('DataKabupatenKota/get_kabupatenkota_by_provinsi'); ?>",
+                                                    method: "POST",
+                                                    data: {
+                                                        prov_id: prov_id
+                                                    },
+                                                    dataType: "json",
+                                                    success: function (data) {
+                                                        var options = '<option value="">Pilih Kabupaten/Kota</option>';
+                                                        data.forEach(function (item) {
+                                                            options += '<option value="' + item.city_id + '">' + item.city_name + '</option>';
+                                                        });
+                                                        $('#city_id').html(options);
+                                                    }
+                                                });
+                                            } else {
+                                                $('#city_id').html('<option value="">Pilih Kabupaten/Kota</option>');
+                                            }
                                         });
-
-                                        function showCities(selectedProvId, selectedCityId) {
-                                            $.ajax({
-                                                url: "<?= site_url('DataKabupatenKota/get_kabupatenkota_by_provinsi'); ?>",
-                                                method: "POST",
-                                                data: {
-                                                    prov_id: selectedProvId
-                                                },
-                                                dataType: "json",
-                                                success: function (data) {
-                                                    var options = '<option value="">Pilih Kabupaten/Kota</option>';
-                                                    data.forEach(function (item) {
-                                                        var selectedAttr = (item.city_id == selectedCityId) ? 'selected' : '';
-                                                        options += '<option value="' + item.city_id + '" ' + selectedAttr + '>' + item.city_name + '</option>';
-                                                    });
-                                                    $('#city_id').html(options);
-                                                }
-                                            });
-                                        }
                                     });
                                 </script>
                                 <div class="mb-3">
@@ -289,40 +241,29 @@
                                 </div>
                                 <script>
                                     $(document).ready(function () {
-                                        var prov_id = <?= json_encode($location['prov_id'] ?? null); ?>;
-                                        var city_id = <?= json_encode($location['city_id'] ?? null); ?>;
-                                        var dis_id = <?= json_encode($location['dis_id'] ?? null); ?>;
-
-                                        showCities(city_id, dis_id);
-
-                                        $('#prov_id').change(function () {
-                                            var selectedProvId = $(this).val();
-                                            showCities(selectedProvId, null);
-                                        });
-
                                         $('#city_id').change(function () {
-                                            var selectedCityId = $(this).val();
-                                            showCities(selectedCityId, null);
-                                        });
+                                            var city_id = $(this).val();
 
-                                        function showCities(selectedCityId, selectedDisId) {
-                                            $.ajax({
-                                                url: "<?= site_url('DataKecamatan/get_kecamatan_by_kabupatenkota'); ?>",
-                                                method: "POST",
-                                                data: {
-                                                    city_id: selectedCityId
-                                                },
-                                                dataType: "json",
-                                                success: function (data) {
-                                                    var options = '<option value="">Pilih Kecamatan</option>';
-                                                    data.forEach(function (item) {
-                                                        var selectedAttr = (item.dis_id == selectedDisId) ? 'selected' : '';
-                                                        options += '<option value="' + item.dis_id + '" ' + selectedAttr + '>' + item.dis_name + '</option>';
-                                                    });
-                                                    $('#dis_id').html(options);
-                                                }
-                                            });
-                                        }
+                                            if (city_id != '') {
+                                                $.ajax({
+                                                    url: "<?= site_url('DataKecamatan/get_kecamatan_by_kabupatenkota'); ?>",
+                                                    method: "POST",
+                                                    data: {
+                                                        city_id: city_id
+                                                    },
+                                                    dataType: "json",
+                                                    success: function (data) {
+                                                        var options = '<option value="">Pilih Kecamatan</option>';
+                                                        data.forEach(function (item) {
+                                                            options += '<option value="' + item.dis_id + '">' + item.dis_name + '</option>';
+                                                        });
+                                                        $('#dis_id').html(options);
+                                                    }
+                                                });
+                                            } else {
+                                                $('#dis_id').html('<option value="">Pilih Kecamatan</option>');
+                                            }
+                                        });
                                     });
                                 </script>
                                 <div class="mb-3">
@@ -332,59 +273,39 @@
                                 </div>
                                 <script>
                                     $(document).ready(function () {
-                                        var prov_id = <?= json_encode($location['prov_id'] ?? null); ?>;
-                                        var city_id = <?= json_encode($location['city_id'] ?? null); ?>;
-                                        var dis_id = <?= json_encode($location['dis_id'] ?? null); ?>;
-                                        var subdis_id = <?= json_encode($location['subdis_id'] ?? null); ?>;
-
-                                        showCities(dis_id, subdis_id);
-
-                                        $('#prov_id').change(function () {
-                                            var selectedProvId = $(this).val();
-                                            showCities(selectedProvId, null);
-                                        });
-
-                                        $('#city_id').change(function () {
-                                            var selectedCityId = $(this).val();
-                                            showCities(selectedCityId, null);
-                                        });
-
                                         $('#dis_id').change(function () {
-                                            var selectedDisId = $(this).val();
-                                            showCities(selectedDisId, null);
-                                        });
+                                            var dis_id = $(this).val();
 
-                                        function showCities(selectedDisId, selectedSubDisId) {
-                                            $.ajax({
-                                                url: "<?= site_url('DataKelurahanDesa/get_kelurahandesa_by_kecamatan'); ?>",
-                                                method: "POST",
-                                                data: {
-                                                    dis_id: selectedDisId
-                                                },
-                                                dataType: "json",
-                                                success: function (data) {
-                                                    var options = '<option value="">Pilih Kelurahan/Desa</option>';
-                                                    data.forEach(function (item) {
-                                                        var selectedAttr = (item.subdis_id == selectedSubDisId) ? 'selected' : '';
-                                                        options += '<option value="' + item.subdis_id + '" ' + selectedAttr + '>' + item.subdis_name + '</option>';
-                                                    });
-                                                    $('#subdis_id').html(options);
-                                                }
-                                            });
-                                        }
+                                            if (dis_id != '') {
+                                                $.ajax({
+                                                    url: "<?= site_url('DataKelurahanDesa/get_kelurahandesa_by_kecamatan'); ?>",
+                                                    method: "POST",
+                                                    data: {
+                                                        dis_id: dis_id
+                                                    },
+                                                    dataType: "json",
+                                                    success: function (data) {
+                                                        var options = '<option value="">Pilih Kelurahan/Desa</option>';
+                                                        data.forEach(function (item) {
+                                                            options += '<option value="' + item.subdis_id + '">' + item.subdis_name + '</option>';
+                                                        });
+                                                        $('#subdis_id').html(options);
+                                                    }
+                                                });
+                                            } else {
+                                                $('#subdis_id').html('<option value="">Pilih Kelurahan/Desa</option>');
+                                            }
+                                        });
                                     });
                                 </script>
                                 <div class="mb-3">
                                     <h6 for="alamat" class="form-label">Alamat</h6>
-                                    <input type="text" class="form-control" id="alamat" name="alamat"
-                                        value="<?= $laporan['alamat'] ?>" required>
+                                    <input type="text" class="form-control" id="alamat" name="alamat" required>
                                 </div>
                                 <h5 class="card-title fw-semibold mb-2">Uraian Kejadian</h5>
-                                <input type="hidden" name="id_kendaraan" value="<?= $laporan['id_kendaraan'] ?>">
                                 <div class="mb-3">
                                     <h6 class="form-label">Waktu Kejadian</h6>
-                                    <input type="datetime-local" name="waktu_kejadian" class="form-control"
-                                        value="<?= $laporan['waktu_kejadian']; ?>" required>
+                                    <input type="datetime-local" name="waktu_kejadian" class="form-control" required>
                                 </div>
                                 <div class="mb-3">
                                     <h6 for="id_motor" class="form-label">Tipe Motor
@@ -392,7 +313,7 @@
                                     <select class="form-select" id="id_motor" name="id_motor" required>
                                         <option value="">Pilih Tipe Motor</option>
                                         <?php foreach ($motor as $k): ?>
-                                            <option value="<?= $k->id_motor; ?>" <?= (isset($laporan['id_motor']) && $k->id_motor == $laporan['id_motor']) ? 'selected' : ''; ?>>
+                                            <option value="<?= $k->id_motor; ?>">
                                                 <?= $k->tipe_motor; ?>
                                             </option>
                                         <?php endforeach; ?>
@@ -400,40 +321,35 @@
                                 </div>
                                 <div class="mb-3">
                                     <h6 for="no_plat" class="form-label">Nomor Plat</h6>
-                                    <input type="text" class="form-control" id="no_plat" name="no_plat"
-                                        value="<?= $laporan['no_plat'] ?>" required>
+                                    <input type="text" class="form-control" name="no_plat" id="no_plat" required>
                                 </div>
                                 <div class="mb-3">
                                     <h6 for="warna" class="form-label">Warna</h6>
-                                    <input type="text" class="form-control" id="warna" name="warna"
-                                        value="<?= $laporan['warna'] ?>" required>
+                                    <input type="text" class="form-control" id="warna" name="warna" required>
                                 </div>
                                 <div class="mb-3">
                                     <h6 for="no_rangka" class="form-label">Nomor Rangka
                                     </h6>
-                                    <input type="text" class="form-control" id="no_rangka" name="no_rangka"
-                                        value="<?= $laporan['no_rangka'] ?>" required>
+                                    <input type="text" class="form-control" id="no_rangka" name="no_rangka" required>
                                 </div>
                                 <div class="mb-3">
                                     <h6 for="no_mesin" class="form-label">Nomor Mesin
                                     </h6>
-                                    <input type="text" class="form-control" id="no_mesin" name="no_mesin"
-                                        value="<?= $laporan['no_mesin'] ?>" required>
+                                    <input type="text" class="form-control" id="no_mesin" name="no_mesin" required>
                                 </div>
                                 <div class="mb-3">
                                     <h6 for="kronologi" class="form-label">Kronologi</h6>
                                     <textarea rows="5" type="text" class="form-control" id="kronologi" name="kronologi"
-                                        required><?= $laporan['kronologi'] ?></textarea>
+                                        required></textarea>
                                 </div>
                                 <div class="mb-3">
                                     <h6 for="kronologi" class="form-label">Total Kerugian</h6>
-                                    <input type="number" class="form-control" id="kerugian" name="kerugian"
-                                        value="<?= $laporan['kerugian']; ?>" required>
+                                    <input type="number" class="form-control" id="kerugian" name="kerugian" required>
                                 </div>
                                 <div class="mb-3">
                                     <h6 for="kronologi" class="form-label">Detail Lokasi Kejadian</h6>
-                                    <input type="text" class="form-control" id="alamat_kejadian"
-                                        value="<?= $laporan['alamat_kejadian']; ?>" name="alamat_kejadian" required>
+                                    <input type="text" class="form-control" id="alamat_kejadian" name="alamat_kejadian"
+                                        required>
                                 </div>
                                 <button type="submit" class="btn btn-warning">Submit</button>
                             </form>

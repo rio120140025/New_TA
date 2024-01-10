@@ -71,6 +71,16 @@
                     <ul id="sidebarnav">
                         <li class="nav-small-cap">
                             <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                            <span class="hide-menu">Notifikasi</span>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="<?= site_url('notifikasi'); ?>">
+                                <iconify-icon icon="fluent:alert-12-filled"></iconify-icon>
+                                <span class="hide-menu">Notifikasi</span>
+                            </a>
+                        </li>
+                        <li class="nav-small-cap">
+                            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                             <span class="hide-menu">Home</span>
                         </li>
                         <li class="sidebar-item">
@@ -156,23 +166,40 @@
             <div class="body-wrapper radial-gradient min-vh-100">
                 <div class="container-fluid">
                     <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-lg-8 d-flex align-items-strech mb-3">
+                        <div class="card mb-3">
+                            <div class="card-body">
                                 <div id="map"></div>
                             </div>
-                            <div class=" col-lg-4">
-                                <div class="row">
-                                    <div class="col-lg-12">
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="card">
+                                    <div class="card-body">
                                         <div class="member d-flex justify-content-center">
-                                            <div class="member-info">
-                                                <canvas id="doughnut" style="height: 33vh; width: 340px;"></canvas>
+                                            <div>
+                                                <canvas id="doughnut" style="width: 200px;"></canvas>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-12">
+                                </div>
+                            </div>
+                            <div class=" col-lg-4">
+                                <div class="card">
+                                    <div class="card-body">
                                         <div class="member d-flex justify-content-center">
-                                            <div class="member-info">
-                                                <canvas id="line" style="height: 33vh; width: 340px;"></canvas>
+                                            <div>
+                                                <canvas id="line" style="height: 200px; width: 340px;"></canvas>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=" col-lg-4">
+                                <div class="member d-flex justify-content-center">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div>
+                                                <canvas id="barChart" style="height: 228px; width: 340px;"></canvas>
                                             </div>
                                         </div>
                                     </div>
@@ -198,7 +225,7 @@
                                     <div class="d-flex gap-2">
                                         <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal"
                                             class="btn btn-danger">Filter Lokasi</a>
-                                        <a href="<?php echo site_url('TambahLaporanController'); ?>"
+                                        <a href="<?php echo site_url('TambahData'); ?>"
                                             class="btn btn-warning">Tambah Laporan</a>
                                     </div>
                                 </div>
@@ -422,7 +449,7 @@
             var map;
             var marker;
 
-            map = L.map('map').setView([0, 0], 15);
+            map = L.map('map').setView([-4.786564, 104.827749], 11);
 
             L.tileLayer('http://{s}.google.com/vt?lyrs=m&x={x}&y={y}&z={z}', {
                 maxZoom: 19,
@@ -430,59 +457,43 @@
                 attribution: '&copy; <a>POLRES Lampung Utara</a>'
             }).addTo(map);
 
-            function showLocation(lat, lng) {
-                if (marker) {
-                    map.removeLayer(marker);
-                }
-                marker = L.marker([lat, lng]).addTo(map);
-                marker.bindPopup("Lokasi Anda").openPopup();
-                map.setView([lat, lng], 13);
-            }
-
-            function getLocation() {
-                if ("geolocation" in navigator) {
-                    navigator.geolocation.watchPosition(function (position) {
-                        var lat = position.coords.latitude;
-                        var lng = position.coords.longitude;
-                        showLocation(lat, lng);
-
-                        document.getElementById('latitude').value = lat;
-                        document.getElementById('longitude').value = lng;
-                    });
-                } else {
-                    alert("Geolocation tidak didukung oleh browser Anda.");
-                }
-            }
-            getLocation();
-
             $.ajax({
-                url: "<?php echo base_url('welcome/curanmor_data'); ?>",
+                url: "<?php echo base_url('home/get_data'); ?>",
                 dataType: 'json',
                 method: 'get',
-                success: data => {
+                success: function (data) {
+                    const baseUrl = window.location.origin;
                     var customIcon = L.icon({
-                        iconUrl: 'assets/svg/location-warning.svg',
+                        iconUrl: '../assets/svg/location-warning.svg',
                         iconSize: [46, 46],
                         iconAnchor: [23, 46],
                         popupAnchor: [0, -46]
                     });
-                    data.map_data.map(data => {
+
+                    data.laporan.map(data => {
+                        const no_laporan = data.no_laporan.replace(/\//g, '-');
+                        const detailUrl = `${baseUrl}/curanmorpolreslampungutara/public/detaillaporan/${no_laporan}`;
+
                         L.marker([data.latitude, data.longitude], { icon: customIcon })
-                            .bindPopup(`Tipe Motor: <strong>${data.tipe_motor}</strong><br>Tempat Kejadian Perkara: <strong>${data.alamat_kejadian}, Kelurahan/Desa ${data.subdis_name}, Kecamatan ${data.dis_name}</strong><br>Waktu Kejadian: <strong>${data.waktu_kejadian}</strong>`)
+                            .bindPopup(`
+                <strong>Tipe Motor:</strong> ${data.tipe_motor}<br>
+                <strong>Tempat Kejadian Perkara:</strong> ${data.alamat_kejadian}<br>
+                <strong>Waktu Kejadian:</strong> ${data.waktu_kejadian}<br>
+                <strong>Detail:</strong> <a href="${detailUrl}" target="_blank">Lihat Detail</a>
+            `)
                             .addTo(map);
 
                         var circle = L.circle([data.latitude, data.longitude], {
                             color: 'red',
                             fillColor: '#f03',
-                            fillOpacity: 0.1,
-                            radius: 100
+                            fillOpacity: 0.1
                         }).addTo(map);
                     });
 
                     var doughnutData = {
-                        labels: data.motor_types.map(item => item.tipe_motor),
+                        labels: data.motor.map(item => item.tipe_motor),
                         datasets: [{
-                            data: data.motor_types.map(item => item.jumlah),
+                            data: data.motor.map(item => item.jumlah),
                             backgroundColor: [
                                 'rgba(255, 99, 132, 0.7)',
                                 'rgba(54, 162, 235, 0.7)',
@@ -510,16 +521,15 @@
                     });
 
                     var lineData = {
-                        labels: [],
+                        labels: data.bulan.map(item => item.month),
                         datasets: [{
-                            label: 'Jumlah Kasus Curanmor',
-                            data: data.monthly_incidents,
+                            label: 'Jumlah Laporan',
+                            data: data.bulan.map(item => item.jumlah),
                             fill: false,
                             borderColor: 'rgba(75, 192, 192, 1)',
                             borderWidth: 2
                         }]
                     };
-                    console.log(data.monthly_incidents)
 
                     var lineCtx = document.getElementById('line').getContext('2d');
                     var lineChart = new Chart(lineCtx, {
@@ -528,10 +538,10 @@
                     });
 
                     var barData = {
-                        labels: data.subdistrict_data.map(item => item.subdis_name),
+                        labels: data.subdis.map(item => item.subdis_name),
                         datasets: [{
                             label: 'Jumlah Kasus Curanmor',
-                            data: data.subdistrict_data.map(item => item.jumlah),
+                            data: data.subdis.map(item => item.jumlah),
                             backgroundColor: 'rgba(75, 192, 192, 0.7)',
                             borderColor: 'rgba(75, 192, 192, 1)',
                             borderWidth: 1

@@ -18,7 +18,6 @@ class History extends Controller
     protected $laporanModel;
     protected $datamotorModel;
     protected $datatipemotorModel;
-
     public function __construct()
     {
         $this->session = \Config\Services::session();
@@ -72,25 +71,21 @@ class History extends Controller
     {
         $id_data_diri = $this->request->getPost('id_data_diri');
         $nik = $this->request->getPost('nik');
-        $nama = $this->request->getPost('nama');
         $agama = $this->request->getPost('agama');
         $jenis_kelamin = $this->request->getPost('jenis_kelamin');
         $alamat = $this->request->getPost('alamat');
         $tempat_lahir = $this->request->getPost('tempat_lahir');
         $tanggal_lahir = $this->request->getPost('tanggal_lahir');
-        $no_hp = $this->request->getPost('no_hp');
         $pekerjaan = $this->request->getPost('pekerjaan');
         $subdis_id = $this->request->getPost('subdis_id');
 
         $data = [
             'nik' => $nik,
-            'nama' => $nama,
             'agama' => $agama,
             'jenis_kelamin' => $jenis_kelamin,
             'alamat' => $alamat,
             'tempat_lahir' => $tempat_lahir,
             'tanggal_lahir' => $tanggal_lahir,
-            'no_hp' => $no_hp,
             'pekerjaan' => $pekerjaan,
             'subdis_id' => $subdis_id,
         ];
@@ -99,14 +94,12 @@ class History extends Controller
         $this->datadiriModel->updateData($where1, $data);
 
         $id_kendaraan = $this->request->getPost('id_kendaraan');
-        $no_plat = $this->request->getPost('no_plat');
         $no_rangka = $this->request->getPost('no_rangka');
         $no_mesin = $this->request->getPost('no_mesin');
         $warna = $this->request->getPost('warna');
         $id_motor = $this->request->getPost('id_motor');
 
         $data = [
-            'no_plat' => $no_plat,
             'no_rangka' => $no_rangka,
             'no_mesin' => $no_mesin,
             'warna' => $warna,

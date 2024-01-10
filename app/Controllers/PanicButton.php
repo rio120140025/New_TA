@@ -36,7 +36,9 @@ class PanicButton extends Controller
 
         if ($user) {
             $id_role = $user->id_role;
-            if ($id_role == 2) {
+            if ($id_role = 1) {
+                return redirect()->to('Dashboard/1');
+            } elseif ($id_role == 2) {
                 $id_akun = $this->session->get('id_akun');
                 $data['kendaraan'] = $this->datamotorModel->getMotorDataWithTipeMotor($id_akun);
 
@@ -105,6 +107,46 @@ class PanicButton extends Controller
         $no_laporan = str_replace('/', '-', $nomor_laporan);
         return redirect()->to('sukses/' . $no_laporan);
     }
+    public function tambah_data()
+    {
+        $nomor_laporan = $this->generate_nomor_laporan();
+        $waktu_lapor = date('Y-m-d H:i:s');
+
+        $id_data_diri = $this->datadiriModel->insert([
+            'nik' => $this->request->getPost('nik'),
+            'nama' => $this->request->getPost('nama'),
+            'agama' => $this->request->getPost('agama'),
+            'jenis_kelamin' => $this->request->getPost('jenis_kelamin'),
+            'alamat' => $this->request->getPost('alamat'),
+            'tempat_lahir' => $this->request->getPost('tempat_lahir'),
+            // 'tanggal_lahir' => $this->request->getPost('tanggal_lahir'),
+            'no_hp' => $this->request->getPost('no_hp'),
+            'pekerjaan' => $this->request->getPost('pekerjaan'),
+            'subdis_id' => $this->request->getPost('subdis_id'),
+        ]);
+
+        $id_kendaraan = $this->datamotorModel->insert([
+            'no_plat' => $this->request->getPost('no_plat'),
+            'no_rangka' => $this->request->getPost('no_rangka'),
+            'no_mesin' => $this->request->getPost('no_mesin'),
+            'warna' => $this->request->getPost('warna'),
+            'id_motor' => $this->request->getPost('id_motor'),
+        ]);
+
+        $this->laporanModel->insertLaporan([
+            'no_laporan' => $nomor_laporan,
+            'id_data_diri' => $id_data_diri,
+            'id_kendaraan' => $id_kendaraan,
+            'waktu_kejadian' => $this->request->getPost('waktu_kejadian'),
+            'alamat_kejadian' => $this->request->getPost('alamat_kejadian'),
+            'kronologi' => $this->request->getPost('kronologi'),
+            // 'subdis_id' => $this->request->getPost('subdis_id'),
+            'waktu_melapor' => $waktu_lapor
+        ]);
+
+        $no_laporan = str_replace('/', '-', $nomor_laporan);
+        return redirect()->to('detaillaporan/' . $no_laporan);
+    }
 
     private function generate_nomor_laporan()
     {
@@ -116,7 +158,7 @@ class PanicButton extends Controller
 
         $bulanRomawi = $this->angka_romawi($bulan);
 
-        $nomorLaporan = 'LP/B/' . $newLaporan . '/' . $bulanRomawi . '/' . $tahun . '/POLRES LAMPUNG UTARA/POLDA LAMPUNG';
+        $nomorLaporan = 'LP/B/' . $newLaporan . '/' . $bulanRomawi . '/' . $tahun . '/SPKT/POLRES LAMPUNG UTARA/POLDA LAMPUNG';
 
         return $nomorLaporan;
     }

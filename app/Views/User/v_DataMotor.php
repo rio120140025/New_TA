@@ -173,13 +173,13 @@
                                                             <h6 for="no_rangka" class="form-label">Nomor Rangka
                                                             </h6>
                                                             <input type="text" class="form-control" id="no_rangka"
-                                                                name="no_rangka" minlength="17" required>
+                                                                name="no_rangka" required>
                                                         </div>
                                                         <div class="mb-3">
                                                             <h6 for="no_mesin" class="form-label">Nomor Mesin
                                                             </h6>
                                                             <input type="text" class="form-control" id="no_mesin"
-                                                                name="no_mesin" minlength="17" required>
+                                                                name="no_mesin" required>
                                                         </div>
                                                     </div>
                                                     <button type="submit" class="btn btn-primary">Simpan</button>

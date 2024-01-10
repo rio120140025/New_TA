@@ -94,8 +94,6 @@
                     <h2>Maps</h2>
                 </div>
                 <div id="map"></div>
-                <input type="hidden" id="latitude" name="latitude">
-                <input type="hidden" id="longitude" name="longitude">
                 <script>
                     $(document).ready(function () {
                         var map;
@@ -135,33 +133,32 @@
                         getLocation();
 
                         $.ajax({
-                            url: "<?php echo base_url('welcome/curanmor_data'); ?>",
+                            url: "<?php echo base_url('home/get_data'); ?>",
                             dataType: 'json',
                             method: 'get',
-                            success: data => {
+                            success: function (data) {
                                 var customIcon = L.icon({
                                     iconUrl: 'assets/svg/location-warning.svg',
                                     iconSize: [46, 46],
                                     iconAnchor: [23, 46],
                                     popupAnchor: [0, -46]
                                 });
-                                data.map_data.map(data => {
+                                data.laporan.map(data => {
                                     L.marker([data.latitude, data.longitude], { icon: customIcon })
-                                        .bindPopup(`Tipe Motor: <strong>${data.tipe_motor}</strong><br>Tempat Kejadian Perkara: <strong>${data.alamat_kejadian}, Kelurahan/Desa ${data.subdis_name}, Kecamatan ${data.dis_name}</strong><br>Waktu Kejadian: <strong>${data.waktu_kejadian}</strong>`)
+                                        .bindPopup(`Tipe Motor: <strong>${data.tipe_motor}</strong><br>Tempat Kejadian Perkara: <br>Waktu Kejadian: <strong>${data.waktu_kejadian}</strong>`)
                                         .addTo(map);
 
                                     var circle = L.circle([data.latitude, data.longitude], {
                                         color: 'red',
                                         fillColor: '#f03',
-                                        fillOpacity: 0.1,
-                                        radius: 100
+                                        fillOpacity: 0.1
                                     }).addTo(map);
                                 });
 
                                 var doughnutData = {
-                                    labels: data.motor_types.map(item => item.tipe_motor),
+                                    labels: data.motor.map(item => item.tipe_motor),
                                     datasets: [{
-                                        data: data.motor_types.map(item => item.jumlah),
+                                        data: data.motor.map(item => item.jumlah),
                                         backgroundColor: [
                                             'rgba(255, 99, 132, 0.7)',
                                             'rgba(54, 162, 235, 0.7)',
@@ -189,16 +186,15 @@
                                 });
 
                                 var lineData = {
-                                    labels: [],
+                                    labels: data.bulan.map(item => item.month),
                                     datasets: [{
-                                        label: 'Jumlah Kasus Curanmor',
-                                        data: data.monthly_incidents,
+                                        label: 'Jumlah Laporan',
+                                        data: data.bulan.map(item => item.jumlah),
                                         fill: false,
                                         borderColor: 'rgba(75, 192, 192, 1)',
                                         borderWidth: 2
                                     }]
                                 };
-                                console.log(data.monthly_incidents)
 
                                 var lineCtx = document.getElementById('line').getContext('2d');
                                 var lineChart = new Chart(lineCtx, {
@@ -207,10 +203,10 @@
                                 });
 
                                 var barData = {
-                                    labels: data.subdistrict_data.map(item => item.subdis_name),
+                                    labels: data.subdis.map(item => item.subdis_name),
                                     datasets: [{
                                         label: 'Jumlah Kasus Curanmor',
-                                        data: data.subdistrict_data.map(item => item.jumlah),
+                                        data: data.subdis.map(item => item.jumlah),
                                         backgroundColor: 'rgba(75, 192, 192, 0.7)',
                                         borderColor: 'rgba(75, 192, 192, 1)',
                                         borderWidth: 1
@@ -239,21 +235,21 @@
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="member d-flex justify-content-center">
-                            <div class="member-info">
+                            <div>
                                 <canvas id="doughnut"></canvas>
                             </div>
                         </div>
                     </div>
                     <div class=" col-lg-4">
                         <div class="member d-flex justify-content-center">
-                            <div class="member-info">
+                            <div>
                                 <canvas id="line" style="height: 300px; width: 340px;"></canvas>
                             </div>
                         </div>
                     </div>
                     <div class=" col-lg-4">
                         <div class="member d-flex justify-content-center">
-                            <div class="member-info">
+                            <div>
                                 <canvas id="barChart" style="height: 300px; width: 340px;"></canvas>
                             </div>
                         </div>

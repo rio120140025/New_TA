@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Data Akun</title>
+    <title>Notifikasi</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -29,6 +29,7 @@
 
     <link rel="stylesheet" href="<?= base_url('assets/css/styles.min.css'); ?>" />
     <link rel="stylesheet" href="<?= base_url('assets/css/icons/tabler-icons/tabler-icons.css'); ?>" />
+
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
 </head>
 
@@ -52,34 +53,60 @@
                     <ul id="sidebarnav">
                         <li class="nav-small-cap">
                             <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                            <span class="hide-menu">Home</span>
+                            <span class="hide-menu">Notifikasi</span>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="<?= site_url('Dashboard'); ?>">
-                                <iconify-icon icon="ic:round-dashboard"></iconify-icon>
-                                <span class="hide-menu">Dashboard</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="<?= site_url('panicbutton'); ?>">
-                                <iconify-icon icon="tabler:urgent"></iconify-icon>
-                                <span class="hide-menu">Panic Button</span>
+                            <a class="sidebar-link" href="<?= site_url('notifikasi'); ?>">
+                                <iconify-icon icon="fluent:alert-12-filled"></iconify-icon>
+                                <span class="hide-menu">Notifikasi</span>
                             </a>
                         </li>
                         <li class="nav-small-cap">
                             <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                            <span class="hide-menu">Kelola Data</span>
+                            <span class="hide-menu">Home</span>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="<?php echo site_url('DataDiri'); ?>">
-                                <iconify-icon icon="mdi:user"></iconify-icon>
-                                <span class="hide-menu">Data Diri</span>
+                            <a class="sidebar-link" href="<?= site_url('Dashboard/1'); ?>">
+                                <iconify-icon icon="ic:round-dashboard"></iconify-icon>
+                                <span class="hide-menu">Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="nav-small-cap">
+                            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                            <span class="hide-menu">Kelola Data Motor</span>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="<?= site_url('datatipemotor/1'); ?>">
+                                <iconify-icon icon="material-symbols:motorcycle"></iconify-icon>
+                                <span class="hide-menu">Data Tipe Motor</span>
+                            </a>
+                        </li>
+                        <li class="nav-small-cap">
+                            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                            <span class="hide-menu">Kelola Data Lokasi</span>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="<?= site_url('dataprovinsi/1'); ?>">
+                                <iconify-icon icon="tabler:location-filled"></iconify-icon>
+                                <span class="hide-menu">Data Provinsi</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="<?php echo site_url('DataMotor'); ?>">
-                                <iconify-icon icon="material-symbols:motorcycle"></iconify-icon>
-                                <span class="hide-menu">Data Motor</span>
+                            <a class="sidebar-link" href="<?= site_url('datakabupatenkota/1'); ?>">
+                                <iconify-icon icon="tabler:location-filled"></iconify-icon>
+                                <span class="hide-menu">Data Kabupaten/Kota</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="<?= site_url('datakecamatan/1'); ?>">
+                                <iconify-icon icon="tabler:location-filled"></iconify-icon>
+                                <span class="hide-menu">Data Kecamatan</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="<?= site_url('datakelurahandesa/1'); ?>">
+                                <iconify-icon icon="tabler:location-filled"></iconify-icon>
+                                <span class="hide-menu">Data Kelurahan/Desa</span>
                             </a>
                         </li>
                         <li class="nav-small-cap">
@@ -88,7 +115,7 @@
                         </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="<?php echo site_url('UbahAkun'); ?>">
-                                <iconify-icon icon="mdi:account-cog"></iconify-icon>
+                                <iconify-icon icon="mdi:account-cog" width="24" height="24"></iconify-icon>
                                 <span class="hide-menu">Kelola Akun</span>
                             </a>
                         </li>
@@ -122,16 +149,8 @@
                 <div class="container-fluid">
                     <div class="container-fluid">
                         <div class="card">
-                            <div class="card-body">
-                                <h6 class="form-label">Selamat datang,</h6>
-                                <h4>
-                                    <?= $nama ?>
-                                </h4>
-                            </div>
-                        </div>
-                        <div class="card">
                             <div class="card-header">
-                                History
+                                Notifikasi
                             </div>
                             <div class="card-body">
                                 <?php if (session()->has('message')): ?>
@@ -156,7 +175,7 @@
                                                     <?php if (!empty($row['alamat_kejadian'])): ?>
                                                         <?= $row['alamat_kejadian']; ?>
                                                     <?php else: ?>
-                                                        <p>Data tidak ditemukan, silahkan melengkapi data laporan!</p>
+                                                        <p>Data tidak ditemukan</p>
                                                     <?php endif; ?>
                                                 </div>
                                                 <?php
@@ -174,7 +193,7 @@
                                         </div>
                                     <?php endforeach; ?>
                                 <?php else: ?>
-                                    <p>Tidak ada history laporan.</p>
+                                    <p>Tidak ada data.</p>
                                 <?php endif; ?>
                             </div>
                         </div>
@@ -183,10 +202,127 @@
             </div>
         </div>
     </div>
+    <input type="hidden" id="latitude" name="latitude">
+    <input type="hidden" id="longitude" name="longitude">
+    <script>
+        $(document).ready(function () {
+            var map;
+            var marker;
+
+            map = L.map('map').setView([-4.786564, 104.827749], 11);
+
+            L.tileLayer('http://{s}.google.com/vt?lyrs=m&x={x}&y={y}&z={z}', {
+                maxZoom: 19,
+                subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
+                attribution: '&copy; <a>POLRES Lampung Utara</a>'
+            }).addTo(map);
+
+            $.ajax({
+                url: "<?php echo base_url('home/get_data'); ?>",
+                dataType: 'json',
+                method: 'get',
+                success: function (data) {
+                    const baseUrl = window.location.origin;
+                    var customIcon = L.icon({
+                        iconUrl: '../assets/svg/location-warning.svg',
+                        iconSize: [46, 46],
+                        iconAnchor: [23, 46],
+                        popupAnchor: [0, -46]
+                    });
+
+                    data.laporan.map(data => {
+                        const no_laporan = data.no_laporan.replace(/\//g, '-');
+                        const detailUrl = `${baseUrl}/curanmorpolreslampungutara/public/detaillaporan/${no_laporan}`;
+
+                        L.marker([data.latitude, data.longitude], { icon: customIcon })
+                            .bindPopup(`
+                <strong>Tipe Motor:</strong> ${data.tipe_motor}<br>
+                <strong>Tempat Kejadian Perkara:</strong> ${data.alamat_kejadian}<br>
+                <strong>Waktu Kejadian:</strong> ${data.waktu_kejadian}<br>
+                <strong>Detail:</strong> <a href="${detailUrl}" target="_blank">Lihat Detail</a>
+            `)
+                            .addTo(map);
+
+                        var circle = L.circle([data.latitude, data.longitude], {
+                            color: 'red',
+                            fillColor: '#f03',
+                            fillOpacity: 0.1
+                        }).addTo(map);
+                    });
+
+                    var doughnutData = {
+                        labels: data.motor.map(item => item.tipe_motor),
+                        datasets: [{
+                            data: data.motor.map(item => item.jumlah),
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.7)',
+                                'rgba(54, 162, 235, 0.7)',
+                                'rgba(255, 206, 86, 0.7)',
+                                'rgba(75, 192, 192, 0.7)',
+                                'rgba(153, 102, 255, 0.7)',
+                                'rgba(255, 159, 64, 0.7)',
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)',
+                            ],
+                            borderWidth: 1
+                        }]
+                    };
+
+                    var doughnutCtx = document.getElementById('doughnut').getContext('2d');
+                    var doughnutChart = new Chart(doughnutCtx, {
+                        type: 'doughnut',
+                        data: doughnutData
+                    });
+
+                    var lineData = {
+                        labels: data.bulan.map(item => item.month),
+                        datasets: [{
+                            label: 'Jumlah Laporan',
+                            data: data.bulan.map(item => item.jumlah),
+                            fill: false,
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 2
+                        }]
+                    };
+
+                    var lineCtx = document.getElementById('line').getContext('2d');
+                    var lineChart = new Chart(lineCtx, {
+                        type: 'line',
+                        data: lineData
+                    });
+
+                    var barData = {
+                        labels: data.subdis.map(item => item.subdis_name),
+                        datasets: [{
+                            label: 'Jumlah Kasus Curanmor',
+                            data: data.subdis.map(item => item.jumlah),
+                            backgroundColor: 'rgba(75, 192, 192, 0.7)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        }]
+                    };
+
+                    var barCtx = document.getElementById('barChart').getContext('2d');
+                    var barChart = new Chart(barCtx, {
+                        type: 'bar',
+                        data: barData
+                    });
+
+                }
+            });
+        });
+    </script>
     <script src="<?= base_url('assets/libs/jquery/dist/jquery.min.js'); ?>"></script>
     <script src="<?= base_url('assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js'); ?>"></script>
     <script src="<?= base_url('assets/js/sidebarmenu.js'); ?>"></script>
     <script src="<?= base_url('assets/js/app.min.js'); ?>"></script>
+    <script src="<?= base_url('assets/js/sort.js'); ?>"></script>
     <script src="<?= base_url('assets/libs/apexcharts/dist/apexcharts.min.js'); ?>"></script>
     <script src="<?= base_url('assets/libs/simplebar/dist/simplebar.js'); ?>"></script>
     <script src="<?= base_url('assets/js/dashboard.js'); ?>"></script>
