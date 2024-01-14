@@ -141,10 +141,6 @@
                                         <h6 for="kronologi" class="form-label">Total Kerugian</h6>
                                         <input type="number" class="form-control" id="kerugian" name="kerugian" required>
                                     </div>
-                                    <div class="mb-3">
-                                        <h6 for="kronologi" class="form-label">Detail Lokasi Kejadian</h6>
-                                        <input type="text" class="form-control" id="alamat_kejadian" name="alamat_kejadian" required>
-                                    </div>  
                                     <button type="submit" class="btn btn-warning">Submit</button>
                                 </form>
                             </div>

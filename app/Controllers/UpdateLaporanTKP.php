@@ -51,12 +51,14 @@ class UpdateLaporanTKP extends Controller
     public function update_laporan()
     {
         $no_laporan = $this->request->getPost('no_laporan');
+        $alamat_kejadian = $this->request->getPost('alamat_kejadian');
         $latitude = $this->request->getPost('latitude');
         $longitude = $this->request->getPost('longitude');
 
         $data = [
             'latitude' => $latitude,
             'longitude' => $longitude,
+            'alamat_kejadian' => $alamat_kejadian,
         ];
 
         $where = ['no_laporan' => $no_laporan];

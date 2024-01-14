@@ -145,7 +145,7 @@
                                 });
                                 data.laporan.map(data => {
                                     L.marker([data.latitude, data.longitude], { icon: customIcon })
-                                        .bindPopup(`Tipe Motor: <strong>${data.tipe_motor}</strong><br>Tempat Kejadian Perkara: <br>Waktu Kejadian: <strong>${data.waktu_kejadian}</strong>`)
+                                        .bindPopup(`Tipe Motor: <strong>${data.tipe_motor}</strong><br>Tempat Kejadian Perkara: <strong>${data.alamat_kejadian}</strong> <br>Waktu Kejadian: <strong>${data.waktu_kejadian}</strong>`)
                                         .addTo(map);
 
                                     var circle = L.circle([data.latitude, data.longitude], {

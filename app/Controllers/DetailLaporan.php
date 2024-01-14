@@ -44,7 +44,7 @@ class DetailLaporan extends Controller
             if ($id_role == 1) {
                 return view('Admin/v_Detail_Laporan', $data);
             } elseif ($id_role == 2) {
-                if ($id_akun == $data['laporan']['id_akun'] && $data['laporan']['alamat_kejadian'] != null) {
+                if ($id_akun == $data['laporan']['id_akun'] && $data['laporan']['kronologi'] != null) {
                     return view('User/v_Detail_Laporan', $data);
                 } else {
                     return view('errors/html/error_404');

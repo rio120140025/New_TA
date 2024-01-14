@@ -75,7 +75,7 @@ class UpdateLaporan extends Controller
 
                 return view('Admin/v_Update_Laporan', $data + ['location' => $location]);
             } elseif ($id_role == 2) {
-                if ($id_akun == $data['laporan']['id_akun'] && $data['laporan']['alamat_kejadian'] == null) {
+                if ($id_akun == $data['laporan']['id_akun'] && $data['laporan']['kronologi'] == null) {
                     return view('User/v_Update_Laporan', $data);
                 } else {
                     return view('errors/html/error_404');
@@ -167,12 +167,10 @@ class UpdateLaporan extends Controller
                 $no_laporan = $this->request->getPost('no_laporan');
                 $kronologi = $this->request->getPost('kronologi');
                 $kerugian = $this->request->getPost('kerugian');
-                $alamat_kejadian = $this->request->getPost('alamat_kejadian');
 
                 $data = [
                     'kronologi' => $kronologi,
                     'kerugian' => $kerugian,
-                    'alamat_kejadian' => $alamat_kejadian,
                 ];
 
                 $where = ['no_laporan' => $no_laporan];

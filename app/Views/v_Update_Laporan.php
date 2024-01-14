@@ -282,8 +282,8 @@
                                 </div>
                                 <div class="mb-3">
                                     <h6 for="kronologi" class="form-label">Detail Lokasi Kejadian</h6>
-                                    <input type="text" class="form-control" id="alamat_kejadian" name="alamat_kejadian"
-                                        required>
+                                    <input type="text" class="form-control" id="alamat_kejadian"
+                                        value="<?= $laporan['alamat_kejadian']; ?>" name="alamat_kejadian" readonly>
                                 </div>
                                 <div class="mb-3">
                                     <h6 class="form-label">Titik Lokasi Tempat Kejadian Perkara</h6>

@@ -108,6 +108,7 @@ class PanicButton extends Controller
             'id_data_diri' => $id_data_diri,
             'id_kendaraan' => $id_kendaraan,
             'waktu_kejadian' => $this->request->getPost('waktu_kejadian'),
+            'alamat_kejadian' => $this->request->getPost('alamat_kejadian'),
             'longitude' => $this->request->getPost('longitude'),
             'latitude' => $this->request->getPost('latitude'),
             'waktu_melapor' => $waktu_lapor

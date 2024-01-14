@@ -53,9 +53,9 @@ class History extends Controller
         $data['laporan'] = $this->laporanModel->getLaporanDetails($no_laporan);
 
         if ($data['laporan'] != null && $data['laporan']['id_akun'] == null) {
-            if ($data['laporan']['no_hp'] == $no_hp && $data['laporan']['alamat_kejadian'] != null) {
+            if ($data['laporan']['no_hp'] == $no_hp && $data['laporan']['kronologi'] != null) {
                 return view('v_Detail_Laporan', $data);
-            } elseif ($data['laporan']['no_hp'] == $no_hp && $data['laporan']['alamat_kejadian'] == null) {
+            } elseif ($data['laporan']['no_hp'] == $no_hp && $data['laporan']['kronologi'] == null) {
                 $data['provinsi'] = $this->dataprovinsiModel->getProvinsiData(null, null, null);
                 $data['kabupatenkota'] = $this->datakabupatenkotaModel->getKabupatenKotaData(null, null, null);
                 $data['kecamatan'] = $this->datakecamatanModel->getKecamatanData(null, null, null);

@@ -45,6 +45,35 @@
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/curanmorpolreslampungutara/public/assets/js/service-worker.js')
+                .then(registration => {
+                    console.log('Service Worker registered with scope:', registration.scope);
+
+                    var pusher = new Pusher('3f13a94c15910301c709', {
+                        cluster: 'ap1',
+                        encrypted: true
+                    });
+
+                    var channel = pusher.subscribe('panic-channel');
+
+                    channel.bind('panic-event', function (data) {
+                        data.url = '<?= site_url('detaillaporan/') ?>' + data.no_laporan.replace(/\//g, '-');
+
+                        if (registration.active) {
+                            registration.active.postMessage(data);
+                        }
+                    });
+
+                })
+                .catch(error => {
+                    console.error('Service Worker registration failed:', error);
+                });
+        }
+    </script>
 </head>
 
 <body>

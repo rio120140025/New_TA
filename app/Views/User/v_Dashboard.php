@@ -162,7 +162,7 @@
                                                 <?php
                                                 $no_laporan = str_replace('/', '-', $row['no_laporan']);
                                                 ?>
-                                                <?php if (!empty($row['alamat_kejadian'])): ?>
+                                                <?php if (!empty($row['kronologi'])): ?>
                                                     <a href="<?= site_url('detaillaporan/' . $no_laporan); ?>"
                                                         class="btn btn-primary">Lihat Detail</a>
                                                 <?php else: ?>

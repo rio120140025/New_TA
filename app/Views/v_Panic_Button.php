@@ -92,6 +92,7 @@
                             <button type="submit" class="btn btn-warning">Submit</button>
                             <input type="hidden" id="latitude" name="latitude">
                             <input type="hidden" id="longitude" name="longitude">
+                            <input type="hidden" id="tkp" name="alamat_kejadian">
                             <script>
                                 var map = L.map('map').setView([0, 0], 15);
                                 var marker;
@@ -106,8 +107,18 @@
                                     if (marker) {
                                         map.removeLayer(marker);
                                     }
-                                    marker = L.marker([lat, lng]).addTo(map);
-                                    marker.bindPopup("Titik Lokasi TKP").openPopup();
+
+                                    fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`)
+                                        .then(response => response.json())
+                                        .then(data => {
+                                            var address = data.display_name;
+                                            marker = L.marker([lat, lng]).addTo(map);
+                                            marker.bindPopup(address).openPopup();
+
+                                            document.getElementById('tkp').value = address;
+                                        })
+                                        .catch(error => console.error('Error fetching location data:', error));
+
                                     map.setView([lat, lng], 15);
                                 }
 
