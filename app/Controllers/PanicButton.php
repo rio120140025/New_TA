@@ -7,6 +7,7 @@ use App\Models\LoginModel;
 use App\Models\DataMotorModel;
 use App\Models\LaporanModel;
 use App\Models\DataDiriModel;
+use Config\Pusher;
 
 class PanicButton extends Controller
 {
@@ -36,7 +37,7 @@ class PanicButton extends Controller
 
         if ($user) {
             $id_role = $user->id_role;
-            if ($id_role = 1) {
+            if ($id_role == 1) {
                 return redirect()->to('Dashboard/1');
             } elseif ($id_role == 2) {
                 $id_akun = $this->session->get('id_akun');
@@ -61,6 +62,7 @@ class PanicButton extends Controller
             'id_data_diri' => $data_diri['id_data_diri'],
             'id_kendaraan' => $this->request->getPost('id_kendaraan'),
             'waktu_kejadian' => $this->request->getPost('waktu_kejadian'),
+            'alamat_kejadian' => $this->request->getPost('alamat_kejadian'),
             // 'subdis_id' => $this->request->getPost('subdis_id'),
             'longitude' => $this->request->getPost('longitude'),
             'latitude' => $this->request->getPost('latitude'),
@@ -75,6 +77,15 @@ class PanicButton extends Controller
         $emailService->setSubject('Pengaduan Pencurian Sepeda Motor');
         $emailService->setMessage("Laporan anda telah diterima oleh pihak RESKRIM POLRES LAMPUNG UTARA. <br> Nomor Laporan Anda: <strong>$nomor_laporan</strong> <br> Anda dapat melihat riwayat laporan pada website dan silahkan untuk melengkapi laporan anda dengan menggunakan akun yang sama pada saat melapor. <br><br> POLRES LAMPUNG UTARA");
         $emailService->send();
+
+        $dataNotification = [
+            'no_laporan' => $nomor_laporan,
+            'nama' => $data_diri['nama'],
+            'waktu_kejadian' => $this->request->getPost('waktu_kejadian'),
+            'alamat_kejadian' => $this->request->getPost('alamat_kejadian'),
+        ];
+
+        $this->send_push_notification($dataNotification);
 
         return redirect()->to('sukses/' . $no_laporan);
     }
@@ -182,5 +193,19 @@ class PanicButton extends Controller
         }
 
         return $hasil;
+    }
+
+    private function send_push_notification($data)
+    {
+        $pusherConfig = new Pusher();
+
+        $pusher = new \Pusher\Pusher(
+            $pusherConfig->appKey,
+            $pusherConfig->appSecret,
+            $pusherConfig->appId,
+            $pusherConfig->options
+        );
+
+        $pusher->trigger('panic-channel', 'panic-event', $data);
     }
 }

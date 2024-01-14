@@ -45,10 +45,43 @@
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+    <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+
+    <script>
+        var pusher = new Pusher('3f13a94c15910301c709', {
+            cluster: 'ap1',
+            encrypted: true
+        });
+
+        var channel = pusher.subscribe('panic-channel');
+
+        channel.bind('panic-event', function (data) {
+            $('#notificationModal').modal('show');
+            $('#modalNoLaporan').text(data.no_laporan);
+            $('#modalNama').text(data.nama);
+            $('#modalWaktuKejadian').text(data.waktu_kejadian);
+            $('#modalTempatKejadian').text(data.alamat_kejadian);
+
+            $('#detailButton').on('click', function () {
+                var noLaporan = $('#modalNoLaporan').text().replace(/\//g, '-');
+                var redirectURL = '<?= site_url('detaillaporan/') ?>' + noLaporan;
+                window.location.href = redirectURL;
+            });
+        });
+    </script>
 </head>
 
 <body>
@@ -162,6 +195,28 @@
                 </nav>
             </header>
         </div>
+        <div class="modal fade" id="notificationModal" tabindex="-1" aria-labelledby="notificationModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="notificationModalLabel">Notification Panic Button</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p><strong>No. Laporan:</strong> <span id="modalNoLaporan"></span></p>
+                        <p><strong>Nama:</strong> <span id="modalNama"></span></p>
+                        <p><strong>Waktu Kejadian:</strong> <span id="modalWaktuKejadian"></span></p>
+                        <p><strong>Tempat Kejadian Perkara:</strong> <span id="modalTempatKejadian"></span></p>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#" class="btn btn-secondary" id="detailButton">Detail</a>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6">
             <div class="body-wrapper radial-gradient min-vh-100">
                 <div class="container-fluid">
@@ -225,8 +280,8 @@
                                     <div class="d-flex gap-2">
                                         <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal"
                                             class="btn btn-danger">Filter Lokasi</a>
-                                        <a href="<?php echo site_url('TambahData'); ?>"
-                                            class="btn btn-warning">Tambah Laporan</a>
+                                        <a href="<?php echo site_url('TambahData'); ?>" class="btn btn-warning">Tambah
+                                            Laporan</a>
                                     </div>
                                 </div>
                                 <div class="modal fade" id="exampleModal" tabindex="-1"
