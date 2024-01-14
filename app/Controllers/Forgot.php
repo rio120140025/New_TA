@@ -8,6 +8,7 @@ use CodeIgniter\Controller;
 class Forgot extends Controller
 {
     protected $session;
+    protected $forgotModel;
 
     public function __construct()
     {

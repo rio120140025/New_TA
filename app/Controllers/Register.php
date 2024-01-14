@@ -9,6 +9,7 @@ use CodeIgniter\Controller;
 class Register extends Controller
 {
     protected $session;
+    protected $registerModel;
 
     public function __construct()
     {

@@ -10,6 +10,7 @@ use CodeIgniter\Controller;
 class UbahAkun extends Controller
 {
     protected $session;
+    protected $loginModel;
 
     public function __construct()
     {

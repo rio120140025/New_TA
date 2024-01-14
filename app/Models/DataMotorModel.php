@@ -28,7 +28,7 @@ class DataMotorModel extends Model
     {
         return $this->update($where, $data);
     }
-    
+
     public function deleteMotor($id)
     {
         $this->where('id_kendaraan', $id)->delete();

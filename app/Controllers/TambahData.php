@@ -14,6 +14,11 @@ class TambahData extends Controller
 {
     protected $session;
     protected $loginModel;
+    protected $dataprovinsiModel;
+    protected $datakabupatenkotaModel;
+    protected $datakecamatanModel;
+    protected $datakelurahandesaModel;
+    protected $datatipemotorModel;
     public function __construct()
     {
         $this->session = \Config\Services::session();

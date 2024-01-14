@@ -16,6 +16,11 @@ class History extends Controller
 {
     protected $session;
     protected $laporanModel;
+    protected $datadiriModel;
+    protected $dataprovinsiModel;
+    protected $datakabupatenkotaModel;
+    protected $datakecamatanModel;
+    protected $datakelurahandesaModel;
     protected $datamotorModel;
     protected $datatipemotorModel;
     public function __construct()

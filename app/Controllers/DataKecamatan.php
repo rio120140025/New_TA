@@ -10,6 +10,9 @@ use App\Models\DataKecamatanModel;
 class DataKecamatan extends Controller
 {
     protected $session;
+    protected $dataprovinsiModel;
+    protected $datakabupatenkotaModel;
+    protected $datakecamatanModel;
     public function __construct()
     {
         $this->session = \Config\Services::session();

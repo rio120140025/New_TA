@@ -63,7 +63,6 @@ class PanicButton extends Controller
             'id_kendaraan' => $this->request->getPost('id_kendaraan'),
             'waktu_kejadian' => $this->request->getPost('waktu_kejadian'),
             'alamat_kejadian' => $this->request->getPost('alamat_kejadian'),
-            // 'subdis_id' => $this->request->getPost('subdis_id'),
             'longitude' => $this->request->getPost('longitude'),
             'latitude' => $this->request->getPost('latitude'),
             'waktu_melapor' => $waktu_lapor
@@ -109,13 +108,22 @@ class PanicButton extends Controller
             'id_data_diri' => $id_data_diri,
             'id_kendaraan' => $id_kendaraan,
             'waktu_kejadian' => $this->request->getPost('waktu_kejadian'),
-            // 'subdis_id' => $this->request->getPost('subdis_id'),
             'longitude' => $this->request->getPost('longitude'),
             'latitude' => $this->request->getPost('latitude'),
             'waktu_melapor' => $waktu_lapor
         ]);
 
         $no_laporan = str_replace('/', '-', $nomor_laporan);
+
+        $dataNotification = [
+            'no_laporan' => $nomor_laporan,
+            'nama' => $this->request->getPost('nama'),
+            'waktu_kejadian' => $this->request->getPost('waktu_kejadian'),
+            'alamat_kejadian' => $this->request->getPost('alamat_kejadian'),
+        ];
+
+        $this->send_push_notification($dataNotification);
+
         return redirect()->to('sukses/' . $no_laporan);
     }
     public function tambah_data()
@@ -130,7 +138,6 @@ class PanicButton extends Controller
             'jenis_kelamin' => $this->request->getPost('jenis_kelamin'),
             'alamat' => $this->request->getPost('alamat'),
             'tempat_lahir' => $this->request->getPost('tempat_lahir'),
-            // 'tanggal_lahir' => $this->request->getPost('tanggal_lahir'),
             'no_hp' => $this->request->getPost('no_hp'),
             'pekerjaan' => $this->request->getPost('pekerjaan'),
             'subdis_id' => $this->request->getPost('subdis_id'),
@@ -151,7 +158,6 @@ class PanicButton extends Controller
             'waktu_kejadian' => $this->request->getPost('waktu_kejadian'),
             'alamat_kejadian' => $this->request->getPost('alamat_kejadian'),
             'kronologi' => $this->request->getPost('kronologi'),
-            // 'subdis_id' => $this->request->getPost('subdis_id'),
             'waktu_melapor' => $waktu_lapor
         ]);
 

@@ -15,6 +15,8 @@ class Dashboard extends Controller
     protected $loginModel;
     protected $laporanModel;
     protected $datadiriModel;
+    protected $datakecamatanModel;
+    protected $datakelurahandesaModel;
 
     public function __construct()
     {

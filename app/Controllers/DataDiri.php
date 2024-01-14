@@ -12,6 +12,11 @@ use App\Models\DataKelurahanDesaModel;
 class DataDiri extends Controller
 {
     protected $session;
+    protected $datadiriModel;
+    protected $dataprovinsiModel;
+    protected $datakabupatenkotaModel;
+    protected $datakecamatanModel;
+    protected $datakelurahandesaModel;
 
     public function __construct()
     {

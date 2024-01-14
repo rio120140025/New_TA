@@ -22,7 +22,7 @@ class Home extends Controller
         $data['motor'] = $this->laporanModel->getMotorTypeRatioStatus();
         $data['bulan'] = $this->laporanModel->getMonthlyIncidentsStatus();
         $data['subdis'] = $this->laporanModel->getSubdistrictDataStatus();
-        
+
         return $this->response->setJSON($data);
     }
 }

@@ -16,5 +16,4 @@ class AkunModel extends Model
             ->set(['email' => $newEmail])
             ->update();
     }
-
 }

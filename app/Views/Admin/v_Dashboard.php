@@ -121,16 +121,6 @@
                     <ul id="sidebarnav">
                         <li class="nav-small-cap">
                             <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                            <span class="hide-menu">Notifikasi</span>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="<?= site_url('notifikasi'); ?>">
-                                <iconify-icon icon="fluent:alert-12-filled"></iconify-icon>
-                                <span class="hide-menu">Notifikasi</span>
-                            </a>
-                        </li>
-                        <li class="nav-small-cap">
-                            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                             <span class="hide-menu">Home</span>
                         </li>
                         <li class="sidebar-item">

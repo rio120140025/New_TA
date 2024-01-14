@@ -18,6 +18,11 @@ class UpdateLaporan extends Controller
     protected $session;
     protected $loginModel;
     protected $laporanModel;
+    protected $datadiriModel;
+    protected $dataprovinsiModel;
+    protected $datakabupatenkotaModel;
+    protected $datakecamatanModel;
+    protected $datakelurahandesaModel;
     protected $datatipemotorModel;
     protected $datamotorModel;
 

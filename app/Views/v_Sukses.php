@@ -69,14 +69,16 @@
                                 <h4 class="fw-semibold mb-4">Pengaduan Pencurian Sepeda Motor</h4>
                                 <form>
                                     <div class="mb-3">
-                                        <p class="form-label" style="text-align: justify;">Laporan anda telah diterima oleh pihak RESKRIM POLRES
+                                        <p class="form-label" style="text-align: justify;">Laporan anda telah diterima
+                                            oleh pihak RESKRIM POLRES
                                             Lampung Utara.</p>
                                         <p class="form-label">Nomor laporan :
                                             <strong>
                                                 <?php echo $no_laporan; ?>
                                             </strong>
                                         </p>
-                                        <p class="form-label" style="text-align: justify;">Simpan nomor laporan untuk mengakses riwayat laporan dan silahkan untuk melengkapi laporan
+                                        <p class="form-label" style="text-align: justify;">Simpan nomor laporan untuk
+                                            mengakses riwayat laporan dan silahkan untuk melengkapi laporan
                                             anda pada halaman <a href="<?= base_url('history'); ?>">History</a>.</p>
                                     </div>
                                 </form>

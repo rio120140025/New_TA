@@ -129,5 +129,4 @@ class LaporanModel extends Model
 
         return $query->getResult();
     }
-
 }
