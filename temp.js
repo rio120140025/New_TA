@@ -1,59 +1,33 @@
-var map = L.map("map").setView([0, 0], 15);
-var marker;
+var pusher = new Pusher('3f13a94c15910301c709', {
+    cluster: 'ap1',
+    encrypted: true
+});
 
-L.tileLayer("http://{s}.google.com/vt?lyrs=m&x={x}&y={y}&z={z}", {
-  maxZoom: 17,
-  subdomains: ["mt0", "mt1", "mt2", "mt3"],
-  attribution: "&copy; <a>POLRES Lampung Utara</a>",
-}).addTo(map);
+var channel = pusher.subscribe('panic-channel');
 
-function showLocation(lat, lng) {
-  if (marker) {
-    map.removeLayer(marker);
-  }
+channel.bind('panic-event', function (data) {
+    $('#notificationModal').modal('show');
+    $('#modalNoLaporan').text(data.no_laporan);
+    $('#modalNama').text(data.nama);
+    $('#modalWaktuKejadian').text(data.waktu_kejadian);
+    $('#modalTempatKejadian').text(data.alamat_kejadian);
 
-  // Ganti API_KEY dengan kunci API OpenCage Geocoding Anda
-  var apiKey = "d017576f726446d6a3fe62196659856c";
-  fetch(
-    `https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lng}&key=${apiKey}`
-  )
-    .then((response) => response.json())
-    .then((data) => {
-      var address = data.results[0].formatted;
-      marker = L.marker([lat, lng]).addTo(map);
-      marker.bindPopup(address).openPopup();
+    
 
-      // Set TKP input value to the address
-      document.getElementById("tkp").value = address;
-    })
-    .catch((error) => console.error("Error fetching location data:", error));
-
-  map.setView([lat, lng], 15);
-}
-
-function getLocation() {
-  if ("geolocation" in navigator) {
-    navigator.geolocation.watchPosition(function (position) {
-      var lat = position.coords.latitude;
-      var lng = position.coords.longitude;
-      showLocation(lat, lng);
-
-      document.getElementById("latitude").value = lat;
-      document.getElementById("longitude").value = lng;
-
-      var currentTime = new Date();
-      var day = String(currentTime.getDate()).padStart(2, "0");
-      var month = String(currentTime.getMonth() + 1).padStart(2, "0");
-      var year = String(currentTime.getFullYear()).slice(-2);
-      var hours = String(currentTime.getHours()).padStart(2, "0");
-      var minutes = String(currentTime.getMinutes()).padStart(2, "0");
-      var seconds = String(currentTime.getSeconds()).padStart(2, "0");
-      var dateStr = day + month + year;
-      var timeStr = hours + minutes + seconds;
-      document.getElementById("waktu_melapor").value = dateStr + timeStr;
+    navigator.serviceWorker.ready.then(registration => {
+        registration.showNotification('Peringatan Pencurian Sepeda Motor', {
+            body: data.body,
+            icon: 'publicassetsimgpng-transparent-bandar-lampung-maluku-kepolisian-daerah-lampung-indonesian-national-police-others-logo-indonesia-area-removebg-preview.png',
+            data: {
+                url: '<?= site_url('detaillaporan/') ?>' + data.no_laporan.replace(/\//g, '-')
+            }
+        });
     });
-  } else {
-    alert("Geolocation tidak didukung oleh browser Anda.");
-  }
-}
-getLocation();
+
+    navigator.serviceWorker.addEventListener('notificationclick', function (event) {
+        event.notification.close();
+        event.waitUntil(
+            clients.openWindow(event.notification.data.url)
+        );
+    });
+});

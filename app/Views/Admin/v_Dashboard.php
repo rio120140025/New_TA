@@ -61,26 +61,43 @@
     <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
 
     <script>
-        var pusher = new Pusher('3f13a94c15910301c709', {
-            cluster: 'ap1',
-            encrypted: true
-        });
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/curanmorpolreslampungutara/public/assets/js/service-worker.js')
+                .then(registration => {
+                    console.log('Service Worker registered with scope:', registration.scope);
 
-        var channel = pusher.subscribe('panic-channel');
+                    var pusher = new Pusher('3f13a94c15910301c709', {
+                        cluster: 'ap1',
+                        encrypted: true
+                    });
 
-        channel.bind('panic-event', function (data) {
-            $('#notificationModal').modal('show');
-            $('#modalNoLaporan').text(data.no_laporan);
-            $('#modalNama').text(data.nama);
-            $('#modalWaktuKejadian').text(data.waktu_kejadian);
-            $('#modalTempatKejadian').text(data.alamat_kejadian);
+                    var channel = pusher.subscribe('panic-channel');
 
-            $('#detailButton').on('click', function () {
-                var noLaporan = $('#modalNoLaporan').text().replace(/\//g, '-');
-                var redirectURL = '<?= site_url('detaillaporan/') ?>' + noLaporan;
-                window.location.href = redirectURL;
-            });
-        });
+                    channel.bind('panic-event', function (data) {
+                        $('#notificationModal').modal('show');
+                        $('#modalNoLaporan').text(data.no_laporan);
+                        $('#modalNama').text(data.nama);
+                        $('#modalWaktuKejadian').text(data.waktu_kejadian);
+                        $('#modalTempatKejadian').text(data.alamat_kejadian);
+
+                        $('#detailButton').on('click', function () {
+                            var noLaporan = $('#modalNoLaporan').text().replace(/\//g, '-');
+                            var redirectURL = '<?= site_url('detaillaporan/') ?>' + noLaporan;
+                            window.location.href = redirectURL;
+                        });
+
+                        data.url = '<?= site_url('detaillaporan/') ?>' + data.no_laporan.replace(/\//g, '-');
+
+                        if (registration.active) {
+                            registration.active.postMessage(data);
+                        }
+                    });
+
+                })
+                .catch(error => {
+                    console.error('Service Worker registration failed:', error);
+                });
+        }
     </script>
 </head>
 
@@ -200,10 +217,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="notificationModalLabel">Notification Panic Button</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                        <h5 class="modal-title" id="notificationModalLabel">Peringatan Pencurian Sepeda Motor</h5>
                     </div>
                     <div class="modal-body">
                         <p><strong>No. Laporan:</strong> <span id="modalNoLaporan"></span></p>
