@@ -21,7 +21,9 @@ class DataKecamatanModel extends Model
         $this->limit($limit, $offset);
 
         if (!empty($search)) {
-            $this->like('dis_name', $search);
+            $this->like('dis_name', $search)
+                ->orLike('city_name', $search)
+                ->orLike('prov_name', $search);
         }
 
         $query = $this->get();

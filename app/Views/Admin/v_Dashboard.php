@@ -225,7 +225,13 @@
             <div class="body-wrapper radial-gradient min-vh-100">
                 <div class="container-fluid">
                     <div class="container-fluid">
-                        <div class="card mb-3">
+                        <div class="card">
+                            <div class="card-body">
+                                Total laporan :
+                                <?= $total_data ?>
+                            </div>
+                        </div>
+                        <div class="card">
                             <div class="card-body">
                                 <div id="map"></div>
                             </div>
@@ -272,6 +278,8 @@
                                         <label for="search" class="form-label">Pencarian</label>
                                         <input type="text" class="form-control" name="search" id="search"
                                             aria-describedby="searchHelp">
+                                        <div class="form-text">Masukkan kata kunci seperti nomor laporan atau nama
+                                            pelapor</div>
                                     </div>
                                     <button type="submit" class="btn btn-warning">Cari</button>
                                 </form>
@@ -283,7 +291,7 @@
                                     <h5 class="modal-title">Daftar Laporan</h5>
                                     <div class="d-flex gap-2">
                                         <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                                            class="btn btn-danger">Filter Lokasi</a>
+                                            class="btn btn-danger">Filter</a>
                                         <a href="<?php echo site_url('TambahData'); ?>" class="btn btn-warning">Tambah
                                             Laporan</a>
                                     </div>
@@ -293,69 +301,66 @@
                                     <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title">Filter Lokasi</h5>
+                                                <h5 class="modal-title">Filter</h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
                                                 <form method="post">
                                                     <div class="mb-3">
-                                                        <h6 for="dis_name_kejadian" class="form-label">Kecamatan
+                                                        <h6 for="lokasi" class="form-label">Lokasi TKP
                                                         </h6>
-                                                        <select class="form-select" id="dis_id" name="dis_id">
-                                                            <option value="">Semua Kecamatan</option>
+                                                        <select class="form-select" id="lokasi" name="lokasi">
                                                         </select>
                                                     </div>
-                                                    <script>
-                                                        $(document).ready(function () {
-                                                            $.ajax({
-                                                                url: "<?= site_url('DataKecamatan/get_kecamatan_at_lampung'); ?>",
-                                                                method: "POST",
-                                                                dataType: "json",
-                                                                success: function (data) {
-                                                                    var options = '<option value="">Semua Kecamatan</option>';
-                                                                    data.forEach(function (item) {
-                                                                        options += '<option value="' + item.dis_id + '">' + item.dis_name + '</option>';
-                                                                    });
-                                                                    $('#dis_id').html(options);
-                                                                }
-                                                            });
-                                                        });
-                                                    </script>
                                                     <div class="mb-3">
-                                                        <h6 for="subdis_name" class="form-label">Kelurahan/Desa
+                                                        <u>Rentang Waktu Kejadian
+                                                        </u>
+                                                        <div class="row">
+                                                            <div class="col-md-6 mb-3">
+                                                                <h6 class="form-label">Start</h6>
+                                                                <input type="date" class="form-control"
+                                                                    name="start_date_kejadian">
+                                                            </div>
+                                                            <div class="col-md-6 mb-3">
+                                                                <h6 class="form-label">End</h6>
+                                                                <input type="date" class="form-control"
+                                                                    name="end_date_kejadian">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <u>Rentang Waktu Melapor
+                                                        </u>
+                                                        <div class="row">
+                                                            <div class="col-md-6 mb-3">
+                                                                <h6 class="form-label">Start</h6>
+                                                                <input type="date" class="form-control"
+                                                                    name="start_date_melapor">
+                                                            </div>
+                                                            <div class="col-md-6 mb-3">
+                                                                <h6 class="form-label">End</h6>
+                                                                <input type="date" class="form-control"
+                                                                    name="end_date_melapor">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <h6 for="tipe_motor" class="form-label">Tipe Motor
                                                         </h6>
-                                                        <select class="form-select" id="subdis_id" name="subdis_id">
-                                                            <option value="">Semua Kelurahan/Desa</option>
+                                                        <select class="form-select" id="tipe_motor" name="tipe_motor">
                                                         </select>
                                                     </div>
-                                                    <script>
-                                                        $(document).ready(function () {
-                                                            $('select[name="dis_id"]').change(function () {
-                                                                var dis_id = $(this).val();
-
-                                                                if (dis_id != '') {
-                                                                    $.ajax({
-                                                                        url: "<?= site_url('DataKelurahanDesa/get_kelurahandesa_by_kecamatan'); ?>",
-                                                                        method: "POST",
-                                                                        data: {
-                                                                            dis_id: dis_id
-                                                                        },
-                                                                        dataType: "json",
-                                                                        success: function (data) {
-                                                                            var options = '<option value="">Semua Kelurahan/Desa</option>';
-                                                                            data.forEach(function (item) {
-                                                                                options += '<option value="' + item.subdis_id + '">' + item.subdis_name + '</option>';
-                                                                            });
-                                                                            $('#subdis_id').html(options);
-                                                                        }
-                                                                    });
-                                                                } else {
-                                                                    $('#subdis_id').html('<option value="">Semua Kelurahan/Desa</option>');
-                                                                }
-                                                            });
-                                                        });
-                                                    </script>
+                                                    <div class="mb-3">
+                                                        <h6 for="status" class="form-label">Status
+                                                        </h6>
+                                                        <select class="form-select" name="status">
+                                                            <option value="">Semua Status</option>
+                                                            <option value="0">Pending</option>
+                                                            <option value="1">Dalam Lidik</option>
+                                                            <option value="2">Kasus Selesai</option>
+                                                        </select>
+                                                    </div>
                                                     <button type="submit" class="btn btn-primary">Simpan</button>
                                                 </form>
                                             </div>
@@ -374,17 +379,17 @@
                                                 <th class="border-bottom-0">
                                                     <h6 class="fw-semibold mb-0">Nomor Laporan
                                                         <iconify-icon icon="vaadin:sort"
-                                                            onclick="sortTable(0)"></iconify-icon>
+                                                            onclick="sortTable(1)"></iconify-icon>
                                                     </h6>
                                                 </th>
                                                 <th class="border-bottom-0">
                                                     <h6 class="fw-semibold mb-0">Nama Pelapor<iconify-icon
-                                                            icon="vaadin:sort" onclick="sortTable(1)"></iconify-icon>
+                                                            icon="vaadin:sort" onclick="sortTable(2)"></iconify-icon>
                                                     </h6>
                                                 </th>
                                                 <th class="border-bottom-0">
                                                     <h6 class="fw-semibold mb-0">Tipe Motor<iconify-icon
-                                                            icon="vaadin:sort" onclick="sortTable(2)"></iconify-icon>
+                                                            icon="vaadin:sort" onclick="sortTable(3)"></iconify-icon>
                                                     </h6>
                                                 </th>
                                                 <th class="border-bottom-0">
@@ -392,12 +397,12 @@
                                                 </th>
                                                 <th class="border-bottom-0">
                                                     <h6 class="fw-semibold mb-0">Waktu Kejadian<iconify-icon
-                                                            icon="vaadin:sort" onclick="sortTable(4)"></iconify-icon>
+                                                            icon="vaadin:sort" onclick="sortTable(5)"></iconify-icon>
                                                     </h6>
                                                 </th>
                                                 <th class="border-bottom-0">
                                                     <h6 class="fw-semibold mb-0">Status<iconify-icon icon="vaadin:sort"
-                                                            onclick="sortTable(5)"></iconify-icon> </h6>
+                                                            onclick="sortTable(6)"></iconify-icon> </h6>
                                                 </th>
                                                 <th class="border-bottom-0">
                                                     <h6 class="fw-semibold mb-0">Detail</h6>
@@ -516,104 +521,110 @@
                 attribution: '&copy; <a>POLRES Lampung Utara</a>'
             }).addTo(map);
 
-            $.ajax({
-                url: "<?php echo base_url('home/get_data'); ?>",
-                dataType: 'json',
-                method: 'get',
-                success: function (data) {
-                    const baseUrl = window.location.origin;
-                    var customIcon = L.icon({
-                        iconUrl: '../assets/svg/location-warning.svg',
-                        iconSize: [46, 46],
-                        iconAnchor: [23, 46],
-                        popupAnchor: [0, -46]
-                    });
+            const baseUrl = window.location.origin;
+            var customIcon = L.icon({
+                iconUrl: '../assets/svg/location-warning.svg',
+                iconSize: [46, 46],
+                iconAnchor: [23, 46],
+                popupAnchor: [0, -46]
+            });
 
-                    data.laporan.map(data => {
-                        const no_laporan = data.no_laporan.replace(/\//g, '-');
-                        const detailUrl = `${baseUrl}/curanmorpolreslampungutara/public/detaillaporan/${no_laporan}`;
+            serverData.laporan.map(data => {
+                const no_laporan = data.no_laporan.replace(/\//g, '-');
+                const detailUrl = `${baseUrl}/curanmorpolreslampungutara/public/detaillaporan/${no_laporan}`;
 
-                        L.marker([data.latitude, data.longitude], { icon: customIcon })
-                            .bindPopup(`
-                <strong>Tipe Motor:</strong> ${data.tipe_motor}<br>
-                <strong>Tempat Kejadian Perkara:</strong> ${data.alamat_kejadian}<br>
-                <strong>Waktu Kejadian:</strong> ${data.waktu_kejadian}<br>
-                <strong>Detail:</strong> <a href="${detailUrl}" target="_blank">Lihat Detail</a>
-            `)
-                            .addTo(map);
+                L.marker([data.latitude, data.longitude], { icon: customIcon })
+                    .bindPopup(`
+                    <strong>Tipe Motor:</strong> ${data.tipe_motor}<br>
+                    <strong>Tempat Kejadian Perkara:</strong> ${data.alamat_kejadian}<br>
+                    <strong>Waktu Kejadian:</strong> ${data.waktu_kejadian}<br>
+                    <strong>Detail:</strong> <a href="${detailUrl}" target="_blank">Lihat Detail</a>
+                `)
+                    .addTo(map);
 
-                        var circle = L.circle([data.latitude, data.longitude], {
-                            color: 'red',
-                            fillColor: '#f03',
-                            fillOpacity: 0.1
-                        }).addTo(map);
-                    });
+                var circle = L.circle([data.latitude, data.longitude], {
+                    color: 'red',
+                    fillColor: '#f03',
+                    fillOpacity: 0.1
+                }).addTo(map);
+            });
 
-                    var doughnutData = {
-                        labels: data.motor.map(item => item.tipe_motor),
-                        datasets: [{
-                            data: data.motor.map(item => item.jumlah),
-                            backgroundColor: [
-                                'rgba(255, 99, 132, 0.7)',
-                                'rgba(54, 162, 235, 0.7)',
-                                'rgba(255, 206, 86, 0.7)',
-                                'rgba(75, 192, 192, 0.7)',
-                                'rgba(153, 102, 255, 0.7)',
-                                'rgba(255, 159, 64, 0.7)',
-                            ],
-                            borderColor: [
-                                'rgba(255, 99, 132, 1)',
-                                'rgba(54, 162, 235, 1)',
-                                'rgba(255, 206, 86, 1)',
-                                'rgba(75, 192, 192, 1)',
-                                'rgba(153, 102, 255, 1)',
-                                'rgba(255, 159, 64, 1)',
-                            ],
-                            borderWidth: 1
-                        }]
-                    };
+            var doughnutData = {
+                labels: serverData.motor.map(item => item.tipe_motor),
+                datasets: [{
+                    data: serverData.motor.map(item => item.jumlah),
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.7)',
+                        'rgba(54, 162, 235, 0.7)',
+                        'rgba(255, 206, 86, 0.7)',
+                        'rgba(75, 192, 192, 0.7)',
+                        'rgba(153, 102, 255, 0.7)',
+                        'rgba(255, 159, 64, 0.7)',
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)',
+                    ],
+                    borderWidth: 1
+                }]
+            };
 
-                    var doughnutCtx = document.getElementById('doughnut').getContext('2d');
-                    var doughnutChart = new Chart(doughnutCtx, {
-                        type: 'doughnut',
-                        data: doughnutData
-                    });
+            var doughnutCtx = document.getElementById('doughnut').getContext('2d');
+            var doughnutChart = new Chart(doughnutCtx, {
+                type: 'doughnut',
+                data: doughnutData
+            });
 
-                    var lineData = {
-                        labels: data.bulan.map(item => item.month),
-                        datasets: [{
-                            label: 'Jumlah Laporan',
-                            data: data.bulan.map(item => item.jumlah),
-                            fill: false,
-                            borderColor: 'rgba(75, 192, 192, 1)',
-                            borderWidth: 2
-                        }]
-                    };
+            var lineData = {
+                labels: serverData.bulan.map(item => item.month),
+                datasets: [{
+                    label: 'Jumlah Laporan',
+                    data: serverData.bulan.map(item => item.jumlah),
+                    fill: false,
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 2
+                }]
+            };
 
-                    var lineCtx = document.getElementById('line').getContext('2d');
-                    var lineChart = new Chart(lineCtx, {
-                        type: 'line',
-                        data: lineData
-                    });
+            var lineCtx = document.getElementById('line').getContext('2d');
+            var lineChart = new Chart(lineCtx, {
+                type: 'line',
+                data: lineData
+            });
 
-                    var barData = {
-                        labels: data.subdis.map(item => item.subdis_name),
-                        datasets: [{
-                            label: 'Jumlah Kasus Curanmor',
-                            data: data.subdis.map(item => item.jumlah),
-                            backgroundColor: 'rgba(75, 192, 192, 0.7)',
-                            borderColor: 'rgba(75, 192, 192, 1)',
-                            borderWidth: 1
-                        }]
-                    };
+            var barData = {
+                labels: serverData.lokasi.map(item => item.lokasi),
+                datasets: [{
+                    label: 'Jumlah Kasus Curanmor',
+                    data: serverData.lokasi.map(item => item.jumlah),
+                    backgroundColor: 'rgba(75, 192, 192, 0.7)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            };
 
-                    var barCtx = document.getElementById('barChart').getContext('2d');
-                    var barChart = new Chart(barCtx, {
-                        type: 'bar',
-                        data: barData
-                    });
+            var barCtx = document.getElementById('barChart').getContext('2d');
+            var barChart = new Chart(barCtx, {
+                type: 'bar',
+                data: barData
+            });
 
-                }
+            var tipemotorDropdown = $('#tipe_motor');
+            tipemotorDropdown.append('<option value="">Semua Tipe Motor</option>');
+
+            serverData.motor.forEach(item => {
+                tipemotorDropdown.append(`<option value="${item.tipe_motor}">${item.tipe_motor}</option>`);
+            });
+
+            var lokasiDropdown = $('#lokasi');
+            lokasiDropdown.append('<option value="">Semua Lokasi</option>');
+
+            serverData.lokasi.forEach(item => {
+                lokasiDropdown.append(`<option value="${item.lokasi}">${item.lokasi}</option>`);
             });
         });
     </script>

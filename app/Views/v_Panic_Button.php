@@ -58,6 +58,7 @@
             <div class="container-fluid">
                 <div class="card">
                     <div class="card-body">
+                        <a href="<?= base_url(); ?>" class="btn btn-dark list-inline-item">Back</a>
                         <p class="text-center">Pengaduan Kasus Pencurian Sepeda Motor di Polres Lampung
                             Utara
                         </p>
@@ -93,6 +94,7 @@
                             <input type="hidden" id="latitude" name="latitude">
                             <input type="hidden" id="longitude" name="longitude">
                             <input type="hidden" id="tkp" name="alamat_kejadian">
+                            <input type="hidden" id="lokasi" name="lokasi">
                             <script>
                                 var map = L.map('map').setView([0, 0], 15);
                                 var marker;
@@ -112,10 +114,13 @@
                                         .then(response => response.json())
                                         .then(data => {
                                             var address = data.display_name;
+                                            var lokasi = data.address.village || data.address.town || data.address.city_district;
+
                                             marker = L.marker([lat, lng]).addTo(map);
                                             marker.bindPopup(address).openPopup();
 
                                             document.getElementById('tkp').value = address;
+                                            document.getElementById('lokasi').value = lokasi;
                                         })
                                         .catch(error => console.error('Error fetching location data:', error));
 

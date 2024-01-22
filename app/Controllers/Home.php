@@ -21,7 +21,7 @@ class Home extends Controller
         $data['laporan'] = $this->laporanModel->getAllLaporanDetailsStatus();
         $data['motor'] = $this->laporanModel->getMotorTypeRatioStatus();
         $data['bulan'] = $this->laporanModel->getMonthlyIncidentsStatus();
-        $data['subdis'] = $this->laporanModel->getSubdistrictDataStatus();
+        $data['lokasi'] = $this->laporanModel->getLokasiDataStatus();
 
         return $this->response->setJSON($data);
     }

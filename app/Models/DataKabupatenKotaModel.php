@@ -18,7 +18,8 @@ class DataKabupatenKotaModel extends Model
         $this->limit($limit, $offset);
 
         if (!empty($search)) {
-            $this->like('city_name', $search);
+            $this->like('city_name', $search)
+                ->orLike('prov_name', $search);
         }
 
         $query = $this->get();

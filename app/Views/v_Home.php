@@ -203,10 +203,10 @@
                                 });
 
                                 var barData = {
-                                    labels: data.subdis.map(item => item.subdis_name),
+                                    labels: data.lokasi.map(item => item.lokasi),
                                     datasets: [{
                                         label: 'Jumlah Kasus Curanmor',
-                                        data: data.subdis.map(item => item.jumlah),
+                                        data: data.lokasi.map(item => item.jumlah),
                                         backgroundColor: 'rgba(75, 192, 192, 0.7)',
                                         borderColor: 'rgba(75, 192, 192, 1)',
                                         borderWidth: 1

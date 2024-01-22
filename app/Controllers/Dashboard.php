@@ -46,12 +46,30 @@ class Dashboard extends Controller
                 $offset = ($page - 1) * $limit;
                 $search = $this->request->getPost('search');
 
+                $filter = [
+                    'lokasi' => $this->request->getPost('lokasi'),
+                    'start_date_kejadian' => $this->request->getPost('start_date_kejadian'),
+                    'end_date_kejadian' => $this->request->getPost('end_date_kejadian'),
+                    'start_date_melapor' => $this->request->getPost('start_date_melapor'),
+                    'end_date_melapor' => $this->request->getPost('end_date_melapor'),
+                    'tipe_motor' => $this->request->getPost('tipe_motor'),
+                    'status' => $this->request->getPost('status'),
+                ];
+
                 $data['kecamatan'] = $this->datakecamatanModel->getKecamatanData(null, null, null);
                 $data['kelurahandesa'] = $this->datakelurahandesaModel->getKelurahanDesaData(null, null, null);
-                $data['laporan'] = $this->laporanModel->getAllLaporanDetails($limit, $offset, $search);
-                $data['total_data'] = $this->laporanModel->getTotalSearchedLaporan($search);
+                $data['laporan'] = $this->laporanModel->getAllLaporanDetails($limit, $offset, $search, $filter);
+                $data['total_data'] = $this->laporanModel->getTotalLaporan($search, $filter);
                 $data['total_pages'] = ceil($data['total_data'] / $limit);
                 $data['current_page'] = $page;
+
+                $data['motor'] = $this->laporanModel->getMotorTypeRatio($filter);
+                $data['bulan'] = $this->laporanModel->getMonthlyIncidents($filter);
+                $data['lokasi'] = $this->laporanModel->getLokasiData($filter);
+
+                $jsonData = json_encode($data);
+
+                echo '<script>var serverData = ' . $jsonData . ';</script>';
 
                 return view('Admin/v_Dashboard', $data);
             } elseif ($id_role == 2) {
@@ -65,4 +83,3 @@ class Dashboard extends Controller
         }
     }
 }
-

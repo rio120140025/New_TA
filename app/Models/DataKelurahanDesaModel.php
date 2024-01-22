@@ -24,7 +24,10 @@ class DataKelurahanDesaModel extends Model
         $this->limit($limit, $offset);
 
         if (!empty($search)) {
-            $this->like('subdis_name', $search);
+            $this->like('subdis_name', $search)
+                ->orLike('dis_name', $search)
+                ->orLike('city_name', $search)
+                ->orLike('prov_name', $search);
         }
 
         $query = $this->get();

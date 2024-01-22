@@ -450,17 +450,22 @@
                                         value="<?= $laporan['no_mesin'] ?>" required>
                                 </div>
                                 <div class="mb-3">
-                                    <h6 for="kronologi" class="form-label">Kronologi</h6>
+                                    <h6 class="form-label">Kronologi</h6>
                                     <textarea rows="5" type="text" class="form-control" id="kronologi" name="kronologi"
                                         required><?= $laporan['kronologi'] ?></textarea>
                                 </div>
                                 <div class="mb-3">
-                                    <h6 for="kronologi" class="form-label">Total Kerugian</h6>
+                                    <h6 class="form-label">Total Kerugian</h6>
                                     <input type="number" class="form-control" id="kerugian" name="kerugian"
                                         value="<?= $laporan['kerugian']; ?>" required>
                                 </div>
                                 <div class="mb-3">
-                                    <h6 for="kronologi" class="form-label">Detail Lokasi Kejadian</h6>
+                                    <h6 class="form-label">Lokasi</h6>
+                                    <input type="text" class="form-control" id="lokasi"
+                                        value="<?= $laporan['lokasi']; ?>" name="lokasi" required>
+                                </div>
+                                <div class="mb-3">
+                                    <h6 class="form-label">Detail Lokasi Kejadian</h6>
                                     <input type="text" class="form-control" id="alamat_kejadian"
                                         value="<?= $laporan['alamat_kejadian']; ?>" name="alamat_kejadian" required>
                                 </div>

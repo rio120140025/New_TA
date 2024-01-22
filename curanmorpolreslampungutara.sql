@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 30, 2023 at 07:45 AM
+-- Generation Time: Jan 22, 2024 at 10:40 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -39,13 +39,8 @@ CREATE TABLE `akun` (
 --
 
 INSERT INTO `akun` (`id_akun`, `email`, `password`, `id_role`) VALUES
-(1, 'gfdbbtbte', '$2y$10$jsdX1CDvIReBcMvCdx9tfOJZCaD6ioEX7aBa..7hVYZKQqSvE6Ovy', 2),
-(2, 'gfdbbtbte', '$2y$10$wscOWjEO4ttDYiZvgWa0WO4B8Qa4IANDfftm3PHGZJ98J.0fMoZ3S', 2),
 (3, 'qdh23305@zbock.com', '$2y$10$PR84SmyFNZeifrmVoqrQSOiF3qhS..PuDoxijvIuUv6sGh05i0ZfS', 1),
-(4, 'vyr60412@zslsz.com', '$2y$10$Wav0TGTHt25QrDkSc9.1ouKV4zKG2EXzEqYTgGv3rBclpx8hmliBS', 2),
-(5, 'itn73629@omeie.com', '$2y$10$xmMN1Sd.gNJyAe4.7NL19OesnLBOryVTjH7cFbtWs1PttpUxnz1h2', 2),
-(6, 'wag39768@omeie.com', '$2y$10$XNymOQY1PE20B93/Sbxn9ecDaKP.SBHiYUhXy1xlAW8D08pTxKC8C', 2),
-(7, 'tqt56028@zslsz.com', '$2y$10$84XNkaJkDiUhAGIE1mQa/ehTecxTJZV.9eKCr/sT9KeqgWxoFSLM.', 2);
+(8, 'oeo96377@omeie.com', '$2y$10$tiL3zF94EWhRLNgyZENzwOoRbwUyjm9ZfUbOqvsjufM9gHJntq.iq', 2);
 
 -- --------------------------------------------------------
 
@@ -548,18 +543,32 @@ INSERT INTO `cities` (`city_id`, `city_name`, `prov_id`) VALUES
 
 CREATE TABLE `data_diri` (
   `id_data_diri` int(11) NOT NULL,
-  `nik` varchar(16) NOT NULL,
+  `nik` varchar(16) DEFAULT NULL,
   `nama` varchar(255) NOT NULL,
   `agama` varchar(255) NOT NULL,
   `jenis_kelamin` varchar(255) NOT NULL,
   `alamat` varchar(255) NOT NULL,
-  `tempat_lahir` varchar(255) NOT NULL,
+  `tempat_lahir` varchar(255) DEFAULT NULL,
   `tanggal_lahir` date NOT NULL,
-  `no_hp` varchar(14) NOT NULL,
+  `no_hp` varchar(14) DEFAULT NULL,
   `pekerjaan` varchar(255) NOT NULL,
-  `id_akun` int(11) NOT NULL,
+  `id_akun` int(11) DEFAULT NULL,
   `subdis_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `data_diri`
+--
+
+INSERT INTO `data_diri` (`id_data_diri`, `nik`, `nama`, `agama`, `jenis_kelamin`, `alamat`, `tempat_lahir`, `tanggal_lahir`, `no_hp`, `pekerjaan`, `id_akun`, `subdis_id`) VALUES
+(11, '1207071801020001', 'DIO ARI FERNANDO', 'Kristen', 'Laki-laki', 'Jalan Lintas Sumatera (Lapak Sawait)', 'Besitang', '2002-01-18', '087896357572', 'Swasta', 8, 22759),
+(12, '1803104910860006', 'AYU TRIASTUTI, SKM', 'Islam', 'Perempuan', 'Jalan Alamasyah RPN Gang Sahabat Np.64', 'Kotabumi', '1986-10-09', '08111014687', 'Mengurus Rumah Tangga', NULL, 22448),
+(13, NULL, 'REHAN SAPUTRA', 'Islam', 'Laki-laki', 'Bojong Baru RT 01 RW 09', NULL, '2008-01-01', '0822132912', 'Pelajar', NULL, 22007),
+(14, '', 'MESSY SAPITRI, A.md', 'Islam', 'Perempuan', 'JL. R. Intan Gg. Lambang No. 18 RT 03 RW 02', '', '0000-00-00', '', 'Swasta', NULL, 22502),
+(15, '', 'HARIS NOVAL RIZAL', 'Islam', 'Laki-laki', 'JL. Jendral Sudirman No. 74 RT 01 RW 01', '', '0000-00-00', '', 'Swasta', NULL, 22514),
+(16, '', 'SARI RAHAYU', 'Islam', 'Perempuan', 'JL. Kelapa Kebun V', '', '0000-00-00', '', 'Ibu Rumah Tangga', NULL, 23882),
+(17, '', 'RINGIN AGUNG', 'Islam', 'Laki-laki', 'JL. Jalur Dua RT 08 RW 04', '', '0000-00-00', '', 'Mahasiswa', NULL, 22448),
+(18, '', 'TRI TRIA ASTUTI S.Km', 'Islam', 'Perempuan', 'JL. Alamsyah RPN Gg. Sahabat No.64', '', '0000-00-00', '', 'Ibu Rumah Tangga', NULL, 22448);
 
 -- --------------------------------------------------------
 
@@ -7584,13 +7593,27 @@ INSERT INTO `districts` (`dis_id`, `dis_name`, `city_id`) VALUES
 
 CREATE TABLE `kendaraan` (
   `id_kendaraan` int(11) NOT NULL,
-  `no_plat` varchar(10) NOT NULL,
+  `no_plat` varchar(255) NOT NULL,
   `no_rangka` varchar(17) NOT NULL,
   `no_mesin` varchar(17) NOT NULL,
   `warna` varchar(255) NOT NULL,
-  `id_akun` int(11) NOT NULL,
-  `id_motor` int(11) NOT NULL
+  `id_akun` int(11) DEFAULT NULL,
+  `id_motor` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `kendaraan`
+--
+
+INSERT INTO `kendaraan` (`id_kendaraan`, `no_plat`, `no_rangka`, `no_mesin`, `warna`, `id_akun`, `id_motor`) VALUES
+(10, 'BE 2522 ABM', 'MH1JM1113JK829750', 'JM11E181270000000', 'Magenta Hitam', 8, 5),
+(11, 'BE 3724 KT', 'MH31KP001CK139428', '1KP136971', 'Hitam', NULL, 5),
+(12, 'BE 4724 KG', 'MH1JFZ135KK074497', 'JF1E3078314', 'Hitam', NULL, 5),
+(13, 'BE 3309 KG', '', '', 'Putih', NULL, 8),
+(14, 'BE 3652', 'MH1JM11266KK13566', 'JM11E2117883', 'Putih', NULL, 5),
+(15, 'BE 4207 KP', 'MH1JM911XLK251471', 'JM91E1252165', 'Hitam', NULL, 5),
+(16, '', '', '', 'Silver', NULL, 5),
+(17, 'BE 3376 CC', 'MH1JM2117JK763824', 'JM21E1749953', 'Putih', NULL, 5);
 
 -- --------------------------------------------------------
 
@@ -7607,12 +7630,26 @@ CREATE TABLE `laporan` (
   `longitude` double NOT NULL,
   `latitude` double NOT NULL,
   `waktu_kejadian` datetime NOT NULL,
-  `status` int(1) NOT NULL,
-  `subdis_id` int(11) NOT NULL,
-  `id_akun` int(11) NOT NULL,
+  `id_status` int(1) NOT NULL,
+  `lokasi` varchar(255) NOT NULL,
+  `id_akun` int(11) DEFAULT NULL,
   `id_data_diri` int(11) NOT NULL,
-  `id_motor` int(11) NOT NULL
+  `id_kendaraan` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `laporan`
+--
+
+INSERT INTO `laporan` (`no_laporan`, `waktu_melapor`, `kronologi`, `kerugian`, `alamat_kejadian`, `longitude`, `latitude`, `waktu_kejadian`, `id_status`, `lokasi`, `id_akun`, `id_data_diri`, `id_kendaraan`) VALUES
+('LP/B/176/VI/2023/SPKT/POLRES LAMPUNG UTARA/POLDA LAMPUNG', '2023-06-03 00:00:00', 'Pelaku ambil sepeda motor milik pelapor yang sedang diparkir dirumah', 0, 'JL. Jendral Sudirman No. 74 RT 01 RW 01', 104.88539053433618, -4.826454180121444, '2023-06-03 11:00:00', 1, 'Kotabumi selatan', NULL, 15, 14),
+('LP/B/209/VI/2023/SPKT/POLRES LAMPUNG UTARA/POLDA LAMPUNG', '2023-06-27 00:00:00', 'Pelaku ambil motor yang sedang diparkir', 0, 'JL. Kelapa Kebun V', 0, 0, '2023-06-27 09:30:00', 1, 'Kotabumi Selatan', NULL, 16, 15),
+('LP/B/215/VI/2023/SPKT/POLRES LAMPUNG UTARA/POLDA LAMPUNG', '2023-06-30 00:00:00', 'Pelaku ambil sepeda motor milik korban yang sedang diparkir di depan rumah korban', 0, 'JL. Alamsyah RPN Kel. Kelapa Tujuh Kec. Kotabumi Selatan ', 104.9048245818507, -4.842795637130126, '2023-06-30 11:00:00', 1, 'Kotabumi Selatan', NULL, 17, 16),
+('LP/B/236/VII/2023/SPKT/POLRES LAMPUNG UTARA/POLDA LAMPUNG', '2023-07-07 00:00:00', 'Pelaku dongkel pintu masuk rumah ambil motor dan bawa kabur', 0, 'Kel. Kelapa Tujuh Kec. Kotabumi Selatan', 0, 0, '2023-07-07 01:00:00', 1, 'Kotabumi Selatan', NULL, 18, 17),
+('LP/B/295/II/2023/SPKT/POLRES LAMPUNG UTARA/POLDA LAMPUNG', '2023-02-14 00:00:00', 'Pelaku dongkel, pintu masuk rumah ambil barang bawa kabur', 0, 'JL. Soekarno hatta Gg. Hi Dermawan Kel. Kota Alam Kec. Kotabumi Selatan Kab. Lampung Utara', 104.8779490102997, -4.840051318555288, '2023-02-14 00:00:00', 1, 'Kotabumi Selatan', NULL, 14, 13),
+('LP/B/32/VII/2023/SPKT/POLRES LAMPUNG UTARA/POLDA LAMPUNG', '2023-07-04 00:00:00', 'Telah melaporkan dugaan Tindak Pidana Pencurian Dengan Pemberatan (curat) UU Nomor 1 Tahun 1946 tentang KUHP sebagaimana dimaksud dalam Pasal 363, yang terjadi di JL, RT, RW, TITIK KOORDINAT KELAPA TUJUH, KOTABUMI SELATAN, KABUPATEN LAMPUNG UTARA, LAMPUNG, PADA HARI JUMAT TANGGAL 7 JULI 2023 SEKIRA PUKUL 01.00 WIB. dengan Terlapor DALAM LIDIK, Uraian Kejadian PADA HARI JUMAT TANGGAL 7 JULI 2023 SEKIRA PUKUL 01:00 WIB TELAH TERJADI TINDAK PIDANA PENCURIAN DENGAN PEMBERATAN DENGAN MO PADA SAAT ORANG TUA PELAPOR INGIN PERGI KEMASJID DAN MEMBANGUNKAN PELAPOR DI RUMAH BELAKANG TIBA TIBA ORANG TUA PELAPOR TERKEJUT MENDAPATI 2 UNIT SEPEDA MOTOR DENGAN MEREK YAMAHA, NOPOL: BE 3376 CO, NOSIN 1KP136971, NOKA MH31KP001CK139428 DAN SEPEDA MOTOR MEREK HONDA BEAT, NOPOL: BE 3724 KT, NOSIN: JM21E 1749953, NOKA MH1JM2117JK763824 TELAH HILANG KEMUDIAN ORANG TUA PELAPOR MEMBERITAHU KEPADA PELAPOR BALWA SEPEDA MOTOR TELAH HILANG KEMUDIAN PELAPOR MENGECEK KAMAR DAN MENDAPATI EMAS SESERAT & GRAM DAN UANG SEJUMLAH RP 1.000.000,-(SATU JUTA RUPIAH) TELAH HILANG, ATAS KEJADIAN TERSEBUT PELAPOR MELAPORKAN KEJADIAN TERSEBUT KE POLRES LAMPUNG UTARA', 15000000, 'Kelapa Tujuh', 104.8991115, -4.8448162, '2023-07-07 01:00:00', 1, 'Kotabumi Selatan', NULL, 12, 11),
+('LP/B/44/II/2023/SPKT/POLRES LAMPUNG UTARA/POLDA LAMPUNG', '2023-02-12 00:00:00', 'Pelaku ambil sepeda motor milik pelapor yang sedang diparkir', 0, 'Desa Mulang Maya Kec. Kotabumi Kab.Lampung Utara', 104.85406131902502, -4.904194678887241, '2022-12-12 10:55:00', 1, 'Kotabumi', NULL, 13, 12),
+('LP/B/516/III/2023/SPKT/POLRES LAMPUNG UTARA/POLDA LAMPUNG', '2023-03-26 13:00:00', 'Korban mengantarkan salah seorang temannya yaitu saudara Saksi bernama ABDILAH NURUL ULA untuk pulang kerumah kosannya, kemudian Korban memarkirkan kendaraannya di tempat parkir tepatnya didepan kamar kosan dan korban bersama dengan Saksi masuk berada didalam kamar kosan dengan keadaan posisi pintu kamar ditutup rapat setelah berselang waktu kira-kira lebih kurang setengah jam Korbanpun keluai dengan membuka pintu kamar kosan dan ternyata yang didapati oleh Korban kendaraan yang ianya parkirkan tadi sudah tidak berada ditempat parkirnya, diduga Terlapor mengambil Sepeda motor tersebut dengan cara merusak kunci stang dan tidak ada kunci pengaman tambahan yang terpasang pada kendaraan tersebut', 17000000, 'Di Rumah Kosan Jalan Soekarno Hatta Kec. Kotabumi Selatan Kab. Lampung Utara', 104.8806458, -4.8400434, '2023-03-23 17:00:00', 1, 'Kotabumi Selatan', 8, 11, 10);
 
 -- --------------------------------------------------------
 
@@ -7635,7 +7672,8 @@ INSERT INTO `motor` (`id_motor`, `tipe_motor`) VALUES
 (3, 'Honda Revo'),
 (5, 'Honda Beat'),
 (6, 'Honda Beat Street'),
-(7, 'Honda Genio');
+(7, 'Honda Genio'),
+(8, 'Honda Vario 150');
 
 -- --------------------------------------------------------
 
@@ -89024,7 +89062,7 @@ ALTER TABLE `laporan`
   ADD PRIMARY KEY (`no_laporan`),
   ADD KEY `id_akun` (`id_akun`),
   ADD KEY `id_data_diri` (`id_data_diri`),
-  ADD KEY `id_motor` (`id_motor`);
+  ADD KEY `laporan_ibfk_3` (`id_kendaraan`);
 
 --
 -- Indexes for table `motor`
@@ -89052,7 +89090,7 @@ ALTER TABLE `subdistricts`
 -- AUTO_INCREMENT for table `akun`
 --
 ALTER TABLE `akun`
-  MODIFY `id_akun` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_akun` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `cities`
@@ -89064,7 +89102,7 @@ ALTER TABLE `cities`
 -- AUTO_INCREMENT for table `data_diri`
 --
 ALTER TABLE `data_diri`
-  MODIFY `id_data_diri` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_data_diri` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `districts`
@@ -89076,13 +89114,13 @@ ALTER TABLE `districts`
 -- AUTO_INCREMENT for table `kendaraan`
 --
 ALTER TABLE `kendaraan`
-  MODIFY `id_kendaraan` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_kendaraan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `motor`
 --
 ALTER TABLE `motor`
-  MODIFY `id_motor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_motor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `provinces`
@@ -89119,7 +89157,7 @@ ALTER TABLE `kendaraan`
 ALTER TABLE `laporan`
   ADD CONSTRAINT `laporan_ibfk_1` FOREIGN KEY (`id_akun`) REFERENCES `akun` (`id_akun`),
   ADD CONSTRAINT `laporan_ibfk_2` FOREIGN KEY (`id_data_diri`) REFERENCES `data_diri` (`id_data_diri`),
-  ADD CONSTRAINT `laporan_ibfk_3` FOREIGN KEY (`id_motor`) REFERENCES `motor` (`id_motor`);
+  ADD CONSTRAINT `laporan_ibfk_3` FOREIGN KEY (`id_kendaraan`) REFERENCES `kendaraan` (`id_kendaraan`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

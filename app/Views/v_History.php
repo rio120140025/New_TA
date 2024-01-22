@@ -38,6 +38,7 @@
                 <div class="container-fluid">
                     <div class="card">
                         <div class="card-body">
+                            <a href="<?= base_url(); ?>" class="btn btn-dark list-inline-item">Back</a>
                             <p class="text-center">History</p>
                             <?php if (session()->has('message')): ?>
                                 <div class="alert alert-danger" role="alert">

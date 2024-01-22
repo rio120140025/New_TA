@@ -141,6 +141,7 @@ class UpdateLaporan extends Controller
                 $kerugian = $this->request->getPost('kerugian');
                 $waktu_kejadian = $this->request->getPost('waktu_kejadian');
                 $alamat_kejadian = $this->request->getPost('alamat_kejadian');
+                $lokasi = $this->request->getPost('lokasi');
                 $id_status = $this->request->getPost('id_status');
 
                 $data = [
@@ -148,6 +149,7 @@ class UpdateLaporan extends Controller
                     'kerugian' => $kerugian,
                     'waktu_kejadian' => $waktu_kejadian,
                     'alamat_kejadian' => $alamat_kejadian,
+                    'lokasi' => $lokasi,
                     'id_status' => $id_status,
                 ];
 

@@ -52,6 +52,7 @@ class UpdateLaporanTKP extends Controller
     {
         $no_laporan = $this->request->getPost('no_laporan');
         $alamat_kejadian = $this->request->getPost('alamat_kejadian');
+        $lokasi = $this->request->getPost('lokasi');
         $latitude = $this->request->getPost('latitude');
         $longitude = $this->request->getPost('longitude');
 
@@ -59,6 +60,7 @@ class UpdateLaporanTKP extends Controller
             'latitude' => $latitude,
             'longitude' => $longitude,
             'alamat_kejadian' => $alamat_kejadian,
+            'lokasi' => $lokasi,
         ];
 
         $where = ['no_laporan' => $no_laporan];

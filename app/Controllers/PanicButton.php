@@ -63,6 +63,7 @@ class PanicButton extends Controller
             'id_kendaraan' => $this->request->getPost('id_kendaraan'),
             'waktu_kejadian' => $this->request->getPost('waktu_kejadian'),
             'alamat_kejadian' => $this->request->getPost('alamat_kejadian'),
+            'lokasi' => $this->request->getPost('lokasi'),
             'longitude' => $this->request->getPost('longitude'),
             'latitude' => $this->request->getPost('latitude'),
             'waktu_melapor' => $waktu_lapor
@@ -109,6 +110,7 @@ class PanicButton extends Controller
             'id_kendaraan' => $id_kendaraan,
             'waktu_kejadian' => $this->request->getPost('waktu_kejadian'),
             'alamat_kejadian' => $this->request->getPost('alamat_kejadian'),
+            'lokasi' => $this->request->getPost('lokasi'),
             'longitude' => $this->request->getPost('longitude'),
             'latitude' => $this->request->getPost('latitude'),
             'waktu_melapor' => $waktu_lapor

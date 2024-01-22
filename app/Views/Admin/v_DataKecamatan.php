@@ -175,6 +175,8 @@
 										<label for="search" class="form-label">Pencarian</label>
 										<input type="text" class="form-control" name="search" id="search"
 											aria-describedby="searchHelp">
+										<div class="form-text">Masukkan kata kunci seperti nama provinsi atau nama
+											kabupaten/kota atau nama kecamatan</div>
 									</div>
 									<button type="submit" class="btn btn-warning">Cari</button>
 								</form>

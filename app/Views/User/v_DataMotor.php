@@ -258,7 +258,6 @@
                                                 </tr>
                                                 <?php $number++; ?>
                                             <?php endforeach; ?>
-
                                         </tbody>
                                     </table>
                                 </div>
