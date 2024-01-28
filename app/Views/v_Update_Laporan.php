@@ -291,7 +291,7 @@
                                 </div>
                                 <script>
                                     var map = L.map('map').setView([<?= $laporan['latitude']; ?>, <?= $laporan['longitude']; ?>], 17);
-                                    googleStreets = L.tileLayer('http://{s}.google.com/vt?lyrs=m&x={x}&y={y}&z={z}', {
+                                    googleStreets = L.tileLayer('https://{s}.google.com/vt?lyrs=m&x={x}&y={y}&z={z}', {
                                         maxZoom: 19,
                                         subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
                                         attribution: '&copy; <a>POLRES Lampung Utara</a>'

@@ -178,7 +178,7 @@
                                         var map = L.map('map').setView([0, 0], 15);
                                         var marker;
 
-                                        L.tileLayer('http://{s}.google.com/vt?lyrs=m&x={x}&y={y}&z={z}', {
+                                        L.tileLayer('https://{s}.google.com/vt?lyrs=m&x={x}&y={y}&z={z}', {
                                             maxZoom: 17,
                                             subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
                                             attribution: '&copy; <a>POLRES Lampung Utara</a>'
@@ -208,7 +208,7 @@
 
                                         function getLocation() {
                                             if ("geolocation" in navigator) {
-                                                navigator.geolocation.watchPosition(function (position) {
+                                                navigator.geolocation.getCurrentPosition(function (position) {
                                                     var lat = position.coords.latitude;
                                                     var lng = position.coords.longitude;
                                                     showLocation(lat, lng);

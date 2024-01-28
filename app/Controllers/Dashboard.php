@@ -67,7 +67,12 @@ class Dashboard extends Controller
                 $data['bulan'] = $this->laporanModel->getMonthlyIncidents($filter);
                 $data['lokasi'] = $this->laporanModel->getLokasiData($filter);
 
-                $jsonData = json_encode($data);
+                $jsonData = json_encode([
+                    'laporan' => $data['laporan'],
+                    'motor' => $data['motor'],
+                    'bulan' => $data['bulan'],
+                    'lokasi' => $data['lokasi'],
+                ]);
 
                 echo '<script>var serverData = ' . $jsonData . ';</script>';
 
