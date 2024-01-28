@@ -61,6 +61,13 @@
     <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
 
     <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            Notification.requestPermission().then(function (permission) {
+            });
+        });
+    </script>
+
+    <script>
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('/curanmorpolreslampungutara/public/assets/js/service-worker.js')
                 .then(registration => {
