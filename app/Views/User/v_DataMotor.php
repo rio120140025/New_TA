@@ -147,6 +147,13 @@
                                                 <form method="post" action="<?= site_url('DataMotor/save_motor'); ?>">
                                                     <div class="mb-3">
                                                         <div class="mb-3">
+                                                            <img src="assets/img/stnk.png" width="365">
+                                                            <div class="form-text">Keterangan:</div>
+                                                            <div class="form-text">1. Warna Kendaraan</div>
+                                                            <div class="form-text">2. Nomor Rangka</div>
+                                                            <div class="form-text">3. Nomor Mesin</div>
+                                                        </div>
+                                                        <div class="mb-3">
                                                             <h6 for="id_motor" class="form-label">Tipe Motor
                                                             </h6>
                                                             <select class="form-select" id="id_motor" name="id_motor"
@@ -163,23 +170,31 @@
                                                             <h6 for="no_plat" class="form-label">Nomor Plat</h6>
                                                             <input type="text" class="form-control" id="no_plat"
                                                                 name="no_plat" required>
+                                                            <div class="form-text">Masukkan nomor plat kendaraan sesuai
+                                                                pada STNK</div>
                                                         </div>
                                                         <div class="mb-3">
                                                             <h6 for="warna" class="form-label">Warna</h6>
                                                             <input type="text" class="form-control" id="warna"
                                                                 name="warna" required>
+                                                            <div class="form-text">Masukkan warna kendaraan sesuai
+                                                                padaSTNK</div>
                                                         </div>
                                                         <div class="mb-3">
                                                             <h6 for="no_rangka" class="form-label">Nomor Rangka
                                                             </h6>
                                                             <input type="text" class="form-control" id="no_rangka"
                                                                 name="no_rangka" required>
+                                                            <div class="form-text">Masukkan nomor rangka kendaraan
+                                                                sesuai pada STNK</div>
                                                         </div>
                                                         <div class="mb-3">
                                                             <h6 for="no_mesin" class="form-label">Nomor Mesin
                                                             </h6>
                                                             <input type="text" class="form-control" id="no_mesin"
                                                                 name="no_mesin" required>
+                                                            <div class="form-text">Masukkan nomor mesin kendaraan sesuai
+                                                                pada STNK</div>
                                                         </div>
                                                     </div>
                                                     <button type="submit" class="btn btn-primary">Simpan</button>
