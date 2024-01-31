@@ -253,6 +253,13 @@
                                     </select>
                                 </div>
                                 <div class="mb-3">
+                                    <img src="assets/img/stnk.png" width="365">
+                                    <div class="form-text">Keterangan:</div>
+                                    <div class="form-text">1. Warna Kendaraan</div>
+                                    <div class="form-text">2. Nomor Rangka</div>
+                                    <div class="form-text">3. Nomor Mesin</div>
+                                </div>
+                                <div class="mb-3">
                                     <h6 for="no_plat" class="form-label">Nomor Plat</h6>
                                     <input type="text" class="form-control" id="no_plat"
                                         value="<?= $laporan['no_plat'] ?>" readonly>

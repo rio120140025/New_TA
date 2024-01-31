@@ -41,6 +41,12 @@ class PanicButton extends Controller
                 return redirect()->to('Dashboard/1');
             } elseif ($id_role == 2) {
                 $id_akun = $this->session->get('id_akun');
+                $data_diri = $this->datadiriModel->getDataByAkunId($id_akun);
+                if ($data_diri['nik'] == null) {
+                    $message = "Silahkan melengkapi data diri anda terlebih dahulu.";
+                    $data['message'] = $message;
+                    return redirect()->to('DataDiri')->with('message', $message);
+                }
                 $data['kendaraan'] = $this->datamotorModel->getMotorDataWithTipeMotor($id_akun);
 
                 return view('User/v_Panic_Button', $data);
