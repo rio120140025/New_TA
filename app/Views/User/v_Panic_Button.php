@@ -146,6 +146,7 @@
                                 <p class="text-center">Pengaduan Kasus Pencurian Sepeda Motor di Polres Lampung
                                     Utara
                                 </p>
+                                <div id="locationMessage" class="alert alert-danger" style="display: none;"></div>
                                 <form method="post" action="<?= base_url('PanicButton/insert_data') ?>">
                                     <div class="mb-3">
                                         <h6 for="id_kendaraan" class="form-label">Informasi Sepeda Motor</h6>
@@ -192,23 +193,30 @@
                                             fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`)
                                                 .then(response => response.json())
                                                 .then(data => {
-                                                    var address = data.display_name;
-                                                    var lokasi = data.address.village || data.address.town || data.address.city_district;
+                                                    var county = data.address.county;
 
-                                                    marker = L.marker([lat, lng]).addTo(map);
-                                                    marker.bindPopup(address).openPopup();
+                                                    if (county === "Lampung Utara") {
+                                                        var address = data.display_name;
+                                                        var lokasi = data.address.village || data.address.town || data.address.city_district;
 
-                                                    document.getElementById('tkp').value = address;
-                                                    document.getElementById('lokasi').value = lokasi;
+                                                        marker = L.marker([lat, lng]).addTo(map);
+                                                        marker.bindPopup(address).openPopup();
+
+                                                        document.getElementById('tkp').value = address;
+                                                        document.getElementById('lokasi').value = lokasi;
+                                                    } else {
+                                                        document.getElementById('locationMessage').innerHTML = 'Lokasi Anda berada di luar wilayah Lampung Utara. Fitur ini tidak bisa digunakan.';
+                                                        document.getElementById('locationMessage').style.display = 'block';
+                                                        document.querySelector('form').style.display = 'none';
+                                                    }
                                                 })
                                                 .catch(error => console.error('Error fetching location data:', error));
-
                                             map.setView([lat, lng], 15);
                                         }
 
                                         function getLocation() {
                                             if ("geolocation" in navigator) {
-                                                navigator.geolocation.getCurrentPosition(function (position) {
+                                                navigator.geolocation.watchPosition(function (position) {
                                                     var lat = position.coords.latitude;
                                                     var lng = position.coords.longitude;
                                                     showLocation(lat, lng);
