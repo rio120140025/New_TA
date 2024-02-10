@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 22, 2024 at 10:40 AM
+-- Generation Time: Feb 10, 2024 at 05:16 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -40,7 +40,8 @@ CREATE TABLE `akun` (
 
 INSERT INTO `akun` (`id_akun`, `email`, `password`, `id_role`) VALUES
 (3, 'qdh23305@zbock.com', '$2y$10$PR84SmyFNZeifrmVoqrQSOiF3qhS..PuDoxijvIuUv6sGh05i0ZfS', 1),
-(8, 'oeo96377@omeie.com', '$2y$10$tiL3zF94EWhRLNgyZENzwOoRbwUyjm9ZfUbOqvsjufM9gHJntq.iq', 2);
+(8, 'oeo96377@omeie.com', '$2y$10$tiL3zF94EWhRLNgyZENzwOoRbwUyjm9ZfUbOqvsjufM9gHJntq.iq', 2),
+(13, 'msn46812@zslsz.com', '$2y$10$.6wNERKH1UVfPXEox.EOG.BYuXEgnOK96Un41xyGi.iO5vjs31zhy', 2);
 
 -- --------------------------------------------------------
 
@@ -543,14 +544,14 @@ INSERT INTO `cities` (`city_id`, `city_name`, `prov_id`) VALUES
 
 CREATE TABLE `data_diri` (
   `id_data_diri` int(11) NOT NULL,
-  `nik` varchar(16) DEFAULT NULL,
+  `nik` varchar(16) NOT NULL,
   `nama` varchar(255) NOT NULL,
   `agama` varchar(255) NOT NULL,
   `jenis_kelamin` varchar(255) NOT NULL,
   `alamat` varchar(255) NOT NULL,
-  `tempat_lahir` varchar(255) DEFAULT NULL,
+  `tempat_lahir` varchar(255) NOT NULL,
   `tanggal_lahir` date NOT NULL,
-  `no_hp` varchar(14) DEFAULT NULL,
+  `no_hp` varchar(14) NOT NULL,
   `pekerjaan` varchar(255) NOT NULL,
   `id_akun` int(11) DEFAULT NULL,
   `subdis_id` int(11) NOT NULL
@@ -561,14 +562,33 @@ CREATE TABLE `data_diri` (
 --
 
 INSERT INTO `data_diri` (`id_data_diri`, `nik`, `nama`, `agama`, `jenis_kelamin`, `alamat`, `tempat_lahir`, `tanggal_lahir`, `no_hp`, `pekerjaan`, `id_akun`, `subdis_id`) VALUES
-(11, '1207071801020001', 'DIO ARI FERNANDO', 'Kristen', 'Laki-laki', 'Jalan Lintas Sumatera (Lapak Sawait)', 'Besitang', '2002-01-18', '087896357572', 'Swasta', 8, 22759),
+(1, '', 'YULIANA', 'Islam', 'Perempuan', 'Jl. Jenderal Sudirman No. 58', '', '0000-00-00', '', 'Ibu Rumah Tangga', NULL, 22514),
+(2, '', 'M. SYARIPUDIN', 'Islam', 'Laki-laki', 'Gedong Dalam Rt 02 Rw 02', '', '0000-00-00', '', 'Buruh', NULL, 22514),
+(3, '', 'HARIYADI', 'Islam', 'Laki-laki', 'Jl. Jenderal Sudirman Gg. Dadali IV No. 31 Rt 03 Rw 06', '', '0000-00-00', '', 'Pedagang', NULL, 22514),
+(4, '', 'WASNI', 'Islam', 'Perempuan', 'Jl. Kapten Mustofa Gg Merak No. 171 Rt 04 Rw 04', '', '0000-00-00', '', 'Ibu Rumah Tangga', NULL, 23828),
+(5, '', 'RIKI IRAWAN', 'Islam', 'Laki-laki', 'Dusun Nyapah Tuba rt 14 Desa Mulang Maya', '', '0000-00-00', '', 'Pelajar', NULL, 22759),
+(6, '', 'HERI SETIAWAN', 'Islam', 'Laki-laki', 'Jl. Raden Intan No. 223A', '', '0000-00-00', '', 'PNS', NULL, 22502),
+(7, '', 'DESI SUTIANI', 'Islam', 'Perempuan', 'Jl. Soekarno Hatta Gg. Bangun No. 156 Rt 02 rw 02', '', '0000-00-00', '', 'Ibu Rumah Tangga', NULL, 22502),
+(11, '1207071801020001', 'DIO ARI FERNANDO', 'Kristen', 'Laki-laki', 'Jalan Lintas Sumatera (Lapak Sawait)', 'Besitang', '2002-01-18', '087896357572', 'Swasta', NULL, 22759),
 (12, '1803104910860006', 'AYU TRIASTUTI, SKM', 'Islam', 'Perempuan', 'Jalan Alamasyah RPN Gang Sahabat Np.64', 'Kotabumi', '1986-10-09', '08111014687', 'Mengurus Rumah Tangga', NULL, 22448),
-(13, NULL, 'REHAN SAPUTRA', 'Islam', 'Laki-laki', 'Bojong Baru RT 01 RW 09', NULL, '2008-01-01', '0822132912', 'Pelajar', NULL, 22007),
+(13, '', 'REHAN SAPUTRA', 'Islam', 'Laki-laki', 'Bojong Baru RT 01 RW 09', '', '0000-00-00', '0822132912', 'Pelajar', NULL, 22007),
 (14, '', 'MESSY SAPITRI, A.md', 'Islam', 'Perempuan', 'JL. R. Intan Gg. Lambang No. 18 RT 03 RW 02', '', '0000-00-00', '', 'Swasta', NULL, 22502),
 (15, '', 'HARIS NOVAL RIZAL', 'Islam', 'Laki-laki', 'JL. Jendral Sudirman No. 74 RT 01 RW 01', '', '0000-00-00', '', 'Swasta', NULL, 22514),
 (16, '', 'SARI RAHAYU', 'Islam', 'Perempuan', 'JL. Kelapa Kebun V', '', '0000-00-00', '', 'Ibu Rumah Tangga', NULL, 23882),
 (17, '', 'RINGIN AGUNG', 'Islam', 'Laki-laki', 'JL. Jalur Dua RT 08 RW 04', '', '0000-00-00', '', 'Mahasiswa', NULL, 22448),
-(18, '', 'TRI TRIA ASTUTI S.Km', 'Islam', 'Perempuan', 'JL. Alamsyah RPN Gg. Sahabat No.64', '', '0000-00-00', '', 'Ibu Rumah Tangga', NULL, 22448);
+(18, '', 'TRI TRIA ASTUTI S.Km', 'Islam', 'Perempuan', 'JL. Alamsyah RPN Gg. Sahabat No.64', '', '0000-00-00', '', 'Ibu Rumah Tangga', NULL, 22448),
+(19, '1803106208950003', 'MISNA WATI', 'Islam', 'Perempuan', 'Curup Guruh Kagungan', 'Mulang Maya', '1995-08-22', '085284567920', 'Mengurus Rumah Tangga', NULL, 22021),
+(20, '1803021505880002', 'M. GUSMI MAULANA', 'Islam', 'Laki-laki', 'JL. Ahmad Akuan No. 138 LK. 4 Sribasuki RT/RW: 003/008', 'Kotabumi', '1998-05-15', '082269921533', 'Buruh Harian Lepas', NULL, 23505),
+(21, '', 'A. FIKRI PAZANUDIN', 'Islam', 'Laki-laki', 'Jl. Inpres Gg Cengkeh II No 72 Rt 05 Rw 01', '', '0000-00-00', '', 'PNS', NULL, 22448),
+(22, '', 'NABILA MEYDIANA', 'Islam', 'Perempuan', 'Dusun Banjar Harum', '', '0000-00-00', '', 'Pelajar', NULL, 22626),
+(23, '', 'ANGGA MAULANA', 'Islam', 'Laki-laki', 'Jl. Abrati No. 351 Rt 02 Rw 06', '', '0000-00-00', '', 'Pelajar', NULL, 22534),
+(24, '', 'M. HUSIN IRAWAN', 'Islam', 'Laki-laki', 'Bernah Rt 01 Rw 06', '', '0000-00-00', '', 'Buruh', NULL, 22502),
+(25, '', 'FAJAR RAMADHAN', 'Islam', 'Laki-laki', 'Jl. Raden Intan Gg Lambang No. 33 Rt 01 Rw 02', '', '0000-00-00', '', 'Swasta', NULL, 22502),
+(26, '', 'TRI FIDIYANTI, S.Pdi', 'Islam', 'Perempuan', 'Margomulyo Rt 03 Rw 04', '', '0000-00-00', '', 'Guru', NULL, 22530),
+(27, '', 'WIDODO SAPUTRA', 'Islam', 'Laki-laki', '', '', '0000-00-00', '', 'Swasta', NULL, 23224),
+(28, '', 'ADI IRAWAN', 'Islam', 'Laki-laki', 'Jl. Jendral Sudirman No. 205 Rt 02 Rw 02 Kel. Tanjung Harapan Kec. Kotabumi Selatan', '', '0000-00-00', '', 'Buruh', NULL, 23828),
+(29, '', 'YAYAN SOPIYAN', 'Islam', 'Laki-laki', 'Bangun Rejo No. 590 Rt 02 Rw 04', '', '0000-00-00', '', '', NULL, 23200),
+(30, '', 'MUJIONO', 'Islam', 'Laki-laki', 'Dusun Indra Sari Rt 02 Rw 04', '', '0000-00-00', '', 'Tani', NULL, 23200);
 
 -- --------------------------------------------------------
 
@@ -7598,7 +7618,7 @@ CREATE TABLE `kendaraan` (
   `no_mesin` varchar(17) NOT NULL,
   `warna` varchar(255) NOT NULL,
   `id_akun` int(11) DEFAULT NULL,
-  `id_motor` int(11) DEFAULT NULL
+  `id_motor` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -7606,14 +7626,34 @@ CREATE TABLE `kendaraan` (
 --
 
 INSERT INTO `kendaraan` (`id_kendaraan`, `no_plat`, `no_rangka`, `no_mesin`, `warna`, `id_akun`, `id_motor`) VALUES
-(10, 'BE 2522 ABM', 'MH1JM1113JK829750', 'JM11E181270000000', 'Magenta Hitam', 8, 5),
+(1, 'BE 4168 KK', 'MH1JFZ212KK663968', 'JF22E1062729', '', NULL, 5),
+(2, 'BE 5022 KB', 'MH1JM8122NK247162', 'JM81E2248488', '', NULL, 5),
+(3, 'BE 3697 KV', 'MH1JM1115JK708010', 'JM11E1692951', '', NULL, 5),
+(4, 'BE 4922 JS', 'MH1JBKYEK085842', 'JBKK1E1085964', '', NULL, 3),
+(5, 'BE 4119 KP', 'MH31264710LK13205', '63JBE0247022', '', NULL, 61),
+(6, 'BE 5233 KD', 'MH1JM9122PK939768', 'JM91E2937343', 'Hijau', NULL, 5),
+(7, 'BE 3082 KO', 'MH1JFZ117HK471801', 'JFZ1E1464638', '', NULL, 5),
+(10, 'BE 2522 ABM', 'MH1JM1113JK829750', 'JM11E181270000000', 'Magenta Hitam', NULL, 5),
 (11, 'BE 3724 KT', 'MH31KP001CK139428', '1KP136971', 'Hitam', NULL, 5),
 (12, 'BE 4724 KG', 'MH1JFZ135KK074497', 'JF1E3078314', 'Hitam', NULL, 5),
 (13, 'BE 3309 KG', '', '', 'Putih', NULL, 8),
 (14, 'BE 3652', 'MH1JM11266KK13566', 'JM11E2117883', 'Putih', NULL, 5),
 (15, 'BE 4207 KP', 'MH1JM911XLK251471', 'JM91E1252165', 'Hitam', NULL, 5),
 (16, '', '', '', 'Silver', NULL, 5),
-(17, 'BE 3376 CC', 'MH1JM2117JK763824', 'JM21E1749953', 'Putih', NULL, 5);
+(17, 'BE 3376 CC', 'MH1JM2117JK763824', 'JM21E1749953', 'Putih', NULL, 5),
+(18, 'Z 5947 DAU', 'MH1JM811CMK512585', 'JM81E1514566', 'Biru Putih', NULL, 5),
+(19, 'BE 3928 KQ', 'MH1JM2117HK443848', 'JM21E1434154', 'Biru Putih', NULL, 5),
+(20, 'BE 4762 KO', 'MH1JMB112K244718', 'JM81E1246534', 'Merah Hitam', NULL, 5),
+(21, 'BE 1234 AA', 'HIDBGEJ38RJ4UR484', 'SNDHR8JRR4', 'Merah', NULL, 3),
+(22, 'BE 3083 KB', 'MH1JM9134PK668356', 'JM91E2686107', 'Biru', NULL, 5),
+(23, 'BE 3692 KM', 'MH1JM91340K668356', 'JM21E1094525', 'Merah Putih', NULL, 5),
+(24, '', 'MH1JMB211NK5428', 'JM82E11541627', '', NULL, 5),
+(25, '', 'MH1JM8110LK313275', 'JM81E131282', '', NULL, 5),
+(26, 'BE 4572 KO', 'MH1JM9117MK448440', 'JM91E1450459', '', NULL, 5),
+(27, '', 'MH31PA004EK519316', '1P519365', '', NULL, 36),
+(28, 'BE 3842 KK', 'MH1JBP1136K419015', 'JBP1E1416548', '', NULL, 18),
+(29, 'BE 4633 RX', 'MH1JM821XMK253800', 'JM8JE1251807', '', NULL, 5),
+(30, '', 'MH1JM9135PK231720', 'JM91E3226754', 'Hitam', NULL, 5);
 
 -- --------------------------------------------------------
 
@@ -7627,8 +7667,8 @@ CREATE TABLE `laporan` (
   `kronologi` text NOT NULL,
   `kerugian` int(11) NOT NULL,
   `alamat_kejadian` varchar(255) NOT NULL,
-  `longitude` double NOT NULL,
-  `latitude` double NOT NULL,
+  `longitude` double DEFAULT NULL,
+  `latitude` double DEFAULT NULL,
   `waktu_kejadian` datetime NOT NULL,
   `id_status` int(1) NOT NULL,
   `lokasi` varchar(255) NOT NULL,
@@ -7642,14 +7682,33 @@ CREATE TABLE `laporan` (
 --
 
 INSERT INTO `laporan` (`no_laporan`, `waktu_melapor`, `kronologi`, `kerugian`, `alamat_kejadian`, `longitude`, `latitude`, `waktu_kejadian`, `id_status`, `lokasi`, `id_akun`, `id_data_diri`, `id_kendaraan`) VALUES
-('LP/B/176/VI/2023/SPKT/POLRES LAMPUNG UTARA/POLDA LAMPUNG', '2023-06-03 00:00:00', 'Pelaku ambil sepeda motor milik pelapor yang sedang diparkir dirumah', 0, 'JL. Jendral Sudirman No. 74 RT 01 RW 01', 104.88539053433618, -4.826454180121444, '2023-06-03 11:00:00', 1, 'Kotabumi selatan', NULL, 15, 14),
-('LP/B/209/VI/2023/SPKT/POLRES LAMPUNG UTARA/POLDA LAMPUNG', '2023-06-27 00:00:00', 'Pelaku ambil motor yang sedang diparkir', 0, 'JL. Kelapa Kebun V', 0, 0, '2023-06-27 09:30:00', 1, 'Kotabumi Selatan', NULL, 16, 15),
-('LP/B/215/VI/2023/SPKT/POLRES LAMPUNG UTARA/POLDA LAMPUNG', '2023-06-30 00:00:00', 'Pelaku ambil sepeda motor milik korban yang sedang diparkir di depan rumah korban', 0, 'JL. Alamsyah RPN Kel. Kelapa Tujuh Kec. Kotabumi Selatan ', 104.9048245818507, -4.842795637130126, '2023-06-30 11:00:00', 1, 'Kotabumi Selatan', NULL, 17, 16),
-('LP/B/236/VII/2023/SPKT/POLRES LAMPUNG UTARA/POLDA LAMPUNG', '2023-07-07 00:00:00', 'Pelaku dongkel pintu masuk rumah ambil motor dan bawa kabur', 0, 'Kel. Kelapa Tujuh Kec. Kotabumi Selatan', 0, 0, '2023-07-07 01:00:00', 1, 'Kotabumi Selatan', NULL, 18, 17),
-('LP/B/295/II/2023/SPKT/POLRES LAMPUNG UTARA/POLDA LAMPUNG', '2023-02-14 00:00:00', 'Pelaku dongkel, pintu masuk rumah ambil barang bawa kabur', 0, 'JL. Soekarno hatta Gg. Hi Dermawan Kel. Kota Alam Kec. Kotabumi Selatan Kab. Lampung Utara', 104.8779490102997, -4.840051318555288, '2023-02-14 00:00:00', 1, 'Kotabumi Selatan', NULL, 14, 13),
-('LP/B/32/VII/2023/SPKT/POLRES LAMPUNG UTARA/POLDA LAMPUNG', '2023-07-04 00:00:00', 'Telah melaporkan dugaan Tindak Pidana Pencurian Dengan Pemberatan (curat) UU Nomor 1 Tahun 1946 tentang KUHP sebagaimana dimaksud dalam Pasal 363, yang terjadi di JL, RT, RW, TITIK KOORDINAT KELAPA TUJUH, KOTABUMI SELATAN, KABUPATEN LAMPUNG UTARA, LAMPUNG, PADA HARI JUMAT TANGGAL 7 JULI 2023 SEKIRA PUKUL 01.00 WIB. dengan Terlapor DALAM LIDIK, Uraian Kejadian PADA HARI JUMAT TANGGAL 7 JULI 2023 SEKIRA PUKUL 01:00 WIB TELAH TERJADI TINDAK PIDANA PENCURIAN DENGAN PEMBERATAN DENGAN MO PADA SAAT ORANG TUA PELAPOR INGIN PERGI KEMASJID DAN MEMBANGUNKAN PELAPOR DI RUMAH BELAKANG TIBA TIBA ORANG TUA PELAPOR TERKEJUT MENDAPATI 2 UNIT SEPEDA MOTOR DENGAN MEREK YAMAHA, NOPOL: BE 3376 CO, NOSIN 1KP136971, NOKA MH31KP001CK139428 DAN SEPEDA MOTOR MEREK HONDA BEAT, NOPOL: BE 3724 KT, NOSIN: JM21E 1749953, NOKA MH1JM2117JK763824 TELAH HILANG KEMUDIAN ORANG TUA PELAPOR MEMBERITAHU KEPADA PELAPOR BALWA SEPEDA MOTOR TELAH HILANG KEMUDIAN PELAPOR MENGECEK KAMAR DAN MENDAPATI EMAS SESERAT & GRAM DAN UANG SEJUMLAH RP 1.000.000,-(SATU JUTA RUPIAH) TELAH HILANG, ATAS KEJADIAN TERSEBUT PELAPOR MELAPORKAN KEJADIAN TERSEBUT KE POLRES LAMPUNG UTARA', 15000000, 'Kelapa Tujuh', 104.8991115, -4.8448162, '2023-07-07 01:00:00', 1, 'Kotabumi Selatan', NULL, 12, 11),
-('LP/B/44/II/2023/SPKT/POLRES LAMPUNG UTARA/POLDA LAMPUNG', '2023-02-12 00:00:00', 'Pelaku ambil sepeda motor milik pelapor yang sedang diparkir', 0, 'Desa Mulang Maya Kec. Kotabumi Kab.Lampung Utara', 104.85406131902502, -4.904194678887241, '2022-12-12 10:55:00', 1, 'Kotabumi', NULL, 13, 12),
-('LP/B/516/III/2023/SPKT/POLRES LAMPUNG UTARA/POLDA LAMPUNG', '2023-03-26 13:00:00', 'Korban mengantarkan salah seorang temannya yaitu saudara Saksi bernama ABDILAH NURUL ULA untuk pulang kerumah kosannya, kemudian Korban memarkirkan kendaraannya di tempat parkir tepatnya didepan kamar kosan dan korban bersama dengan Saksi masuk berada didalam kamar kosan dengan keadaan posisi pintu kamar ditutup rapat setelah berselang waktu kira-kira lebih kurang setengah jam Korbanpun keluai dengan membuka pintu kamar kosan dan ternyata yang didapati oleh Korban kendaraan yang ianya parkirkan tadi sudah tidak berada ditempat parkirnya, diduga Terlapor mengambil Sepeda motor tersebut dengan cara merusak kunci stang dan tidak ada kunci pengaman tambahan yang terpasang pada kendaraan tersebut', 17000000, 'Di Rumah Kosan Jalan Soekarno Hatta Kec. Kotabumi Selatan Kab. Lampung Utara', 104.8806458, -4.8400434, '2023-03-23 17:00:00', 1, 'Kotabumi Selatan', 8, 11, 10);
+('LP/B/176/VI/2023/SPKT/POLRES LAMPUNG UTARA/POLDA LAMPUNG', '2023-06-03 00:00:00', 'Pelaku ambil sepeda motor milik pelapor yang sedang diparkir dirumah', 0, 'JL. Jendral Sudirman No. 74 RT 01 RW 01', NULL, NULL, '2023-06-03 11:00:00', 1, 'Kotabumi Selatan', NULL, 15, 14),
+('LP/B/209/VI/2023/SPKT/POLRES LAMPUNG UTARA/POLDA LAMPUNG', '2023-06-27 00:00:00', 'Pelaku ambil motor yang sedang diparkir', 0, 'JL. Kelapa Kebun V', NULL, NULL, '2023-06-27 09:30:00', 1, 'Kotabumi Selatan', NULL, 16, 15),
+('LP/B/215/VI/2023/SPKT/POLRES LAMPUNG UTARA/POLDA LAMPUNG', '2023-06-30 00:00:00', 'Pelaku ambil sepeda motor milik korban yang sedang diparkir di depan rumah korban', 0, 'JL. Alamsyah RPN Kel. Kelapa Tujuh Kec. Kotabumi Selatan ', NULL, NULL, '2023-06-30 11:00:00', 1, 'Kotabumi Selatan', NULL, 17, 16),
+('LP/B/236/VII/2023/SPKT/POLRES LAMPUNG UTARA/POLDA LAMPUNG', '2023-07-07 00:00:00', 'Pelaku dongkel pintu masuk rumah ambil motor dan bawa kabur', 0, 'Kel. Kelapa Tujuh Kec. Kotabumi Selatan', NULL, NULL, '2023-07-07 01:00:00', 1, 'Kotabumi Selatan', NULL, 18, 17),
+('LP/B/244/VII/2023/SPKT/POLRES LAMPUNG UTARA/POLDA LAMPUNG', '2023-07-15 00:00:00', 'Saat korban mau menyusul adiknya di stadion di jalan simpang gunung angger, berpapasan dengan 4 orang tidak dikenal, orang tersebut menodongkan sajam ke korban lalu pelaku merampas kunci motor milik korban', 7800000, 'JL. Simpang Angger', NULL, NULL, '2023-07-14 18:30:00', 1, 'Kotabumi Selatan', NULL, 19, 18),
+('LP/B/252/VII/2023/SPKT/POLRES LAMPUNG UTARA/POLDA LAMPUNG', '2023-07-22 00:00:00', 'Sepeda motor tercuri saat sedang diparkir dibelakang lapak dagangan pelapor', 0, 'Kota Gapura, Kotabumi', NULL, NULL, '2023-07-22 19:30:00', 1, 'Kotabumi', NULL, 20, 19),
+('LP/B/268/VIII/2023/SPKT/POLRES LAMPUNG UTARA/POLDA LAMPUNG', '2023-08-05 00:00:00', 'Pelaku ambil sepeda motor milik korban yang sedang diparkir', 0, 'Jl. Kapten Mustofa Kel. Tanjung Aman Kec. Kotabumi Selatan', NULL, NULL, '2023-07-30 16:30:00', 1, 'Kotabumi Selatan', NULL, 21, 20),
+('LP/B/281/VIII/2023/SPKT/POLRES LAMPUNG UTARA/POLDA LAMPUNG', '2023-08-12 00:00:00', 'Pelaku ambil sepeda motor milik korban', 0, 'Jl. Jenderal Sudirman No. 117 Rt 03 R2 04 Cempedak Kec. Kotabumi', NULL, NULL, '2023-08-12 04:21:00', 1, 'Kotabumi', NULL, 22, 22),
+('LP/B/282/VIII/2023/SPKT/POLRES LAMPUNG UTARA/POLDA LAMPUNG', '2023-08-12 00:00:00', 'Pelaku ambil sepeda motor milik korban yang sedang diparkir', 0, 'Jl. Alamsyah RPN Kel. Kelapa Tujuh VII Kec. Kotabumi Selatan', NULL, NULL, '2023-08-12 18:00:00', 1, 'Kotabumi Selatan', NULL, 23, 23),
+('LP/B/285/VIII/2023/SPKT/POLRES LAMPUNG UTARA/POLDA LAMPUNG', '2023-08-14 00:00:00', 'Pelaku ambil sepeda motor milik korban yang sedang diparkir', 0, 'Jl. Kapten Mustofa Kel. Tanjung Harapan Kec. Kotabumi Selatan', NULL, NULL, '2023-08-14 11:00:00', 1, 'Kotabumi Selatan', NULL, 24, 24),
+('LP/B/286/VIII/2023/SPKT/POLRES LAMPUNG UTARA/POLDA LAMPUNG', '2023-08-14 00:00:00', 'Pelaku ambil sepeda motor milik pelapor yang sedang diparkir', 0, 'Jl. Kapten Mustofa Gg Teratai Kel. Tanjung Harapan Kec. Kotabumi Selatan', NULL, NULL, '2023-08-14 05:30:00', 1, 'Kotabumi Selatan', NULL, 25, 25),
+('LP/B/291/VIII/2023/SPKT/POLRES LAMPUNG UTARA/POLDA LAMPUNG', '2023-08-16 00:00:00', 'Pelaku ambil sepeda motor milik pelapor yang sedang diparkir', 0, 'Jl. Kamboja No. 05 Sukung Kel. Kelapa tujuh Kec. Kotabumi Selatan', NULL, NULL, '0000-00-00 00:00:00', 1, 'Kotabumi Selatan', NULL, 26, 26),
+('LP/B/295/II/2023/SPKT/POLRES LAMPUNG UTARA/POLDA LAMPUNG', '2023-02-14 00:00:00', 'Pelaku dongkel, pintu masuk rumah ambil barang bawa kabur', 0, 'JL. Soekarno hatta Gg. Hi Dermawan Kel. Kota Alam Kec. Kotabumi Selatan Kab. Lampung Utara', NULL, NULL, '2023-02-14 00:00:00', 1, 'Kotabumi Selatan', NULL, 14, 13),
+('LP/B/303/VIII/2023/SPKT/POLRES LAMPUNG UTARA/POLDA LAMPUNG', '2023-08-21 00:00:00', 'Pelaku ambil sepeda motor milik pelapor yang sedang diparkir', 0, 'Kel. Kota Alam Kec. Kotabumi Selatan', NULL, NULL, '2023-08-21 12:30:00', 1, 'Kotabumi Selatan', NULL, 27, 27),
+('LP/B/32/VII/2023/SPKT/POLRES LAMPUNG UTARA/POLDA LAMPUNG', '2023-07-04 00:00:00', 'Telah melaporkan dugaan Tindak Pidana Pencurian Dengan Pemberatan (curat) UU Nomor 1 Tahun 1946 tentang KUHP sebagaimana dimaksud dalam Pasal 363, yang terjadi di JL, RT, RW, TITIK KOORDINAT KELAPA TUJUH, KOTABUMI SELATAN, KABUPATEN LAMPUNG UTARA, LAMPUNG, PADA HARI JUMAT TANGGAL 7 JULI 2023 SEKIRA PUKUL 01.00 WIB. dengan Terlapor DALAM LIDIK, Uraian Kejadian PADA HARI JUMAT TANGGAL 7 JULI 2023 SEKIRA PUKUL 01:00 WIB TELAH TERJADI TINDAK PIDANA PENCURIAN DENGAN PEMBERATAN DENGAN MO PADA SAAT ORANG TUA PELAPOR INGIN PERGI KEMASJID DAN MEMBANGUNKAN PELAPOR DI RUMAH BELAKANG TIBA TIBA ORANG TUA PELAPOR TERKEJUT MENDAPATI 2 UNIT SEPEDA MOTOR DENGAN MEREK YAMAHA, NOPOL: BE 3376 CO, NOSIN 1KP136971, NOKA MH31KP001CK139428 DAN SEPEDA MOTOR MEREK HONDA BEAT, NOPOL: BE 3724 KT, NOSIN: JM21E 1749953, NOKA MH1JM2117JK763824 TELAH HILANG KEMUDIAN ORANG TUA PELAPOR MEMBERITAHU KEPADA PELAPOR BALWA SEPEDA MOTOR TELAH HILANG KEMUDIAN PELAPOR MENGECEK KAMAR DAN MENDAPATI EMAS SESERAT & GRAM DAN UANG SEJUMLAH RP 1.000.000,-(SATU JUTA RUPIAH) TELAH HILANG, ATAS KEJADIAN TERSEBUT PELAPOR MELAPORKAN KEJADIAN TERSEBUT KE POLRES LAMPUNG UTARA', 15000000, 'Kelapa Tujuh', NULL, NULL, '2023-07-07 01:00:00', 1, 'Kotabumi Selatan', NULL, 12, 11),
+('LP/B/382/IX/2023/SPKT/POLRES LAMPUNG UTARA/POLDA LAMPUNG', '2023-09-29 00:00:00', 'Pelaku ambil sepeda motor milik pelapor', 0, 'Jl. Jendral Sudirman Gg Punai Jaya No. 206 Rt 03 rw 02 Kel. Tanjung Harapan Kec. Kotabumi Selatan', NULL, NULL, '2023-09-29 03:30:00', 1, 'Kotabumi Selatan', NULL, 28, 28),
+('LP/B/386/X/2023/SPKT/POLRES LAMPUNG UTARA/POLDA LAMPUNG', '2023-10-03 00:00:00', 'Pelaku ambil sepeda motor milik pelapor yang sedang diparkir di teras rumah', 0, 'Jl. Jalur 2 Kebon Empat Kel. Kota Alam Kec. Kotabumi Selatan', NULL, NULL, '2023-10-02 09:45:00', 1, 'Kotabumi Selatan', NULL, 29, 29),
+('LP/B/406/X/2023/SPKT/POLRES LAMPUNG UTARA/POLDA LAMPUNG', '2023-10-12 00:00:00', 'Pelaku pepet motor korban, motor dibawa kabur', 0, 'Perkebunan Sawit PT Hanakau Kel. Tanjung Senang Kec. Kotabumi Selatan', NULL, NULL, '2023-10-11 14:50:00', 1, 'Kotabumi Selatan', NULL, 30, 30),
+('LP/B/409/X/2023/SPKT/POLRES LAMPUNG UTARA/POLDA LAMPUNG', '2023-10-14 00:00:00', 'Pelaku ambil sepeda motor milik pelapor', 0, 'Jl. Jenderal Sudirman No. 58', NULL, NULL, '2023-10-14 00:30:00', 1, 'Kotabumi', NULL, 1, 1),
+('LP/B/420/X/2023/SPKT/POLRES LAMPUNG UTARA/POLDA LAMPUNG', '2023-10-20 00:00:00', 'Pelaku dongkel jendela, masuk rumah lalu membawa motor kabur', 0, 'Bandar Putih Rt 02 Rw 02', NULL, NULL, '2023-10-20 03:55:00', 1, 'Kotabumi Selatan', NULL, 2, 2),
+('LP/B/423/X/2023/SPKT/POLRES LAMPUNG UTARA/POLDA LAMPUNG', '2023-10-23 00:00:00', 'Pelaku ambil sepeda motor milik pelapor yang sedang diparkir di teras rumah', 0, 'Kel. Tanjung Harapan Kec. Kotabumi Selatan', NULL, NULL, '2023-10-22 21:30:00', 1, 'Kotabumi Selatan', NULL, 3, 3),
+('LP/B/424/X/2023/SPKT/POLRES LAMPUNG UTARA/POLDA LAMPUNG', '2023-10-25 00:00:00', 'Pelaku ambil sepeda motor milik pelapor yang sedang diparkir di teras rumah', 0, 'Jl. Ampera Rt 01 Rw 02 Kel. Tanjung Aman Kec. Kotabumi Selatan', NULL, NULL, '2023-09-30 20:40:00', 1, 'Kotabumi Selatan', NULL, 4, 4),
+('LP/B/425/X/2023/SPKT/POLRES LAMPUNG UTARA/POLDA LAMPUNG', '2023-10-25 00:00:00', 'Pelaku ambil sepeda motor milik pelapor yang sedang diparkir di teras rumah', 0, 'Jl. Soekarno Hatta Kel. Kota Alam Kec. Kotabumi Selatan', NULL, NULL, '2023-10-25 08:45:00', 1, 'Kotabumi Selatan', NULL, 5, 5),
+('LP/B/427/X/2023/SPKT/POLRES LAMPUNG UTARA/POLDA LAMPUNG', '2023-10-26 00:00:00', 'Pelaku ambil sepeda motor milik pelapor yang sedang diparkir di depan rumah', 0, 'Jl. Raden Intan No. 223A', NULL, NULL, '2023-10-26 01:00:00', 1, 'Kotabumi Selatan', NULL, 6, 6),
+('LP/B/437/X/2023/SPKT/POLRES LAMPUNG UTARA/POLDA LAMPUNG', '2023-11-03 00:00:00', 'Pelaku ambil sepeda motor milik pelapor yang sedang diparkir', 0, 'Jl. Stadion Barat Sukung Kel. Kelapa Tujuh Kec. Kotabumi Selatan', NULL, NULL, '2023-10-25 11:00:00', 1, 'Kotabumi Selatan', NULL, 7, 7),
+('LP/B/44/II/2023/SPKT/POLRES LAMPUNG UTARA/POLDA LAMPUNG', '2023-02-12 00:00:00', 'Pelaku ambil sepeda motor milik pelapor yang sedang diparkir', 0, 'Samping SDN 03 Desa Mulang Maya Kec. Kotabumi Kab.Lampung Utara', 104.85406131902502, -4.904194678887241, '2022-12-12 10:55:00', 1, 'Kotabumi', NULL, 13, 12),
+('LP/B/516/III/2023/SPKT/POLRES LAMPUNG UTARA/POLDA LAMPUNG', '2023-03-26 13:00:00', 'Korban mengantarkan salah seorang temannya yaitu saudara Saksi bernama ABDILAH NURUL ULA untuk pulang kerumah kosannya, kemudian Korban memarkirkan kendaraannya di tempat parkir tepatnya didepan kamar kosan dan korban bersama dengan Saksi masuk berada didalam kamar kosan dengan keadaan posisi pintu kamar ditutup rapat setelah berselang waktu kira-kira lebih kurang setengah jam Korbanpun keluai dengan membuka pintu kamar kosan dan ternyata yang didapati oleh Korban kendaraan yang ianya parkirkan tadi sudah tidak berada ditempat parkirnya, diduga Terlapor mengambil Sepeda motor tersebut dengan cara merusak kunci stang dan tidak ada kunci pengaman tambahan yang terpasang pada kendaraan tersebut', 17000000, 'Di Rumah Kosan Jalan Soekarno Hatta Kec. Kotabumi Selatan Kab. Lampung Utara', NULL, NULL, '2023-03-23 17:00:00', 1, 'Kotabumi Selatan', NULL, 11, 10);
 
 -- --------------------------------------------------------
 
@@ -7673,7 +7732,59 @@ INSERT INTO `motor` (`id_motor`, `tipe_motor`) VALUES
 (5, 'Honda Beat'),
 (6, 'Honda Beat Street'),
 (7, 'Honda Genio'),
-(8, 'Honda Vario 150');
+(8, 'Honda Vario 150'),
+(9, 'Honda Vario 125'),
+(10, 'Honda Scoopy'),
+(11, 'Honda PCX160'),
+(12, 'Honda Vario 160'),
+(13, 'Honda CRF150L'),
+(14, 'Honda ADV 160'),
+(15, 'Honda CBR150R'),
+(16, 'Honda Sonic 150R'),
+(17, 'Honda Supra GTR 150'),
+(18, 'Honda Supra X 125 FI'),
+(20, 'Honda CBR250RR'),
+(21, 'Honda CB150 Verza'),
+(22, 'Honda CB150R Streetfire'),
+(23, 'Honda CB150X'),
+(24, 'Honda PCX eHEV'),
+(25, 'Honda CRF250Rally'),
+(26, 'Honda CRF250L'),
+(27, 'Honda Forza 250'),
+(28, 'Honda Rebel'),
+(29, 'Honda CB500X'),
+(30, 'Honda CBR600RR'),
+(31, 'Honda Super Cub C125'),
+(32, 'Yamaha Nmax'),
+(33, 'Yamaha Aerox Connected'),
+(34, 'Yamaha Fazzio'),
+(35, 'Yamaha MX King'),
+(36, 'Yamaha Mio M3 125'),
+(37, 'Yamaha XSR 155'),
+(38, 'Yamaha Gear 125'),
+(39, 'Yamaha WR155 R'),
+(40, 'Yamaha Lexi LX 155'),
+(41, 'Yamaha Jupiter Z1'),
+(42, 'Yamaha FreeGo'),
+(43, 'Yamaha Fino 125'),
+(44, 'Yamaha Vixion'),
+(45, 'Yamaha Vega Force'),
+(46, 'Yamaha Vixion R'),
+(47, 'Kawasaki KLX 150L'),
+(48, 'Kawasaki W175'),
+(49, 'Kawasaki Ninja 250'),
+(50, 'Kawasaki D-Tracker'),
+(51, 'Kawasaki Ninja ZX-25RR'),
+(52, 'Kawasaki Z125 PRO'),
+(53, 'Suzuki Satria F150'),
+(54, 'Suzuki GSX R150'),
+(55, 'Suzuki NEX II'),
+(56, 'Suzuki NEX Crossover'),
+(57, 'Suzuki GSX S150'),
+(58, 'Suzuki Address'),
+(59, 'Suzuki Avenis'),
+(60, 'Suzuki Gixxer SF 250'),
+(61, 'Yamaha R15');
 
 -- --------------------------------------------------------
 
@@ -89090,7 +89201,7 @@ ALTER TABLE `subdistricts`
 -- AUTO_INCREMENT for table `akun`
 --
 ALTER TABLE `akun`
-  MODIFY `id_akun` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_akun` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `cities`
@@ -89102,7 +89213,7 @@ ALTER TABLE `cities`
 -- AUTO_INCREMENT for table `data_diri`
 --
 ALTER TABLE `data_diri`
-  MODIFY `id_data_diri` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_data_diri` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `districts`
@@ -89114,13 +89225,13 @@ ALTER TABLE `districts`
 -- AUTO_INCREMENT for table `kendaraan`
 --
 ALTER TABLE `kendaraan`
-  MODIFY `id_kendaraan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_kendaraan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `motor`
 --
 ALTER TABLE `motor`
-  MODIFY `id_motor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_motor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT for table `provinces`
@@ -89132,7 +89243,7 @@ ALTER TABLE `provinces`
 -- AUTO_INCREMENT for table `subdistricts`
 --
 ALTER TABLE `subdistricts`
-  MODIFY `subdis_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81227;
+  MODIFY `subdis_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81229;
 
 --
 -- Constraints for dumped tables

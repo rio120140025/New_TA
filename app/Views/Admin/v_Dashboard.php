@@ -353,9 +353,9 @@
                                                         </div>
                                                     </div>
                                                     <div class="mb-3">
-                                                        <h6 for="tipe_motor" class="form-label">Tipe Motor
+                                                        <h6 for="motor" class="form-label">Tipe Motor
                                                         </h6>
-                                                        <select class="form-select" id="tipe_motor" name="tipe_motor">
+                                                        <select class="form-select" id="motor" name="motor">
                                                         </select>
                                                     </div>
                                                     <div class="mb-3">
@@ -537,23 +537,19 @@
             });
 
             serverData.laporan.map(data => {
-                const no_laporan = data.no_laporan.replace(/\//g, '-');
-                const detailUrl = `${baseUrl}/curanmorpolreslampungutara/public/detaillaporan/${no_laporan}`;
+                if (data.latitude !== null && data.longitude !== null) {
+                    const no_laporan = data.no_laporan.replace(/\//g, '-');
+                    const detailUrl = `${baseUrl}/curanmorpolreslampungutara/public/detaillaporan/${no_laporan}`;
 
-                L.marker([data.latitude, data.longitude], { icon: customIcon })
-                    .bindPopup(`
+                    L.marker([data.latitude, data.longitude], { icon: customIcon })
+                        .bindPopup(`
                     <strong>Tipe Motor:</strong> ${data.tipe_motor}<br>
                     <strong>Tempat Kejadian Perkara:</strong> ${data.alamat_kejadian}<br>
                     <strong>Waktu Kejadian:</strong> ${data.waktu_kejadian}<br>
                     <strong>Detail:</strong> <a href="${detailUrl}" target="_blank">Lihat Detail</a>
                 `)
-                    .addTo(map);
-
-                var circle = L.circle([data.latitude, data.longitude], {
-                    color: 'red',
-                    fillColor: '#f03',
-                    fillOpacity: 0.1
-                }).addTo(map);
+                        .addTo(map);
+                }
             });
 
             var doughnutData = {
@@ -586,11 +582,17 @@
                 data: doughnutData
             });
 
+            const sortedData = serverData.bulan.sort((a, b) => {
+                const dateA = new Date(a.month);
+                const dateB = new Date(b.month);
+                return dateA - dateB;
+            });
+
             var lineData = {
-                labels: serverData.bulan.map(item => item.month),
+                labels: sortedData.map(item => item.month),
                 datasets: [{
                     label: 'Jumlah Laporan',
-                    data: serverData.bulan.map(item => item.jumlah),
+                    data: sortedData.map(item => item.jumlah),
                     fill: false,
                     borderColor: 'rgba(75, 192, 192, 1)',
                     borderWidth: 2
@@ -620,7 +622,7 @@
                 data: barData
             });
 
-            var tipemotorDropdown = $('#tipe_motor');
+            var tipemotorDropdown = $('#motor');
             tipemotorDropdown.append('<option value="">Semua Tipe Motor</option>');
 
             serverData.motor.forEach(item => {

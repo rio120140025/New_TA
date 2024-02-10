@@ -329,7 +329,7 @@
 												<tr>
 													<td>
 														<h6 class="fw-normal">
-															<?= $number; ?>
+															<?= $row->subdis_id; ?>
 														</h6>
 													</td>
 													<td>

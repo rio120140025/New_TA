@@ -90,7 +90,9 @@
                                 <h6 class="form-label">Titik Lokasi Tempat Kejadian Perkara</h6>
                                 <div id="map"></div>
                             </div>
-                            <button type="submit" class="btn btn-warning">Submit</button>
+                            <div class="panic-button-container">
+                                <button type="submit" class="panic-button">Panic <br> Button</button>
+                            </div>
                             <input type="hidden" id="latitude" name="latitude">
                             <input type="hidden" id="longitude" name="longitude">
                             <input type="hidden" id="tkp" name="alamat_kejadian">

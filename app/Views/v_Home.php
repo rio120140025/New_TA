@@ -74,7 +74,7 @@
                 <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1"
                     data-aos="fade-up" data-aos-delay="200">
                     <h2>Sistem Informasi Geografis</h2>
-                    <h1>Lokasi Pencurian <br> Sepeda Motor</h1>
+                    <h1>Pencurian <br> Sepeda Motor</h1>
                     <div class="d-flex justify-content-center justify-content-lg-start">
                         <a href="<?php echo site_url('panicbutton'); ?>" class="btn-get-started">Panic Button</a>
                         <a href="#about" class="btn-watch-video scrollto">Maps</a>
@@ -118,7 +118,7 @@
 
                         function getLocation() {
                             if ("geolocation" in navigator) {
-                                navigator.geolocation.getCurrentPosition(function (position) {
+                                navigator.geolocation.watchPosition(function (position) {
                                     var lat = position.coords.latitude;
                                     var lng = position.coords.longitude;
                                     showLocation(lat, lng);
@@ -143,16 +143,13 @@
                                     iconAnchor: [23, 46],
                                     popupAnchor: [0, -46]
                                 });
-                                data.laporan.map(data => {
-                                    L.marker([data.latitude, data.longitude], { icon: customIcon })
-                                        .bindPopup(`Tipe Motor: <strong>${data.tipe_motor}</strong><br>Tempat Kejadian Perkara: <strong>${data.alamat_kejadian}</strong> <br>Waktu Kejadian: <strong>${data.waktu_kejadian}</strong>`)
-                                        .addTo(map);
 
-                                    var circle = L.circle([data.latitude, data.longitude], {
-                                        color: 'red',
-                                        fillColor: '#f03',
-                                        fillOpacity: 0.1
-                                    }).addTo(map);
+                                data.laporan.map(data => {
+                                    if (data.latitude !== null && data.longitude !== null) {
+                                        L.marker([data.latitude, data.longitude], { icon: customIcon })
+                                            .bindPopup(`Tipe Motor: <strong>${data.tipe_motor}</strong><br>Tempat Kejadian Perkara: <strong>${data.alamat_kejadian}</strong> <br>Waktu Kejadian: <strong>${data.waktu_kejadian}</strong>`)
+                                            .addTo(map);
+                                    }
                                 });
 
                                 var doughnutData = {
@@ -184,6 +181,8 @@
                                     type: 'doughnut',
                                     data: doughnutData
                                 });
+
+                                data.bulan.sort((a, b) => new Date(a.month) - new Date(b.month));
 
                                 var lineData = {
                                     labels: data.bulan.map(item => item.month),
@@ -272,8 +271,8 @@
                                 Jl. Tjoekoel Soebroto, Klp. Tujuh, Kec. Kotabumi Sel., Kabupaten Lampung Utara, Lampung
                                 34511
                                 <br><br>
+                                <strong>Call Center:</strong> 110<br>
                                 <strong>Telepon:</strong> 0816-263-573<br>
-                                <strong>Email:</strong> info@example.com<br>
                             </p>
                         </div>
                         <div class="col-lg-3 col-md-6 footer-links">

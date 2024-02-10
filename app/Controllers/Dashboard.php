@@ -52,7 +52,7 @@ class Dashboard extends Controller
                     'end_date_kejadian' => $this->request->getPost('end_date_kejadian'),
                     'start_date_melapor' => $this->request->getPost('start_date_melapor'),
                     'end_date_melapor' => $this->request->getPost('end_date_melapor'),
-                    'tipe_motor' => $this->request->getPost('tipe_motor'),
+                    'filter_motor' => $this->request->getPost('motor'),
                     'status' => $this->request->getPost('status'),
                 ];
 

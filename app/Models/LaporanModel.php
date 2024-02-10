@@ -62,8 +62,8 @@ class LaporanModel extends Model
             $query->where('waktu_melapor <=', $filter['end_date_melapor']);
         }
 
-        if (!empty($filter['tipe_motor'])) {
-            $query->where('tipe_motor', $filter['tipe_motor']);
+        if (!empty($filter['filter_motor'])) {
+            $query->where('tipe_motor', $filter['filter_motor']);
         }
 
         if (isset($filter['status']) && $filter['status'] !== "") {
@@ -109,8 +109,8 @@ class LaporanModel extends Model
             $this->where('waktu_melapor <=', $filter['end_date_melapor']);
         }
 
-        if (!empty($filter['tipe_motor'])) {
-            $this->where('tipe_motor', $filter['tipe_motor']);
+        if (!empty($filter['filter_motor'])) {
+            $this->where('tipe_motor', $filter['filter_motor']);
         }
 
         if (isset($filter['status']) && $filter['status'] !== "") {
@@ -184,8 +184,8 @@ class LaporanModel extends Model
             $query->where('laporan.waktu_melapor <=', $filter['end_date_melapor']);
         }
 
-        if (!empty($filter['tipe_motor'])) {
-            $query->where('motor.tipe_motor', $filter['tipe_motor']);
+        if (!empty($filter['filter_motor'])) {
+            $query->where('motor.tipe_motor', $filter['filter_motor']);
         }
 
         if (isset($filter['status']) && $filter['status'] !== "") {
@@ -199,6 +199,8 @@ class LaporanModel extends Model
     public function getMonthlyIncidents($filter = null)
     {
         $query = $this->select("DATE_FORMAT(waktu_kejadian, '%M %Y') as month, COUNT(*) as jumlah")
+            ->join('kendaraan', 'laporan.id_kendaraan = kendaraan.id_kendaraan')
+            ->join('motor', 'kendaraan.id_motor = motor.id_motor')
             ->groupBy("DATE_FORMAT(waktu_kejadian, '%M %Y')");
 
         if (!empty($filter['lokasi'])) {
@@ -221,8 +223,8 @@ class LaporanModel extends Model
             $query->where('laporan.waktu_melapor <=', $filter['end_date_melapor']);
         }
 
-        if (!empty($filter['tipe_motor'])) {
-            $query->where('motor.tipe_motor', $filter['tipe_motor']);
+        if (!empty($filter['filter_motor'])) {
+            $query->where('motor.tipe_motor', $filter['filter_motor']);
         }
 
         if (isset($filter['status']) && $filter['status'] !== "") {
@@ -235,6 +237,8 @@ class LaporanModel extends Model
     public function getLokasiData($filter = null)
     {
         $query = $this->select("laporan.lokasi, COUNT(*) as jumlah")
+            ->join('kendaraan', 'laporan.id_kendaraan = kendaraan.id_kendaraan')
+            ->join('motor', 'kendaraan.id_motor = motor.id_motor')
             ->groupBy('laporan.lokasi');
 
         if (!empty($filter['lokasi'])) {
@@ -257,8 +261,8 @@ class LaporanModel extends Model
             $query->where('laporan.waktu_melapor <=', $filter['end_date_melapor']);
         }
 
-        if (!empty($filter['tipe_motor'])) {
-            $query->where('motor.tipe_motor', $filter['tipe_motor']);
+        if (!empty($filter['filter_motor'])) {
+            $query->where('motor.tipe_motor', $filter['filter_motor']);
         }
 
         if (isset($filter['status']) && $filter['status'] !== "") {
