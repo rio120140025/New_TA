@@ -115,7 +115,7 @@
             <div>
                 <div class="brand-logo d-flex align-items-center justify-content-between">
                     <div style="padding: 25px 30%;">
-                        <img src="..\assets/img/png-transparent-bandar-lampung-maluku-kepolisian-daerah-lampung-indonesian-national-police-others-logo-indonesia-area-removebg-preview.png"
+                        <img src="../assets/img/png-transparent-bandar-lampung-maluku-kepolisian-daerah-lampung-indonesian-national-police-others-logo-indonesia-area-removebg-preview.png"
                             alt="Logo" width="80">
                     </div>
                     <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
@@ -488,11 +488,11 @@
                                     $start_page = max($max_pages - 4, 1);
 
                                     if ($current_page > 1) {
-                                        echo '<a href="' . site_url("Dashboard/index/" . ($current_page - 1)) . '" class="btn btn-primary"><</a>';
+                                        echo '<a href="' . site_url("Dashboard/" . ($current_page - 1)) . '" class="btn btn-primary"><</a>';
                                     }
 
                                     for ($i = $start_page; $i <= $max_pages; $i++) {
-                                        echo '<a href="' . site_url("Dashboard/index/" . $i) . '"';
+                                        echo '<a href="' . site_url("Dashboard/" . $i) . '"';
                                         if ($i == $current_page) {
                                             echo ' class="btn btn-primary active"';
                                         } else {
@@ -502,7 +502,7 @@
                                     }
 
                                     if ($current_page < $total_pages) {
-                                        echo '<a href="' . site_url("Dashboard/index/" . ($current_page + 1)) . '" class="btn btn-primary">></a>';
+                                        echo '<a href="' . site_url("Dashboard/" . ($current_page + 1)) . '" class="btn btn-primary">></a>';
                                     }
                                     ?>
                                 <?php endif; ?>
@@ -563,6 +563,7 @@
                         'rgba(75, 192, 192, 0.7)',
                         'rgba(153, 102, 255, 0.7)',
                         'rgba(255, 159, 64, 0.7)',
+                        'rgba(255, 19, 6, 0.7)',
                     ],
                     borderColor: [
                         'rgba(255, 99, 132, 1)',
@@ -571,6 +572,7 @@
                         'rgba(75, 192, 192, 1)',
                         'rgba(153, 102, 255, 1)',
                         'rgba(255, 159, 64, 1)',
+                        'rgba(255, 19, 6, 0.7)',
                     ],
                     borderWidth: 1
                 }]

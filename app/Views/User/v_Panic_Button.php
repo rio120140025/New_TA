@@ -218,7 +218,7 @@
 
                                         function getLocation() {
                                             if ("geolocation" in navigator) {
-                                                navigator.geolocation.watchPosition(function (position) {
+                                                navigator.geolocation.getCurrentPosition(function (position) {
                                                     var lat = position.coords.latitude;
                                                     var lng = position.coords.longitude;
                                                     showLocation(lat, lng);

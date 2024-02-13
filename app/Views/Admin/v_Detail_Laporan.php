@@ -47,6 +47,8 @@
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
     <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <script>
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('/curanmorpolreslampungutara/public/assets/js/service-worker.js')
@@ -300,6 +302,11 @@
                                     <input class="form-control" value="<?= $laporan['alamat_kejadian']; ?>" readonly>
                                 </div>
                                 <div class="mb-3">
+                                    <h6 class="form-label">Titik Koordinat</h6>
+                                    <input class="form-control"
+                                        value="<?= $laporan['latitude']; ?>, <?= $laporan['longitude']; ?>" readonly>
+                                </div>
+                                <div class="mb-3">
                                     <h6 class="form-label">Titik Lokasi Tempat Kejadian Perkara</h6>
                                     <div id="map"></div>
                                 </div>
@@ -327,7 +334,8 @@
                                     L.marker([<?= $laporan['latitude']; ?>, <?= $laporan['longitude']; ?>]).addTo(map)
                                         .bindPopup('Tempat Kejadian Perkara')
                                         .openPopup();
-
+                                </script>
+                                <script>
                                     function generateGoogleMapsLinkWithInfo(laporan) {
                                         var googleMapsLink = 'Kasus Pencurian Sepeda Motor' + '\n';
                                         googleMapsLink += 'No. Laporan: ' + laporan.no_laporan + '\n';

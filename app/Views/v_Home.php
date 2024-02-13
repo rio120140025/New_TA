@@ -118,7 +118,7 @@
 
                         function getLocation() {
                             if ("geolocation" in navigator) {
-                                navigator.geolocation.watchPosition(function (position) {
+                                navigator.geolocation.getCurrentPosition(function (position) {
                                     var lat = position.coords.latitude;
                                     var lng = position.coords.longitude;
                                     showLocation(lat, lng);
@@ -163,6 +163,7 @@
                                             'rgba(75, 192, 192, 0.7)',
                                             'rgba(153, 102, 255, 0.7)',
                                             'rgba(255, 159, 64, 0.7)',
+                                            'rgba(255, 19, 6, 0.7)',
                                         ],
                                         borderColor: [
                                             'rgba(255, 99, 132, 1)',
@@ -171,6 +172,7 @@
                                             'rgba(75, 192, 192, 1)',
                                             'rgba(153, 102, 255, 1)',
                                             'rgba(255, 159, 64, 1)',
+                                            'rgba(255, 19, 6, 0.7)',
                                         ],
                                         borderWidth: 1
                                     }]

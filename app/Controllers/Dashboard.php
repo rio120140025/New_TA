@@ -63,12 +63,13 @@ class Dashboard extends Controller
                 $data['total_pages'] = ceil($data['total_data'] / $limit);
                 $data['current_page'] = $page;
 
+                $data['marker'] = $this->laporanModel->getAllLaporanDetails(null, null, null, $filter);
                 $data['motor'] = $this->laporanModel->getMotorTypeRatio($filter);
                 $data['bulan'] = $this->laporanModel->getMonthlyIncidents($filter);
                 $data['lokasi'] = $this->laporanModel->getLokasiData($filter);
 
                 $jsonData = json_encode([
-                    'laporan' => $data['laporan'],
+                    'laporan' => $data['marker'],
                     'motor' => $data['motor'],
                     'bulan' => $data['bulan'],
                     'lokasi' => $data['lokasi'],
