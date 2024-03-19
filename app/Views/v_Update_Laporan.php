@@ -253,7 +253,7 @@
                                     </select>
                                 </div>
                                 <div class="mb-3">
-                                    <img src="assets/img/stnk.png" width="365">
+                                    <img src="..\..\public\assets\img\stnk.png" width="365">
                                     <div class="form-text">Keterangan:</div>
                                     <div class="form-text">1. Warna Kendaraan</div>
                                     <div class="form-text">2. Nomor Rangka</div>

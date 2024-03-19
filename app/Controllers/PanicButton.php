@@ -67,7 +67,7 @@ class PanicButton extends Controller
             'id_akun' => $id_akun,
             'id_data_diri' => $data_diri['id_data_diri'],
             'id_kendaraan' => $this->request->getPost('id_kendaraan'),
-            'waktu_kejadian' => $this->request->getPost('waktu_kejadian'),
+            'waktu_kejadian' => $waktu_lapor,
             'alamat_kejadian' => $this->request->getPost('alamat_kejadian'),
             'lokasi' => $this->request->getPost('lokasi'),
             'longitude' => $this->request->getPost('longitude'),
@@ -87,7 +87,7 @@ class PanicButton extends Controller
         $dataNotification = [
             'no_laporan' => $nomor_laporan,
             'nama' => $data_diri['nama'],
-            'waktu_kejadian' => $this->request->getPost('waktu_kejadian'),
+            'waktu_kejadian' => $waktu_lapor,
             'alamat_kejadian' => $this->request->getPost('alamat_kejadian'),
         ];
 
@@ -114,7 +114,7 @@ class PanicButton extends Controller
             'no_laporan' => $nomor_laporan,
             'id_data_diri' => $id_data_diri,
             'id_kendaraan' => $id_kendaraan,
-            'waktu_kejadian' => $this->request->getPost('waktu_kejadian'),
+            'waktu_kejadian' => $waktu_lapor,
             'alamat_kejadian' => $this->request->getPost('alamat_kejadian'),
             'lokasi' => $this->request->getPost('lokasi'),
             'longitude' => $this->request->getPost('longitude'),
@@ -127,7 +127,7 @@ class PanicButton extends Controller
         $dataNotification = [
             'no_laporan' => $nomor_laporan,
             'nama' => $this->request->getPost('nama'),
-            'waktu_kejadian' => $this->request->getPost('waktu_kejadian'),
+            'waktu_kejadian' => $waktu_lapor,
             'alamat_kejadian' => $this->request->getPost('alamat_kejadian'),
         ];
 

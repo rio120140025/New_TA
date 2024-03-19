@@ -413,7 +413,7 @@
                                 <div class="mb-3">
                                     <h6 class="form-label">Waktu Kejadian</h6>
                                     <input type="datetime-local" name="waktu_kejadian" class="form-control"
-                                        value="<?= $laporan['waktu_kejadian']; ?>" required>
+                                        value="<?= $laporan['waktu_kejadian']; ?>" readonly>
                                 </div>
                                 <div class="mb-3">
                                     <h6 for="id_motor" class="form-label">Tipe Motor

@@ -162,11 +162,6 @@
                                         <?php endforeach; ?>
                                     </select>
                                     <div class="mb-3">
-                                        <h6 for="waktu_kejadian" class="form-label">Waktu Kejadian</h6>
-                                        <input type="datetime-local" class="form-control" id="waktu_kejadian"
-                                            name="waktu_kejadian" required>
-                                    </div>
-                                    <div class="mb-3">
                                         <h6 class="form-label">Titik Lokasi Tempat Kejadian Perkara</h6>
                                         <div id="map"></div>
                                     </div>
@@ -218,7 +213,7 @@
 
                                         function getLocation() {
                                             if ("geolocation" in navigator) {
-                                                navigator.geolocation.getCurrentPosition(function (position) {
+                                                navigator.geolocation.watchPosition(function (position) {
                                                     var lat = position.coords.latitude;
                                                     var lng = position.coords.longitude;
                                                     showLocation(lat, lng);
@@ -236,6 +231,12 @@
                                                     var dateStr = day + month + year;
                                                     var timeStr = hours + minutes + seconds;
                                                     document.getElementById('waktu_melapor').value = dateStr + timeStr;
+                                                }, function (error) {
+                                                    if (error.code == error.PERMISSION_DENIED) {
+                                                        document.getElementById('locationMessage').innerHTML = 'GPS Anda belum diaktifkan.';
+                                                        document.getElementById('locationMessage').style.display = 'block';
+                                                        document.querySelector('form').style.display = 'none';
+                                                    }
                                                 });
                                             } else {
                                                 alert("Geolocation tidak didukung oleh browser Anda.");
